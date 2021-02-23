@@ -1,0 +1,399 @@
+{
+    "ruangan": {
+        "A" : {
+            "1" : [
+                {
+                    "id" : "A.1.1",
+                    "nama_ruangan" : "Ruang Guru",
+                    "keterangan" : " Ini adalah ruang A.1.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "A.1.2",
+                    "nama_ruangan" : "Tata Usaha",
+                    "keterangan" : "Ini adalah ruang A.1.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "A.1.3",
+                    "nama_ruangan" : "Ruang Server",
+                    "keterangan" : "Ini adalah ruang A.1.3",
+                    "status" : ""
+                },
+                {
+                    "id" : "A.1.4",
+                    "nama_ruangan" : "Ruang Hubungan Industri",
+                    "keterangan" : "Ini adalah ruang A.1.4",
+                    "status" : ""
+                },
+                {
+                    "id" : "A.1.5",
+                    "nama_ruangan" : "Ruang Kepala Sekolah",
+                    "keterangan" : "Ini adalah ruang A.1.5",
+                    "status" : ""
+                },
+                {
+                    "id" : "A.1.6",
+                    "nama_ruangan" : "Ruang Sarana dan Prasarana",
+                    "keterangan" : "Ini adalah ruang A.1.6",
+                    "status" : ""
+                }
+            ],
+            "2" : [
+                {
+                    "id" : "A.2.1",
+                    "nama_ruangan" : "Lab Rpl",
+                    "keterangan" : "Ini adalah ruang A.2.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "A.2.2",
+                    "nama_ruangan" : "Lab Rpl",
+                    "keterangan" : "Ini adalah ruang A.2.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "A.2.3",
+                    "nama_ruangan" : "Lab MM",
+                    "keterangan" : "Ini adalah ruang A.2.3",
+                    "status" : ""
+                },
+                {
+                    "id" : "A.2.4",
+                    "nama_ruangan" : "Lab MM",
+                    "keterangan" : "Ini adalah ruang A.2.4",
+                    "status" : ""
+                },
+                {
+
+                    "id" : "",
+                    "nama_ruangan" : "Lab MM",
+                    "keterangan" : "Ini adalah ruang A.2.5",
+                    "status" : ""
+                },
+                {
+                    "id" : "",
+                    "nama_ruangan" : "Lab Rpl",
+                    "keterangan" : "Ini adalah ruang A.2.6",
+                    "status" : ""
+                },
+                {
+                    "id" : "",                    
+                    "nama_ruangan" : "Lab TKJ",
+                    "keterangan" : "Ini adalah ruang A.2.7",
+                    "status" : ""
+                },
+                {
+                    "id" : "",
+                    "nama_ruangan" : "Lab TKJ",
+                    "keterangan" : "Ini adalah ruang A.2.8",
+                    "status" : ""
+                }
+            ]  
+        },
+        "B" : {
+            "1" : {
+
+            },
+            "2" : {
+
+            }
+        },
+        "C" : {
+            "1" : [
+                {
+                    "id" : "C.1.1",
+                    "nama_ruangan" : "Lab",
+                    "keterangan" : "Ini adalah ruang C.1.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "C.1.2",
+                    "nama_ruangan" : "Lab",
+                    "keterangan" : "Ini adalah ruang C.1.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "C.1.3",
+                    "nama_ruangan" : "Lab",
+                    "keterangan" : "Ini adalah ruang C.1.3",
+                    "status" : ""
+                }
+            
+        ],
+            "2" : [
+                {
+                    "id" : "C.2.1",
+                    "nama_ruangan" : "Lab",
+                    "keterangan" : "Ini adalah ruang C.2.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "C.2.2",
+                    "nama_ruangan" : "Lab",
+                    "keterangan" : "Ini adalah ruang C.2.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "C.2.3",
+                    "nama_ruangan" : "Lab",
+                    "keterangan" : "Ini adalah ruang C.2.3",
+                    "status" : ""
+                }
+        ]
+    },
+        "D" : {
+            "1" : [
+                {
+                    "id" : "D.1.1",
+                    "nama_ruangan" : "Kelas D.1.1",
+                    "keterangan" : "Ini adalah ruang D.1.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "D.1.2",
+                    "nama_ruangan" : "Kelas D.1.2",
+                    "keterangan" : "Ini adalah ruang D.1.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "D.1.3",
+                    "nama_ruangan" : "Kelas D.1.3",
+                    "keterangan" : "Ini adalah ruang D.1.3",
+                    "status" : ""
+                },
+                {
+                    "id" : "D.1.4",
+                    "nama_ruangan" : "Kelas D.1.4",
+                    "keterangan" : "Ini adalah ruang D.1.4",
+                    "status" : ""
+                },
+                {
+                    "id" : "D.1.5",
+                    "nama_ruangan" : "Lab Bahasa",
+                    "keterangan" : "Ini adalah ruang D.1.5",
+                    "status" : ""
+                },
+                {
+                    "id" : "D.1.6",
+                    "nama_ruangan" : "Ruang Olahraga",
+                    "keterangan" : "Ini adalah ruang D.1.6",
+                    "status" : ""
+                }
+            ],
+            "2" : [
+                {
+                    "id" : "D.2.1",
+                    "nama_ruangan" : "Lab",
+                    "keterangan" : "Ini adalah ruang D.2.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "D.2.2",
+                    "nama_ruangan" : "Lab",
+                    "keterangan" : "Ini adalah ruang D.2.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "D.2.3",
+                    "nama_ruangan" : "Lab",
+                    "keterangan" : "Ini adalah ruang D.2.3",
+                    "status" : ""
+                }
+        ]
+    },
+        "E" : {
+            "1" : [
+                {
+                    "id" : "E.1.1",
+                    "nama_ruangan" : "Perpustakaan",
+                    "keterangan" : "Ini adalah ruang E.1.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "E.1.2",
+                    "nama_ruangan" : "Kelas E.1.2",
+                    "keterangan" : "Ini adalah ruang E.1.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "E.1.3",
+                    "nama_ruangan" : "Kelas E.1.3",
+                    "keterangan" : "Ini adalah ruang E.1.3",
+                    "status" : ""
+                }
+            ],
+            "2" : [
+                {
+                    "id" : "E.2.1",
+                    "nama_ruangan" : "Kelas E.2.1",
+                    "keterangan" : "Ini adalah ruang E.2.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "E.2.2",
+                    "nama_ruangan" : "Kelas E.2.2",
+                    "keterangan" : "Ini adalah ruang E.2.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "E.2.3",
+                    "nama_ruangan" : "Kelas E.2.3",
+                    "keterangan" : "Ini adalah ruang E.2.3",
+                    "status" : ""
+                }
+            ]
+        },
+        "F" : {
+            "1" : [
+                {
+                    "id" : "kantin",
+                    "nama_ruangan" : "Kantin" 
+                },
+                {
+                    "id" : "F.1.1",
+                    "nama_ruangan" : "Kelas F.1.1",
+                    "keterangan" : "Ini adalah ruang F.1.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "F.1.2",
+                    "nama_ruangan" : "Kelas F.1.2",
+                    "keterangan" : "Ini adalah ruang F.1.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "F.1.3",
+                    "nama_ruangan" : "Kelas F.1.3",
+                    "keterangan" : "Ini adalah ruang F.1.3",
+                    "status" : ""
+                },
+                {
+                    "id" : "F.1.4",
+                    "nama_ruangan" : "Kelas F.1.4",
+                    "keterangan" : "Ini adalah ruang F.1.4",
+                    "status" : ""
+                },
+                {
+                    "id" : "F.1.5",
+                    "nama_ruangan" : "Kelas F.1.5",
+                    "keterangan" : "Ini adalah ruang F.1.5",
+                    "status" : ""
+                }
+            ],
+            "2" : [
+                {
+                    "id" : "F.2.1",
+                    "nama_ruangan" : "Kelas F.2.1",
+                    "keterangan" : "Ini adalah ruang F.2.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "F.2.2",
+                    "nama_ruangan" : "Kelas F.2.2",
+                    "keterangan" : "Ini adalah ruang F.2.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "F.2.3",
+                    "nama_ruangan" : "Kelas F.2.3",
+                    "keterangan" : "Ini adalah ruang F.2.3",
+                    "status" : ""
+                },
+                {
+                    "id" : "F.2.4",
+                    "nama_ruangan" : "Kelas F.2.4",
+                    "keterangan" : "Ini adalah ruang F.2.4",
+                    "status" : ""
+                },
+                {
+                    "id" : "F.2.5",
+                    "nama_ruangan" : "Kelas F.2.5",
+                    "keterangan" : "Ini adalah ruang F.2.5",
+                    "status" : ""
+                }
+            ]
+        },"G" : {
+            "1" : [
+                    {
+                        "id" : "G.1.1",                   
+                        "nama_ruangan" : "Kelas G.1.1",
+                        "keterangan" : "Ini adalah ruang G.1.2",
+                        "status" : ""
+                    },
+                    {
+                        "id" : "G.1.2",                   
+                        "nama_ruangan" : "Kelas G.1.2",
+                        "keterangan" : "Ini adalah ruang G.1.2",
+                        "status" : ""
+                    },
+                    {
+                        "id" : "G.1.3",                   
+                        "nama_ruangan" : "Kelas G.1.3",
+                        "keterangan" : "Ini adalah ruang G.1.3",
+                        "status" : ""
+                    },
+                    {
+                        "id" : "G.1.4",                   
+                        "nama_ruangan" : "Kelas G.1.4",
+                        "keterangan" : "Ini adalah ruang G.1.4",
+                        "status" : ""
+                    }
+            ],
+            "2" : [
+                {
+                    "id" : "G.2.1",
+                    "nama_ruangan" : "G.2.1",
+                    "keterangan" : "Ini adalah ruang G.2.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "G.2.2",
+                    "nama_ruangan" : "G.2.2",
+                    "keterangan" : "Ini adalah ruang G.2.2",
+                    "status" : ""
+                }
+            ]
+        },
+        "H":{
+            "1" : [
+                {
+                    "id" : "H.1",                   
+                    "nama_ruangan" : "Kelas H.1",
+                    "keterangan" : "Ini adalah ruang H.1",
+                    "status" : ""
+                },
+                {
+                    "id" : "H.2",                   
+                    "nama_ruangan" : "Kelas H.2",
+                    "keterangan" : "Ini adalah ruang H.2",
+                    "status" : ""
+                },
+                {
+                    "id" : "H.3",                   
+                    "nama_ruangan" : "Kelas H.3",
+                    "keterangan" : "Ini adalah ruang H.3",
+                    "status" : ""
+                },
+                {
+                    "id" : "H.4",                   
+                    "nama_ruangan" : "Kelas H.4",
+                    "keterangan" : "Ini adalah ruang H.4",
+                    "status" : ""
+                },
+                {
+                    "id" : "H.5",                   
+                    "nama_ruangan" : "Kelas H.5",
+                    "keterangan" : "Ini adalah ruang H.5",
+                    "status" : ""
+                },
+                {
+                    "id" : "H.6",                   
+                    "nama_ruangan" : "Kelas H.6",
+                    "keterangan" : "Ini adalah ruang H.6",
+                    "status" : ""
+                }
+            ]
+        }
+    }
+}
