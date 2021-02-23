@@ -39,4 +39,14 @@ class uploadController extends Controller
         
 
     }
+
+    public function getPhoto(Request $request)
+    {
+        $photo = DB::table('users')
+            ->select('photo')
+            ->where('id', $request->id)
+            ->get();
+
+        return response()->json($photo);
+    }
 }
