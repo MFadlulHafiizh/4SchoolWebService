@@ -32,11 +32,21 @@ class uploadController extends Controller
         $photo_url = $uploadedImageResponse['image_url'];
         //update        
         if($users){
-            User::where('id',$request->id)->update(['photo' => $photo_url]);
+            User::where('id',$id)->update(['photo' => $photo_url]);
         }
         return response()->json($uploadedImageResponse, 201);
         
         
 
+    }
+
+    public function getPhoto(Request $request)
+    {
+        $photo = DB::table('users')
+            ->select('photo')
+            ->where('id', $request->id)
+            ->get();
+
+        return response()->json($photo);
     }
 }
