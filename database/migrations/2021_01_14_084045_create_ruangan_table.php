@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 class CreateRuanganTable extends Migration
@@ -23,6 +24,9 @@ class CreateRuanganTable extends Migration
             $table->text("deskripsi")->nullable();
             $table->timestamps();
         });
+        
+
+        Artisan::call('db:seed', ['--class' =>RoomTableSeeder::class]);
     }
 
     /**

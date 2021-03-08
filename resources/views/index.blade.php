@@ -163,12 +163,11 @@
 		<!-- Ruang B + mesjid -->
 		<div class="kelas ruang-b">
 			<div class="mesjid d-flex">
+				@foreach ($dataB2 as $ruanganb2)
 				<button class="btn btn-room mb-1 mr-1" style="width: 92px; height:98px" data-toggle="modal" data-target="#modalData">
-					<i class="fas fa-chalkboard-teacher fa-lg"></i><br>B 5
+					<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganb2->nama}}
 				</button>
-				<button class="btn btn-room mr-1" style="width: 100px; height:90px" data-toggle="modal" data-target="#modalData">
-					<i class="fas fa-chalkboard-teacher fa-lg"></i><br>B 6
-				</button>
+				@endforeach
 				<button class="btn btn-room mr-1" style="background-color: #0080ff; width: 80px; height:90px" data-toggle="modal" data-target="#modalData">
 					<i class="fas fa-toilet fa-lg"></i><br>WC
 				</button>
@@ -176,18 +175,11 @@
 					<i class="fas fa-mosque fa-lg"></i><br>Mesjid
 				</button>
 			</div>
+			@foreach ($dataB1 as $ruanganb1)
 			<button class="btn btn-room d-block mb-1" style="width: 92px; height:80px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>B 4
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganb1->nama}}
 			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 92px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>B 3
-			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 92px; height:80px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>B 2
-			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 92px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>B 1
-			</button>
+			@endforeach
 			<button class="btn btn-room d-block" style="width: 208px; height:165px" data-toggle="modal" data-target="#modalData">
 				<i class="fas fa-school fa-lg"></i><br>Tekno Park
 			</button>
@@ -195,21 +187,27 @@
 
 		<!-- Ruang C -->
 		<div class="kelas ruang-c">
-			<button class="btn btn-room d-block mb-1" style="width: 92px; height:145px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>C 1.1
+			@foreach ($dataC1 as $ruanganc1)
+			<button class="btn btn-room d-block" style="width: 92px; height:80px" data-toggle="modal" data-target="#modalData">
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganc1->nama}}
 			</button>
+			@endforeach
+			@foreach ($dataC2 as $ruanganc2)
 			<button class="btn btn-room d-block mb-1 bg-warning" style="width: 92px; height:70px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-desktop fa-lg"></i><br>Lab C1.2
+				<i class="fas fa-desktop fa-lg"></i><br>{{$ruanganc2->nama}}
 			</button>
-			<button class="btn btn-room d-block" style="margin-bottom: 52px; width: 92px; height:60px" data-toggle="modal" data-target="#modalData">
+			@endforeach
+			<button class="btn btn-room d-block" style="margin-bottom: 52px; width: 92px; height:60px" >
 			</button>
 
 			<button class="btn btn-room d-block mb-1" style="width: 92px; height:80px" data-toggle="modal" data-target="#modalData">
 				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>WC
 			</button>
+			@foreach ($dataC3 as $ruanganc3)
 			<button class="btn btn-room d-block" style="width: 92px; height:80px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>C 1.3
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganc3->nama}}
 			</button>
+			@endforeach
 		</div>
 
 		<!-- Ruang D -->
@@ -431,15 +429,12 @@
 
 		<!-- Ruang C lt2 -->
 		<div class="kelas ruang-c">
+			@foreach ($dataC4 as $ruanganc4)
 			<button class="btn btn-room d-block mb-1" style="width: 92px; height:170px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>C 2.3
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganc4->nama}}
 			</button>
-			<button class="btn btn-room d-block mb-1 bg-warning" style="width: 92px; height:160px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-desktop fa-lg"></i><br>Lab C2.2
-			</button>
-			<button class="btn btn-room d-block" style="margin-bottom: 52px; width: 92px; height:160px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>C 2.1
-			</button>
+			@endforeach
+			
 		</div>
 
 		<!-- Ruang D lt2 -->
