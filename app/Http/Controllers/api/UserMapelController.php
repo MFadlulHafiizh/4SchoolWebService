@@ -16,22 +16,50 @@ use App\Http\Resources\jadpelres as jadpelRes;
 
 class UserMapelController extends Controller
 {
-   
     //Get User Mapel
     public function usermapel(Request $request){
 
-        $jadpel = jadpel::where('id_user', $request->id)->get();
-        $ruangan = Ruangan::where('id', $jadpel->first()->id_ruangan)->get("nama");
-        $kelas = kelas::where('id', $jadpel->first()->id_kelas)->get("tingkatan");
-        $matpel = matpel::where('id', $jadpel->first()->id_matpel)->get("nama");
-        
-            return response()->json(array(
-                    'data'=> jadpelRes::collection(jadpel::all()),
-                    'Ruangan' => $ruangan,
-                    'Matpel' => $matpel,
-                    'Kelas' => $kelas,
+
+$jadwal = DB::table('jadwal_pelajaran')
+->join('users', 'jadwal_pelajaran.id_user', '=', 'users.id')
+->join('ruangan', 'jadwal_pelajaran.id_ruangan','=','ruangan.id')
+->join('mata_pelajaran', 'jadwal_pelajaran.id_matpel','=','mata_pelajaran.id')
+->join('kelas','jadwal_pelajaran.id_kelas','=','kelas.id')
+
+->select(
+    'jadwal_pelajaran.hari', 'jadwal_pelajaran.jam_mulai','jadwal_pelajaran.jam_selesai',
+    'ruangan.nama','kelas.tingkatan','kelas.jurusan','mata_pelajaran.nama'
+    )
+->where('jadwal_pelajaran.id_user', '=', "$request->id")
+->get();
+
+
+return response()->json(array(
+                'Jadwal Mapel' =>$jadwal
             )
         );
+
+
+// SELECT jadwal_pelajaran.`hari`, jadwal_pelajaran.`jam_mulai`,jadwal_pelajaran.`jam_selesai`,
+// ruangan.`nama`,kelas.`tingkatan`,kelas.`jurusan`,mata_pelajaran.`nama`
+// FROM  jadwal_pelajaran
+
+
+// JOIN users
+// ON jadwal_pelajaran.`id_user` = users.`id`
+
+// JOIN ruangan
+// ON jadwal_pelajaran.`id_ruangan` = ruangan.`id`
+
+// JOIN mata_pelajaran
+// ON jadwal_pelajaran.`id_matpel` = mata_pelajaran.`id`
+
+// JOIN kelas
+// ON jadwal_pelajaran.`id_kelas` = kelas.`id`
+
+// WHERE jadwal_pelajaran.`id_user` = "2"
+
+
     }
 
 }

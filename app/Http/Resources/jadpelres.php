@@ -15,7 +15,6 @@ class jadpelres extends JsonResource
     public function toArray($request)
     {
         return [
-        'id_user' => $this->id_user,
         'hari'  => $this->hari,
         'jam_mulai'  => $this->jam_mulai,
         'jam_selesai'  => $this->jam_selesai,
