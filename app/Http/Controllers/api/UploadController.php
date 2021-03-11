@@ -12,6 +12,7 @@ use App\User;
 
 class uploadController extends Controller
 {
+    //Upload Image Decode64
     public function uploadImageDecoded(Request $request, $id){
 
         $users = User::firstWhere('id', $id);
@@ -40,6 +41,7 @@ class uploadController extends Controller
 
     }
 
+    //Get photo user
     public function getPhoto(Request $request)
     {
         $photo = DB::table('users')
