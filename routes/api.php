@@ -26,4 +26,4 @@ Route::post('/refresh', 'AuthController@refresh');
 
 Route::post('/upload/{id}', 'api\UploadController@uploadImageDecoded');
 Route::get('/get-image', 'api\UploadController@getPhoto');
-Route::post('/usermapel', 'api\UserMapelController@usermapel');
+Route::post('/GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
