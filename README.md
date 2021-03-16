@@ -4,6 +4,7 @@
     -cp .env.example .env
     -php artisan key:generate
     -php artisan storage:link
+    -composer require laravel/helpers
     -php artisan jwt:secret <<ini bila perlu>>
 
 ## Lanjut Run artisan servenya ....
