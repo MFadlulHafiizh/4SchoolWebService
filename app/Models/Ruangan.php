@@ -9,5 +9,6 @@ class Ruangan extends Model
 {
     
     protected $table = 'ruangan';
+    protected $fillable =['id','nama'];
     protected $guarded = ['id'];
 }
