@@ -11,6 +11,9 @@
 
 		{{-- JS --}}
 		<script src="{{ asset('js/app.js') }}"></script>
+
+		{{-- Ajax --}}
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
 				
 		{{-- CSS --}}
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">

@@ -43,4 +43,10 @@ class PageController extends Controller
         //dd($dataD);
 
     }
+
+    public function show($id)
+    {
+        echo $id;
+
+    }
 }

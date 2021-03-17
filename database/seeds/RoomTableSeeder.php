@@ -12,6 +12,7 @@ class RoomTableSeeder extends Seeder
      */
     public function run()
     {
+        //
         DB::table('ruangan')->insert([
             [
             'nama'=> 'B 1',
@@ -356,9 +357,8 @@ class RoomTableSeeder extends Seeder
             'lantai'=> '2',
             'status'=> 'Kosong',
             'deskripsi'=> ''
-             ],
+             ]
               
         ]);
-        //
     }
 }
