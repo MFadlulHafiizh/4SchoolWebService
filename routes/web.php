@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'index']);
 Route::post('/getRuangan', [RuanganController::class, 'getRuangAjax']);
 Route::post('/getSarpras', [SaranaPrasaranaController::class, 'getSarprasAjax']);
+Route::get('/room/{id}/show', [PageController::class, 'show']);
 
 /*
 |--------------------------------------------------------------------------

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ruangan;
 
+use function Ramsey\Uuid\v1;
+
 class PageController extends Controller
 {
     public function index()
@@ -46,7 +48,9 @@ class PageController extends Controller
 
     public function show($id)
     {
-        echo $id;
-
+       // echo $id;
+        $roomdata = Ruangan::find($id);
+       // return view('index', compact('roomdata'));
+       return view('room-show', compact('roomdata'));
     }
 }
