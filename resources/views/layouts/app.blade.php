@@ -6,6 +6,8 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Mapping School</title>
 
+		{{--Jquery --}}
+
 		{{-- Favicon --}}
 		<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
@@ -16,7 +18,7 @@
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		@stack('css')
 
-		<link href="{{ asset('datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+		 {{-- <link href="{{ asset('datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">  --}}
 
 		{{-- Fontawesome --}}
 		<script src="https://kit.fontawesome.com/f3e03d1e1d.js" crossorigin="anonymous"></script>
@@ -285,8 +287,6 @@
 		</div>
 	</div>
 	
-	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
 	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('datatables/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
