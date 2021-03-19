@@ -31,7 +31,7 @@ public function GuruSchedule(Request $request){
                         return response()->json("Schedule Not Found",404);
                 }else {
                     return response()->json(array(
-                        'Jadwal Mapel' =>$jadwal
+                        'jadwal_mengajar' =>$jadwal
                 )
             );
         }
