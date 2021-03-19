@@ -32,7 +32,7 @@ public function GuruSchedule(Request $request){
                 }else {
                     return response()->json(array(
                         'Jadwal Mapel' =>$jadwal
-                )
+                    ),200
             );
         }
     }
