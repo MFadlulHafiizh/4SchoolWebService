@@ -19,11 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/register', 'api\RegisterController@register');
-Route::post('/login', 'AuthController@login');
-Route::post('/logout', 'AuthController@logout');
-Route::post('/refresh', 'AuthController@refresh');
+Route::post('register', 'api\RegisterController@register');
+Route::post('login', 'AuthController@login');
+Route::post('logout', 'AuthController@logout');
+Route::post('refresh', 'AuthController@refresh');
 
-Route::post('/upload/{id}', 'api\UploadController@uploadImageDecoded');
-Route::get('/get-image', 'api\UploadController@getPhoto');
-Route::post('/jadwal-guru', 'api\UserMapelController@usermapel');
+Route::post('upload/{id}', 'api\UploadController@uploadImageDecoded');
+Route::get('get-image', 'api\UploadController@getPhoto');
+Route::post('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');

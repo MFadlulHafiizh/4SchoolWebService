@@ -112,6 +112,13 @@
 			display: none;
 		}
 
+		@media only screen and (max-width: 768px) {
+			.img-maps {
+				max-height: 1000px;
+			}
+		}
+
+
 		
 
 	</style>
