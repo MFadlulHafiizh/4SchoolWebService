@@ -111,14 +111,11 @@
 		.lantai-act {
 			display: none;
 		}
-
-		
-
 	</style>
 @endpush
 
 @section('content')
-            
+         
     <!-- Map Lantai 1 -->
 		<div class="map-1" >
 		
@@ -164,7 +161,7 @@
 		<div class="kelas ruang-b">
 			<div class="mesjid d-flex">
 				@foreach ($dataB2 as $ruanganb2)
-				<button class="btn btn-room d-block mb-1" style="width: 100px; height:92px" data-toggle="modal" data-target="#modalData" data-id="{{$ruanganb2->id}}">					
+				<button class="btn btn-room d-block mb-1" style="width: 100px; height:92px" data-toggle="modal" data-target="#modalData" data-id="{{$ruanganb2->id}}">			
 					<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganb2->nama}}
 				</button>
 				@endforeach
@@ -176,7 +173,8 @@
 				</button>
 			</div>
 			@foreach ($dataB1 as $ruanganb1)
-			<button class="btn btn-room d-block mb-1" style="width: 100px; height:92px" data-toggle="modal" data-target="#modalData" data-id="{{$ruanganb1->id}}">				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganb1->nama}}
+			<button class="btn btn-room d-block mb-1" style="width: 100px; height:92px" data-toggle="modal" data-target="#modalData" data-id="{{$ruanganb1->id}}">		
+						<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganb1->nama}}
 			</button>
 			@endforeach
 			<button class="btn btn-room d-block" style="width: 208px; height:145px" data-toggle="modal" data-target="#modalData">
@@ -209,14 +207,13 @@
 		<!-- Ruang D -->
 		<div class="kelas d-flex ruang-d">
 			@foreach ($dataD1 as $ruanganD1)
-			<button class="btn btn-room d-block mb-1" style="width: 100px; height:92px" data-toggle="modal" data-target="#modalData" data-id="{{$ruanganD1->id}}">				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganD1->nama}}
+			<button class="btn btn-room d-block mb-1" style="width: 100px; height:92px"  data-id="{{$ruanganD1->id}}">			
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganD1->nama}}
 			</button>				
 			@endforeach	
-
 			<button class="btn d-block btn-room mt-3 mr-1" style="width: 80px; height:80px" data-toggle="modal" data-target="#modalData">
 				<i class="fas fa-volleyball-ball fa-lg"></i><br>R. OR
-			</button>
-			
+			</button>	
 			<div class="wc">
 				<button class="btn d-block btn-room mt-3" style="background-color: #0080ff; width: 65px; height:80px" data-toggle="modal" data-target="#modalData">
 					<i class="fas fa-chalkboard-teacher fa-lg"></i><br>WC
@@ -241,24 +238,23 @@
 
 		<!-- Ruang F -->
 		<div class="kelas d-flex ruang-f">
-			<button class="btn btn-room mr-1" style="width: 130px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>F 1.1
+			@foreach ($dataF1 as $ruanganF1)
+			<button class="btn btn-room mr-1" style="width: 130px; height:90px" data-id="{{$ruanganF1->id}}">
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganF1->nama}}
 			</button>
+			@endforeach
+
 			<button class="btn btn-room mr-1" style="width: 90px; height:90px" data-toggle="modal" data-target="#modalData">
 				<i class="fas fa-clinic-medical fa-lg"></i><br>UKS
 			</button>
 			<button class="btn btn-room" style="background-color: #ff5a5f; margin-right: 26px; width: 79px; height:90px" data-toggle="modal" data-target="#modalData">
 				<i class="fas fa-toilet fa-lg"></i><br>WC
 			</button>
-			<button class="btn btn-room mr-1" style="width: 100px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>F 1.3
-			</button>
-			<button class="btn btn-room mr-1" style="width: 105px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>F 1.4
-			</button>
-			<button class="btn btn-room mr-1" style="width: 105px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>F 1.5
-			</button>
+			@foreach ($dataF2 as $ruanganF2)
+			<button class="btn btn-room mr-1" style="width: 130px; height:90px" data-id="{{$ruanganF2->id}}">
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganF2->nama}}
+			</button>	
+			@endforeach
 			<button class="btn btn-room" style="background-color: #ff6101; width: 80px; height:90px" data-toggle="modal" data-target="#modalData">
 				<i class="fas fa-utensils fa-lg"></i><br>Kantin
 			</button>
@@ -271,36 +267,32 @@
 			<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganG1->nama}}
 			</button>
 			@endforeach
-			{{-- <button class="btn btn-room d-block mb-1" style="width: 100px; height:100px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>G 1
-			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 100px; height:100px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>G 2
-			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 100px; height:100px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>G 3
-			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 100px; height:100px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>G 4
-			</button> --}}
 		</div>
 		
 		<!-- Ruang H -->
 		<div class="kelas d-flex ruang-h">
-			<button class="btn btn-room mr-1" style="width: 110px; height:85px" data-toggle="modal" data-target="#modalData">
+			@foreach ($dataH1 as $ruanganH1)
+			<button class="btn btn-room mr-1" style="width: 110px; height:85px" data-id="{{$ruanganH1->id}}">
 				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>ORBIT
 			</button>
-			<button class="btn btn-room mr-1" style="width: 110px; height:85px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>R. EDU
-			</button>
-			<button class="btn btn-room mr-1" style="width: 110px; height:85px" data-toggle="modal" data-target="#modalData">
+			@endforeach
+			@foreach ($dataH2 as $ruanganH2)
+			<button class="btn btn-room mr-1" style="width: 110px; height:85px" data-id="{{$ruanganH2->id}}">
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>R. EDU 
+			</button>	
+			@endforeach
+			@foreach ($dataH3 as $ruanganH3)
+			<button class="btn btn-room mr-1" style="width: 110px; height:85px" data-id="{{$ruanganH3->id}}">
 				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>R. TOOL
-			</button>
+			</button>		
+			@endforeach
 			<div class="prodi-av">
+				@foreach ($dataH4 as $ruanganH4)
 				<div class="ruang-av">
-					<button class="btn btn-room mb-1 mr-1" style=" width: 120px; height:40px" data-toggle="modal" data-target="#modalData">
+					<button class="btn btn-room mb-1 mr-1" style=" width: 120px; height:40px" data-id="{{$ruanganH4->id}}">
 						<i class="fas fa-chalkboard-teacher fa-lg mr-2"></i>R. AV
 					</button>
+				@endforeach
 				</div>
 				<div class="mushola d-flex">
 				<button class="btn btn-room mb-1 mr-1" style="background-color: #00a572; width: 60px; height:40px" data-toggle="modal" data-target="#modalData">
@@ -311,12 +303,11 @@
 				</button>
 				</div>
 			</div>
-			<button class="btn btn-room mr-1" style="width: 110px; height:85px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>H 5
-			</button>
-			<button class="btn btn-room mr-1" style="width: 120px; height:85px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>H 6
-			</button>
+			@foreach ($dataH5 as $ruanganH5)
+			<button class="btn btn-room mr-1" style="width: 110px; height:85px" data-id="{{$ruanganH5->id}}">
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganH5->nama}}
+			</button>		
+			 @endforeach
 		</div>
 		
 
@@ -380,40 +371,49 @@
 
 		<!-- Ruang A lt2 -->
 		<div class="kelas ruang-a">
-			<button class="btn btn-room d-block mb-1 bg-warning" style="width: 120px; height:80px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-desktop fa-lg"></i><br>Lab A 2.1
+			@foreach ($dataA1 as $ruanganA1)
+			<button class="btn btn-room d-block mb-1 bg-warning" style="width: 120px; height:80px" data-id="{{$ruanganA1->id}}">
+				<i class="fas fa-desktop fa-lg"></i><br>{{$ruanganA1->nama}}
 			</button>
-			<button class="btn btn-room d-block mb-1 bg-warning" style="width: 120px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-desktop fa-lg"></i><br>Lab A 2.2
-			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 120px; height:70px" data-toggle="modal" data-target="#modalData">
+			@endforeach
+			@foreach ($dataA2 as $ruanganA2)
+			<button class="btn btn-room d-block mb-1" style="width: 120px; height:70px" data-id="{{$ruanganA2->id}}">
 				<i class="fas fa-camera fa-lg"></i><br>Stud. MM
 			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 120px; height:100px" data-toggle="modal" data-target="#modalData">
+			@endforeach
+			@foreach ($dataA3 as $ruanganA3)
+			<button class="btn btn-room d-block mb-1" style="width: 120px; height:100px" data-id="{{$ruanganA3->id}}">
 				<i class="fas fa-money-check-alt fa-lg"></i><br>Lab MM
 			</button>
+			@endforeach
 			<button class="btn btn-room d-block mb-1" style="width: 120px; height:110px" data-toggle="modal" data-target="#modalData">
 				<i class="fas fa-chalkboard fa-lg"></i><br>R. Guru TI
 			</button>
-			<button class="btn btn-room d-block mb-1 bg-warning"" style="width: 120px; height:80px" data-toggle="modal" data-target="#modalData">
+			@foreach ($dataA4 as $ruanganA4)
+			<button class="btn btn-room d-block mb-1 bg-warning"" style="width: 120px; height:80px" data-id="{{$ruanganA4->id}}">
 				<i class="fas fa-desktop fa-lg"></i><br>Lab A 2.6
+			</button>	
+			@endforeach
+			@foreach ($dataA5 as $ruanganA5)
+			<button class="btn btn-room d-block mb-1" style="width: 120px; height:70px" data-id="{{$ruanganA5->id}}">
+				<i class="fas fa-warehouse fa-lg"></i><br>Gudang A 2.7
 			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 120px; height:70px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-warehouse fa-lg"></i><br>GudangA2.7
-			</button>
-			<button class="btn btn-room d-block mb-1 bg-warning"" style="width: 120px; height:80px" data-toggle="modal" data-target="#modalData">
+			@endforeach
+			@foreach ($dataA6 as $ruanganA6) 
+			<button class="btn btn-room d-block mb-1 bg-warning"" style="width: 120px; height:80px" data-id="{{$ruanganA6->id}}">
 				<i class="fas fa-desktop fa-lg "></i><br>Lab A 2.8
-			</button>
+			</button>	
+			 @endforeach 
+			
 		</div>
 
 		<!-- Ruang B lt 2 -->
 		<div class="kelas ruang-b">
-			<button class="btn btn-room d-block mb-1" style="width: 92px; height:80px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>B 2.2
+			@foreach ($dataB3 as $ruanganB3)
+			<button class="btn btn-room d-block mb-1" style="width: 92px; height:80px" data-id="{{$ruanganB3->id}}">
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganB3->nama}}
 			</button>
-			<button class="btn btn-room d-block mb-1" style="width: 92px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>B 2.1
-			</button>
+			@endforeach
 		</div>
 
 		<!-- Ruang C lt2 -->
@@ -423,18 +423,21 @@
 			<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganc4->nama}}
 			</button>
 			@endforeach
-			
 		</div>
 
 		<!-- Ruang D lt2 -->
 		<div class="kelas d-flex ruang-d">
 			@foreach ($dataD2 as $ruanganD2)
-			<button class="btn btn-room d-block mb-1" style="width: 100px; height:92px" data-toggle="modal" data-target="#modalData" data-id="{{$ruanganD2->id}}">				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganD2->nama}}
+			<button class="btn btn-room d-block mb-1" style="width: 125px; height:92px" data-id="{{$ruanganD2->id}}">	
+			<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganD2->nama}}
 			</button>
 			@endforeach
-			<button class="btn btn-room mr-1" style="width: 130px; height:90px" data-toggle="modal" data-target="#modalData">
+			@foreach ($dataD3 as $ruanganD3)
+			<button class="btn btn-room mr-1" style="width: 130px; height:90px" data-id="{{$ruanganD3->id}}">
 				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>Lab Bahasa
-			</button>
+			</button>	
+			@endforeach
+			
 		</div>
 
 		<!-- Ruang E lt2 -->
@@ -446,30 +449,33 @@
 
 		<!-- Ruang F lt2 -->
 		<div class="kelas d-flex ruang-f">
-			<button class="btn btn-room mr-1" style="width: 130px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>F 2.1
+			@foreach ($dataF3 as $ruanganF3)
+			<button class="btn btn-room mr-1" style="width: 130px; height:90px" data-id="{{$ruanganF3->id}}">
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganF3->nama}}
 			</button>
-			<button class="btn btn-room mr-1" style="width: 90px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-clinic-medical fa-lg"></i><br>
+			@endforeach
+			<button class="btn btn-room mr-1" style="width: 85px; height:90px" data-toggle="modal" data-target="#modalData">
+				<i class="fas fa-clinic-medical fa-lg"></i><br>Ruangan BK
 			</button>
-			<button class="btn btn-room" style="background-color: #0080ff; margin-right: 25px; width: 80px; height:90px" data-toggle="modal" data-target="#modalData">
+			<button class="btn btn-room" style="background-color: #0080ff; margin-right: 40px; width: 70px; height:90px" data-toggle="modal" data-target="#modalData">
 				<i class="fas fa-toilet fa-lg"></i><br>WC
 			</button>
-			<button class="btn btn-room mr-1" style="width: 100px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>F 2.3
+			@foreach ($dataF4 as $ruanganF4)
+			<button class="btn btn-room mr-1" style="width: 110px; height:90px" data-id="{{$ruanganF4->id}}">
+				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganF4->nama}}
 			</button>
-			<button class="btn btn-room mr-1 bg-warning" style="width: 105px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-desktop fa-lg"></i><br>Lab F 2.4
+			@endforeach
+			@foreach ($dataF5 as $ruanganF5)
+			<button class="btn btn-room mr-1 bg-warning" style="width: 145px; height:90px" data-id="{{$ruanganF5->id}}">
+				<i class="fas fa-desktop fa-lg"></i><br>{{$ruanganF5->nama}}
 			</button>
-			<button class="btn btn-room mr-1 bg-warning" style="width: 105px; height:90px" data-toggle="modal" data-target="#modalData">
-				<i class="fas fa-desktop fa-lg"></i><br>Lab F 2.5
-			</button>
+			@endforeach
 		</div>
 
 		<!-- Ruang G lt2 -->
 		<div class="kelas ruang-g">
 			@foreach ($dataG2 as $ruanganG2)
-			<button class="btn btn-room d-block mb-1" style="width: 100px; height:100px" data-toggle="modal" data-target="#modalData" value="">
+			<button class="btn btn-room d-block mb-1" style="width: 100px; height:100px" data-id="{{$ruanganG2->id}}">
 				<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{@$ruanganG2->nama}}
 			</button>
 			@endforeach

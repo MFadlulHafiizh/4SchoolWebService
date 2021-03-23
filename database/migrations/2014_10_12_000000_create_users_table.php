@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('nip')->nullable();
             $table->string('nis')->nullable();
             $table->string('photo')->nullable();
+            $table->enum('role', ['guru', 'siswa']);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
