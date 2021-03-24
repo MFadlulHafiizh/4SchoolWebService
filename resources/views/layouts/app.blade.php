@@ -80,7 +80,7 @@
 				}
 			.content .map {
 					overflow: auto;
-					max-height: 90vh;
+					max-height: 135vh;
 			}
 
 			.lantai-act {
@@ -99,6 +99,18 @@
 			.btn-rute {
 				height: 40px;
 				margin-top: 2px;
+			}
+
+			.btn-rute {
+				width: 60px;
+				font-size: 17px;
+			}
+	
+			div.modal-content{
+				-webkit-box-shadow: none;
+				-moz-box-shadow: none;
+				-o-box-shadow: none;
+				box-shadow: none;
 			}
 
 			@media (min-width: 768px) {
@@ -121,23 +133,22 @@
 					margin-top: 0.5rem;
 					font-size: 0.8em;
 				}
-				#lantai {
-					height: 25px;
-					width: 45px;
-					padding: 0 5px;
-				}
-				#lantai option {
-					padding: 0 5px;
-				}
-				.btn-rute {
-					height: 25px;
+				.lead {
+					font-size: 22px;
 				}
 			}
 		</style>
 
 	</head>
-<body>
-    
+
+	<script type="text/javascript">
+  function zoom() {
+  	document.body.style.zoom = "70%" 
+  }
+	</script>
+
+<body onload="zoom()">
+
     <div class="d-flex" id="wrapper">
 
       <!-- Sidebar -->
@@ -219,14 +230,14 @@
 						{{-- <button class="btn btn-light" id="btn-toggle">
 							<i class="fas fa-bars fa-lg text-dark mt-2"></i>	
 						</button> --}}
-						<h4 class="title">{{ $title }}</h4>
+						<h1 class="lead mt-2">{{ $title }}</h1>
 						<div class="select-lantai">
 							<select class="form-control" id="lantai" >
 								<option>1</option>
 								<option>2</option>
 							</select>
 						</div>
-						<button class="btn btn-sm ml-2 btn-primary btn-rute" data-toggle="modal" data-target="#modalNavigasi">Rute</button>
+						<button class="btn btn-sm ml-2 btn-primary btn-rute" data-toggle="modal" data-backdrop="false" data-target="#modalNavigasi">Rute</button>
 					</div>
 				</nav>
 
@@ -247,7 +258,7 @@
 
 	<!-- Modal -->
 	<div class="modal fade" id="modalNavigasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Navigasi</h5>
