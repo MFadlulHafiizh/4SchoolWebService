@@ -8,14 +8,22 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 
 class uploadController extends Controller
 {
     //Upload Image Decode64
-    public function uploadImageDecoded(Request $request, $id){
+    public function uploadImageDecoded(Request $request){
+        $validator = Validator::make($request->all(), [
+            'photo'     => 'required|string',
+        ]);
+        
+        if ($validator->fails()) {
+            return response(['Uploading Failed',$validator->errors()],422);
+        }
 
-        $users = User::firstWhere('id', $id);
+        $users = User::firstWhere('id', $request->id);
 
         $uploadFolder = 'userimage';
         $image = $request->photo;
@@ -33,7 +41,7 @@ class uploadController extends Controller
         $photo_url = $uploadedImageResponse['image_url'];
         //update        
         if($users){
-            User::where('id',$id)->update(['photo' => $photo_url]);
+            User::where('id',$request->id)->update(['photo' => $photo_url]);
         }
         return response()->json($uploadedImageResponse, 201);
         

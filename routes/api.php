@@ -21,9 +21,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', 'api\RegisterController@register');
 Route::post('login', 'AuthController@login');
+
+Route::group(["middleware"=> "jwt.auth"], function(){
 Route::post('logout', 'AuthController@logout');
+});
+
 Route::post('refresh', 'AuthController@refresh');
 
-Route::post('upload/{id}', 'api\UploadController@uploadImageDecoded');
+Route::group(['middleware'=> 'api.role:guru'], function() {
+    Route::post('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
+});
+Route::patch('upload/{id}', 'api\UploadController@uploadImageDecoded');
 Route::get('get-image', 'api\UploadController@getPhoto');
-Route::post('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
