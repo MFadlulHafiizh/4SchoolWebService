@@ -21,7 +21,7 @@ public function GuruSchedule(Request $request){
         ->join('kelas','jadwal_pelajaran.id_kelas','=','kelas.id')
         ->select(
             'jadwal_pelajaran.hari', 'jadwal_pelajaran.jam_mulai','jadwal_pelajaran.jam_selesai',
-            'ruangan.nama','kelas.tingkatan','kelas.jurusan','mata_pelajaran.nama'
+            'ruangan.nama','kelas.id as id_kelas','kelas.tingkatan','kelas.jurusan','mata_pelajaran.nama'
             )
 
         ->where('jadwal_pelajaran.id_user', '=', "$request->id")
