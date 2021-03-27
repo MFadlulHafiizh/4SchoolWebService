@@ -19,10 +19,10 @@ class CreateJadwalPelajaranTable extends Migration
             $table->string('hari');
             $table->time('jam_mulai');
             $table->time('jam_selesai');
-            $table->foreignId('id_ruangan');
-            $table->foreignId('id_matpel');
-            $table->foreignId('id_kelas');
-            $table->foreignId('id_user');
+            $table->string('id_ruangan');
+            $table->string('id_matpel');
+            $table->string('id_kelas');
+            $table->string('id_user');
             
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_ruangan')->references('id')->on('ruangan');

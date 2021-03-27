@@ -14,7 +14,7 @@ use App\User;
 class uploadController extends Controller
 {
     //Upload Image Decode64
-    public function uploadImageDecoded(Request $request){
+    public function uploadImageDecoded(Request $request, $id){
         $validator = Validator::make($request->all(), [
             'photo'     => 'required|string',
         ]);
@@ -23,7 +23,7 @@ class uploadController extends Controller
             return response(['Uploading Failed',$validator->errors()],422);
         }
 
-        $users = User::firstWhere('id', $request->id);
+        $users = User::firstWhere('id', $id);
 
         $uploadFolder = 'userimage';
         $image = $request->photo;
@@ -41,9 +41,14 @@ class uploadController extends Controller
         $photo_url = $uploadedImageResponse['image_url'];
         //update        
         if($users){
-            User::where('id',$request->id)->update(['photo' => $photo_url]);
+           $cekImage = User::where('id',$id)->select('photo')->get();
+           $imageString = $cekImage->pluck('photo')[0];
+           $subImage = Str::substr($imageString, -15);
+           Storage::disk('public')->delete($subImage);
+        }else{
+            User::where('id',$id)->update(['photo' => $photo_url]);
         }
-        return response()->json($uploadedImageResponse, 201);
+        return response()->json($uploadedImageResponse,201);
         
         
 
@@ -59,4 +64,5 @@ class uploadController extends Controller
 
         return response()->json($photo);
     }
+
 }
