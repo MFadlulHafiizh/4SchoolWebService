@@ -2,45 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Ruangan;
-
-use function Ramsey\Uuid\v1;
 
 class PageController extends Controller
 {
     public function index()
     {
         $data['lantai'] = [1, 2];
-        $data['blok'] = ['A','B','C','D','E','F','G','H'];
+        $data['blok'] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
         $data['tipe'] = ['Labolatorium', 'Kelas'];
         $data['status'] = ['Kosong', 'Digunakan'];
-         
-        $dataA1 = Ruangan::where('blok', 'A')->where('lantai','2')->take(2)->get();
+
+        $dataA1 = Ruangan::where('blok', 'A')->where('lantai', '2')->take(2)->get();
 
         $dataA2 = Ruangan::where('blok', 'A')->where('lantai', '2')->skip(2)->take(1)->get();
 
         $dataA3 = Ruangan::where('blok', 'A')->where('lantai', '2')->skip(3)->take(1)->get();
-        
+
         $dataA4 = Ruangan::where('blok', 'A')->where('lantai', '2')->where('nama', 'A 2.6')->get();
 
         $dataA5 = Ruangan::where('blok', 'A')->where('lantai', '2')->where('nama', 'A 2.7')->get();
 
         $dataA6 = Ruangan::where('blok', 'A')->where('lantai', '2')->where('nama', 'A 2.8')->get();
-        
-        $dataB1 = Ruangan::where('blok', 'B')->where('lantai','1')->skip(2)->take(4)->orderBy('nama', 'desc')->get();
+
+        $dataB1 = Ruangan::where('blok', 'B')->where('lantai', '1')->skip(2)->take(4)->orderBy('nama', 'desc')->get();
 
         $dataB2 = Ruangan::where('blok', 'B')->where('lantai', '1')->skip(4)->take(2)->get();
 
         $dataB3 = Ruangan::where('blok', 'B')->where('lantai', '2')->get();
 
-        $dataC1 = Ruangan::where('blok', 'C')->where('lantai','1')->where('nama','C 1.1')->get();
+        $dataC1 = Ruangan::where('blok', 'C')->where('lantai', '1')->where('nama', 'C 1.1')->get();
 
-        $dataC2 = Ruangan::where('blok', 'C')->where('lantai','1')->where('nama','C 1.2')->get();
+        $dataC2 = Ruangan::where('blok', 'C')->where('lantai', '1')->where('nama', 'C 1.2')->get();
 
-        $dataC3 = Ruangan::where('blok', 'C')->where('lantai','1')->where('nama','C 1.3')->get();
+        $dataC3 = Ruangan::where('blok', 'C')->where('lantai', '1')->where('nama', 'C 1.3')->get();
 
-        $dataC4 = Ruangan::where('blok', 'C')->where('lantai','2')->get();
+        $dataC4 = Ruangan::where('blok', 'C')->where('lantai', '2')->get();
 
         $dataD1 = Ruangan::where('blok', 'D')->where('lantai', '1')->get();
 
@@ -51,16 +48,16 @@ class PageController extends Controller
         $dataE1 = Ruangan::where('blok', 'E')->where('lantai', '1')->get();
 
         $dataE2 = Ruangan::where('blok', 'E')->where('lantai', '2')->get();
- 
+
         $dataF1 = Ruangan::where('blok', 'F')->where('lantai', '1')->where('nama', 'F 1.1')->get();
 
         $dataF2 = Ruangan::where('blok', 'F')->where('lantai', '1')->skip(1)->take(3)->get();
 
-        $dataF3  =Ruangan::where('blok', 'F')->where('lantai', '2')->where('nama', 'F 2.1')->get();
+        $dataF3 = Ruangan::where('blok', 'F')->where('lantai', '2')->where('nama', 'F 2.1')->get();
 
-        $dataF4  =Ruangan::where('blok', 'F')->where('lantai', '2')->where('nama', 'F 2.3')->get();
+        $dataF4 = Ruangan::where('blok', 'F')->where('lantai', '2')->where('nama', 'F 2.3')->get();
 
-        $dataF5  =Ruangan::where('blok', 'F')->where('lantai', '2')->skip(2)->take(3)->get();
+        $dataF5 = Ruangan::where('blok', 'F')->where('lantai', '2')->skip(2)->take(3)->get();
 
         $dataG1 = Ruangan::where('blok', 'G')->where('lantai', '1')->get();
 
@@ -76,7 +73,7 @@ class PageController extends Controller
 
         $dataH5 = Ruangan::where('blok', 'H')->where('lantai', '1')->skip(4)->take(3)->get();
 
-        return view('index', compact( 'dataH1','dataA1', 'dataA2', 'dataA3', 'dataA4', 'dataA5', 'dataA6', 'dataB1', 'dataB2', 'dataB3', 'dataC1', 'dataC2', 'dataC3','dataC4','dataD1', 'dataD2', 'dataD3', 'dataE1', 'dataE2', 'dataF1', 'dataF2', 'dataF3', 'dataF4', 'dataF5','dataG1',  'dataG2', 'dataH2', 'dataH3', 'dataH4', 'dataH5', 'data'));
+        return view('index', compact('dataH1', 'dataA1', 'dataA2', 'dataA3', 'dataA4', 'dataA5', 'dataA6', 'dataB1', 'dataB2', 'dataB3', 'dataC1', 'dataC2', 'dataC3', 'dataC4', 'dataD1', 'dataD2', 'dataD3', 'dataE1', 'dataE2', 'dataF1', 'dataF2', 'dataF3', 'dataF4', 'dataF5', 'dataG1', 'dataG2', 'dataH2', 'dataH3', 'dataH4', 'dataH5', 'data'));
 
         //dd($dataD);
 
@@ -84,9 +81,9 @@ class PageController extends Controller
 
     public function show($id)
     {
-       // echo $id;
+        // echo $id;
         $roomdata = Ruangan::find($id);
-       // return view('index', compact('roomdata'));
-       return view('room-show', compact('roomdata'));
+        // return view('index', compact('roomdata'));
+        return view('room-show', compact('roomdata'));
     }
 }
