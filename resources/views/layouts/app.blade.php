@@ -74,10 +74,10 @@
 			#wrapper.toggled .sidebar {
 				margin-left: 0;
 			}
-			.content .content-map {
-					padding: 0;
-					border-radius: 10px;
-				}
+			.content .content-map {	
+				padding: 0;
+				border-radius: 10px;
+			}
 			.content .map {
 					overflow: auto;
 					max-height: 135vh;

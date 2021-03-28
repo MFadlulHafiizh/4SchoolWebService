@@ -30,6 +30,8 @@ Route::post('refresh', 'AuthController@refresh');
 
 Route::group(['middleware'=> 'api.role:guru'], function() {
     Route::post('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
+    
 });
+Route::get('classData', 'api\ClassroomController@getInfoClass');
 Route::patch('upload/{id}', 'api\UploadController@uploadImageDecoded');
 Route::get('get-image', 'api\UploadController@getPhoto');

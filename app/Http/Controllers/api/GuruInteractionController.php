@@ -14,19 +14,24 @@ class GuruInteractionController extends Controller
 //Get GuruMapel//
 public function GuruSchedule(Request $request){
 
-        $jadwal = DB::table('jadwal_pelajaran')
-        ->join('users', 'jadwal_pelajaran.id_user', '=', 'users.id')
-        ->join('ruangan', 'jadwal_pelajaran.id_ruangan','=','ruangan.id')
-        ->join('mata_pelajaran', 'jadwal_pelajaran.id_matpel','=','mata_pelajaran.id')
-        ->join('kelas','jadwal_pelajaran.id_kelas','=','kelas.id')
+        $jadwal = DB::table('jadwal')
+        ->join('hari','jadwal.id_hari','=','hari.id')
+        ->join('ruangan','jadwal.id_ruangan','=','ruangan.id')
+        ->join('mata_pelajaran','jadwal.id_matpel','=','mata_pelajaran.id')
+        ->join('kelas','jadwal.id_kelas','=','kelas.id')
         ->select(
-            'jadwal_pelajaran.hari', 'jadwal_pelajaran.jam_mulai','jadwal_pelajaran.jam_selesai',
-            'ruangan.nama','kelas.id as id_kelas','kelas.tingkatan','kelas.jurusan','mata_pelajaran.nama'
+            'hari.hari',
+            'jadwal.jam_mulai',
+            'jadwal.jam_selesai',
+            'ruangan.nama as ruangan' ,
+            'mata_pelajaran.nama as mapel',
+            'kelas.id as id_kelas',
+            'kelas.tingkatan',
+            'kelas.jurusan',
             )
-
-        ->where('jadwal_pelajaran.id_user', '=', "$request->id")
+        ->where('jadwal.id_user', '=', "$request->id")
         ->get();
-    
+
             if (empty("$request->id")) {
                         return response()->json("Schedule Not Found",404);
                 }else {
