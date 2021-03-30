@@ -32,6 +32,9 @@ Route::group(['middleware'=> 'api.role:guru'], function() {
     Route::post('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
     
 });
+Route::group(['middleware'=> 'api.role:siswa'], function() {
+    Route::get('SiswaSchedule', 'api\SiswaInteractionController@SiswaSchedule');
+});
 Route::get('classData', 'api\ClassroomController@getInfoClass');
 Route::patch('upload/{id}', 'api\UploadController@uploadImageDecoded');
 Route::get('get-image', 'api\UploadController@getPhoto');
