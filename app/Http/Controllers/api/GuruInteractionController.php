@@ -53,7 +53,7 @@ public function GuruSchedule(Request $request){
             'deskripsi'    => 'required',
             'tipe'         => 'required',
             // 'tenggat'      => 'required',
-            'file' => 'required',
+            //'file' => 'required',
         ]);
         
         if ($validator->fails()) {
@@ -69,27 +69,30 @@ public function GuruSchedule(Request $request){
 
         ]);
         $tugas_create->save();
+
         $id = DB::getPdo('Tugas_kelas')->lastInsertId();
+        if(@!empty($request->file)){
+            $file = $request->file->getClientOriginalName(); 
+            $fileName = $id.$file;  
+            Storage::disk('public')->put($fileName,$file);
+            $file_tugas_teori_guru = DB::table('file_tugasteori_guru')
+            ->insert([
+                ['id_tugas_kelas' => "$id",'file' => "$fileName"],
+            ]);
+            if($file_tugas_teori_guru){
+                return response()->json([
+                    $tugas_create,
+                    $file_tugas_teori_guru
+                    ]);
+            }
+        }else{
+            return $this->tugasCreate($id_kelas, $id_matpel, $request->judul, $request->deskripsi, $request->tipe);
+        }
+        return  response()->json("task success created",201);
+    }
+
+    public function tugasCreate($id_kelas, $id_matpel, $judul, $deskripsi, $tipe){
         
-        $file = $request->file->getClientOriginalName(); 
-        $fileName = $file;  
-
-        Storage::disk('public')->put($fileName,$file);
-        $file_tugas_teori_guru = DB::table('file_tugasteori_guru')
-        ->insert([
-            ['id_tugas_kelas' => "$id",'file' => "$fileName"],
-        ]);
-
-        $file_tugas_siswa = DB::table('file_tugas_siswa')
-        ->insert(['id_tugas_kelas' => "$id"]);
-
-
-        return  response()->json(
-            
-                "task success created",201);
-
-
-
     }
 
 }
