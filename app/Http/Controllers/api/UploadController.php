@@ -24,34 +24,35 @@ class uploadController extends Controller
         }
 
         $users = User::firstWhere('id', $id);
+        $cekImage = User::where('id',$id)->select('photo')->get();
+        //update        
+        if($users){
+           $imageString = $cekImage->pluck('photo')[0];
+           $subImage = Str::substr($imageString, -15);
+           Storage::disk('public')->delete($subImage);
+           return $this->uploadImage($request->photo, $id);
+        }else{
+            return $this->uploadImage($request->photo, $id);
+        }
+        
+    }
 
+    public function uploadImage($photo, $id){
         $uploadFolder = 'userimage';
-        $image = $request->photo;
+        $image = $photo;
         // $image_uploaded_path = $image->store($uploadFolder, 'public');
         $image = str_replace('data:image/jpeg;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
         $imageName = str_random(10).'.'.'jpeg';
         Storage::disk('public')->put($imageName, base64_decode($image));
-
         $uploadedImageResponse = array(
             "image_name" => basename($imageName),
             "image_url" => url("storage/".$imageName),
         );
         //url
         $photo_url = $uploadedImageResponse['image_url'];
-        //update        
-        if($users){
-           $cekImage = User::where('id',$id)->select('photo')->get();
-           $imageString = $cekImage->pluck('photo')[0];
-           $subImage = Str::substr($imageString, -15);
-           Storage::disk('public')->delete($subImage);
-        }else{
-            User::where('id',$id)->update(['photo' => $photo_url]);
-        }
+        User::where('id',$id)->update(['photo' => $photo_url]);
         return response()->json($uploadedImageResponse,201);
-        
-        
-
     }
 
     //Get photo user
