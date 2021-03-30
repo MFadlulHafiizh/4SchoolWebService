@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Validator;
+use App\Models\Tugas_kelas;
+use Illuminate\Support\Facades\Storage;
 class GuruInteractionController extends Controller
 {
 
@@ -40,6 +42,54 @@ public function GuruSchedule(Request $request){
                 )
             );
         }
+    }
+
+    public function tugas_kelas(Request $request,$id_kelas,$id_matpel)
+    {
+        $validator = Validator::make($request->all(), [
+            // 'id_kelas'     => 'required|max:50',
+            // 'id_matpel'    => 'required|max:50',
+            'judul'        => 'required|max:50',
+            'deskripsi'    => 'required',
+            'tipe'         => 'required',
+            // 'tenggat'      => 'required',
+            'file' => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return response(['Task created failed..',$validator->errors()],422);
+        }
+
+        $tugas_create = Tugas_kelas::create([
+            'id_kelas'     => $id_kelas,
+            'id_matpel'    => $id_matpel,
+            'judul'        => $request->judul,
+            'deskripsi'    => $request->deskripsi,
+            'tipe'         => $request->tipe,
+
+        ]);
+        $tugas_create->save();
+        $id = DB::getPdo('Tugas_kelas')->lastInsertId();
+        
+        $file = $request->file->getClientOriginalName(); 
+        $fileName = $file;  
+
+        Storage::disk('public')->put($fileName,$file);
+        $file_tugas_teori_guru = DB::table('file_tugasteori_guru')
+        ->insert([
+            ['id_tugas_kelas' => "$id",'file' => "$fileName"],
+        ]);
+
+        $file_tugas_siswa = DB::table('file_tugas_siswa')
+        ->insert(['id_tugas_kelas' => "$id"]);
+
+
+        return  response()->json(
+            
+                "task success created",201);
+
+
+
     }
 
 }
