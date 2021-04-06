@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Kelas;
+use App\Models\Tugas_kelas;
 
 
 class SiswaInteractionController extends Controller
@@ -29,10 +31,27 @@ class SiswaInteractionController extends Controller
         if (empty("$request->id_kelas")) {
             return response()->json("Schedule Not Found",404);
         }else {
-        return response()->json(array(
+        return response()->json([
             'jadwal_pelajaran' =>$jadwal
-        )   
-            );
+         
+        ]);
         }
+    }
+
+    public function ClassRoomIndex(Request $request){
+        $classroomData = Tugas_kelas::join('kelas', 'tugas_kelas.id_kelas', '=', 'kelas.id')
+        ->join('mata_pelajaran', 'tugas_kelas.id_matpel', '=', 'mata_pelajaran.id')
+        ->leftJoin('file_tugas_siswa', 'tugas_kelas.id', '=', 'file_tugas_siswa.id_tugas_kelas')
+        ->where('kelas.id', $request->id_kelas)
+        ->select(
+        'tugas_kelas.judul', 'tugas_kelas.deskripsi', 'tugas_kelas.tipe', 'tugas_kelas.tenggat', 'tugas_kelas.created_at',
+        'mata_pelajaran.nama as nama_matpel',
+        'file_tugas_siswa.file'
+        )
+        ->get();
+
+        return response()->json([
+            "index_class_siswa" => $classroomData
+        ]);
     }
 }
