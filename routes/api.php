@@ -38,5 +38,6 @@ Route::group(['middleware'=> 'api.role:siswa'], function() {
 Route::get('classData', 'api\ClassroomController@getInfoClass');
 Route::patch('upload/{id}', 'api\UploadController@uploadImageDecoded');
 Route::get('get-image', 'api\UploadController@getPhoto');
+Route::get('classRoomData', 'api\SiswaInteractionController@ClassRoomIndex');
 
 Route::post('GuruSchedule/create_tugas/{id_kelas}/{id_matpel}', 'api\GuruInteractionController@tugas_kelas');
