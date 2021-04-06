@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BaseController extends Controller
 {
@@ -30,5 +31,11 @@ class BaseController extends Controller
         }
 
         return response()->json($response, $code);
+    }
+
+    public function getHelp(){
+        $help = DB::table('faq')->get();
+
+        return response()->json($help, 200);
     }
 }
