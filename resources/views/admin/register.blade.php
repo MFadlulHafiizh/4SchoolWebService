@@ -1,1 +1,1 @@
-@extends('layouts.admin', ['title' => 'Denah SMKN 4 Bandung Lantai'])
+@extends('layouts.adminOpenRegis', ['title' => 'Denah SMKN 4 Bandung Lantai'])

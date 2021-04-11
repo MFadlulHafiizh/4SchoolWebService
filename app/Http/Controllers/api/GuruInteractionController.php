@@ -97,9 +97,9 @@ public function GuruSchedule(Request $request){
 
     public function IndexClassroom(Request $request, $id_kelas)
     {
-        $classroom = DB:: table('file_tugasteori_guru')
+        $classroom = DB:: table('tugas_kelas')
         ->leftJoin(
-            'tugas_kelas', 
+            'file_tugasteori_guru', 
             'file_tugasteori_guru.id_tugas_kelas', 
             '=', 
             'tugas_kelas.id')
@@ -111,11 +111,11 @@ public function GuruSchedule(Request $request){
             'tugas_kelas.created_at', 
             'file_tugasteori_guru.file')
         
-        ->where('tugas_kelas.id_kelas', '=', "$id_kelas")
+        ->where('tugas_kelas.id_kelas', '=', $id_kelas)
         ->get();
 
         return response()->json([
-            'indexclassroom' =>$classroom
+            'index_class_guru' =>$classroom
         ]);
     }
 

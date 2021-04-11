@@ -36,7 +36,7 @@ Route::group(['middleware'=> 'api.role:guru'], function() {
 Route::group(['middleware'=> 'api.role:siswa'], function() {
     Route::get('SiswaSchedule', 'api\SiswaInteractionController@SiswaSchedule');
 });
-Route::get('classData', 'api\ClassroomController@getInfoClass');
+Route::get('classInfo', 'api\ClassroomController@getInfoClass');
 Route::patch('upload/{id}', 'api\UploadController@uploadImageDecoded');
 Route::get('get-image', 'api\UploadController@getPhoto');
 Route::get('classRoomData', 'api\SiswaInteractionController@ClassRoomIndex');

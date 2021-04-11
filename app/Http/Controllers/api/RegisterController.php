@@ -17,7 +17,7 @@ use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request, $role)
     {
         //validation input request & email checking
         $validator = Validator::make($request->all(), [
