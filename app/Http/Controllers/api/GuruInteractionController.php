@@ -103,14 +103,19 @@ public function GuruSchedule(Request $request){
             'file_tugasteori_guru.id_tugas_kelas', 
             '=', 
             'tugas_kelas.id')
+        ->leftJoin(
+            'file_tugas_siswa', 
+            'file_tugas_siswa.id_tugas_kelas', 
+            '=', 
+            'tugas_kelas.id')
         ->select(
             'tugas_kelas.judul', 
             'tugas_kelas.deskripsi', 
             'tugas_kelas.tenggat'
             ,'tugas_kelas.tipe', 
-            'tugas_kelas.created_at', 
+            'tugas_kelas.created_at',
+            DB::raw("SUM(file_tugas_siswa.id) AS completed_count"),
             'file_tugasteori_guru.file')
-        
         ->where('tugas_kelas.id_kelas', '=', $id_kelas)
         ->get();
 

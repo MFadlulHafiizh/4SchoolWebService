@@ -16,4 +16,14 @@ class ClassroomController extends Controller
             'class_info' => $info
             ]);
     }
+
+    public function getMemberClass(Request $request){
+        $members = DB::table('users')->select('id', 'name', 'nis','email', 'photo')->where('id_kelas', $request->id_kelas)->paginate(10);
+        $data = $members->flatten(1);
+        $total_page = $members->lastPage();        
+        return response()->json([
+            "members"   => $data,
+            "last_page" => $total_page
+        ]);
+    }
 }

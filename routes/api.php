@@ -31,11 +31,12 @@ Route::post('refresh', 'AuthController@refresh');
 Route::group(['middleware'=> 'api.role:guru'], function() {
     Route::post('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
     Route::post('GuruSchedule/create_tugas/{id_kelas}/{id_matpel}', 'api\GuruInteractionController@tugas_kelas');
-    Route::post('GuruSchedule/index_classroom_guru/{id_kelas}', 'api\GuruInteractionController@IndexClassroom');    
+    Route::get('GuruSchedule/index_classroom_guru/{id_kelas}', 'api\GuruInteractionController@IndexClassroom');    
 });
 Route::group(['middleware'=> 'api.role:siswa'], function() {
     Route::get('SiswaSchedule', 'api\SiswaInteractionController@SiswaSchedule');
 });
+Route::get('index_classroom/memberclass', 'api\ClassroomController@getMemberClass');
 Route::get('classInfo', 'api\ClassroomController@getInfoClass');
 Route::patch('upload/{id}', 'api\UploadController@uploadImageDecoded');
 Route::get('get-image', 'api\UploadController@getPhoto');
