@@ -36,7 +36,7 @@ Route::group(['middleware'=> 'api.role:guru'], function() {
 });
 Route::group(['middleware'=> 'api.role:siswa'], function() {
     Route::get('SiswaSchedule', 'api\SiswaInteractionController@SiswaSchedule');
-    Route::get('GuruSchedule/index_classroom_guru/{id_kelas}', 'api\GuruInteractionController@IndexClassroom'); 
+    Route::get('SiswaSchedule/index_classroom_guru/{id_kelas}', 'api\SiswaInteractionController@ClassRoomIndex'); 
 });
 Route::get('index_classroom/memberclass', 'api\ClassroomController@getMemberClass');
 Route::get('classInfo', 'api\ClassroomController@getInfoClass');

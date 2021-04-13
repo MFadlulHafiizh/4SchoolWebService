@@ -15,7 +15,7 @@ class GuruInteractionController extends Controller
 
 //Get GuruMapel//
 public function GuruSchedule(Request $request){
-
+        $profesi = DB::table('users')->select('profesi')->where('id', $request->id)->pluck('profesi')[0];
         $jadwal = DB::table('jadwal')
         ->join('hari','jadwal.id_hari','=','hari.id')
         ->join('ruangan','jadwal.id_ruangan','=','ruangan.id')
@@ -31,7 +31,8 @@ public function GuruSchedule(Request $request){
             'kelas.tingkatan',
             'kelas.jurusan',
             )
-        ->where('jadwal.id_user', '=', "$request->id")
+        ->where('jadwal.id_user', '=', $request->id)
+        ->where('jadwal.id_matpel', '=', $profesi)
         ->get();
 
             if (empty("$request->id")) {
@@ -111,8 +112,8 @@ public function GuruSchedule(Request $request){
         ->select(
             'tugas_kelas.judul', 
             'tugas_kelas.deskripsi', 
-            'tugas_kelas.tenggat'
-            ,'tugas_kelas.tipe', 
+            'tugas_kelas.tenggat',
+            'tugas_kelas.tipe', 
             'tugas_kelas.created_at',
             DB::raw("SUM(file_tugas_siswa.id) AS completed_count"),
             'file_tugasteori_guru.file')
