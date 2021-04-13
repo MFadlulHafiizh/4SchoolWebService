@@ -30,9 +30,10 @@ Route::post('logout', 'AuthController@logout');
 Route::post('refresh', 'AuthController@refresh');
 
 Route::group(['middleware'=> 'api.role:guru'], function() {
-    Route::post('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
+    Route::get('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
     Route::post('GuruSchedule/create_tugas/{id_kelas}/{id_matpel}', 'api\GuruInteractionController@tugas_kelas');
-    Route::get('GuruSchedule/index_classroom_guru/{id_kelas}', 'api\GuruInteractionController@IndexClassroom');    
+    Route::get('GuruSchedule/index_classroom_guru/{id_kelas}', 'api\GuruInteractionController@IndexClassroom');
+    Route::get('GuruSchedule/index_classroom_guru/checkTask', 'api\GuruInteractionController@showCompletedUser');
 });
 Route::group(['middleware'=> 'api.role:siswa'], function() {
     Route::get('SiswaSchedule', 'api\SiswaInteractionController@SiswaSchedule');

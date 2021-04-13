@@ -16,33 +16,36 @@ class GuruInteractionController extends Controller
 //Get GuruMapel//
 public function GuruSchedule(Request $request){
         $profesi = DB::table('users')->select('profesi')->where('id', $request->id)->pluck('profesi')[0];
-        $jadwal = DB::table('jadwal')
-        ->join('hari','jadwal.id_hari','=','hari.id')
-        ->join('ruangan','jadwal.id_ruangan','=','ruangan.id')
-        ->join('mata_pelajaran','jadwal.id_matpel','=','mata_pelajaran.id')
-        ->join('kelas','jadwal.id_kelas','=','kelas.id')
-        ->select(
-            'hari.hari',
-            'jadwal.jam_mulai',
-            'jadwal.jam_selesai',
-            'ruangan.nama as ruangan' ,
-            'mata_pelajaran.nama as mapel',
-            'kelas.id as id_kelas',
-            'kelas.tingkatan',
-            'kelas.jurusan',
-            )
-        ->where('jadwal.id_user', '=', $request->id)
-        ->where('jadwal.id_matpel', '=', $profesi)
-        ->get();
-
-            if (empty("$request->id")) {
-                        return response()->json("Schedule Not Found",404);
-                }else {
-                    return response()->json(array(
-                        'jadwal_mengajar' =>$jadwal
+        if($profesi){
+            $jadwal = DB::table('jadwal')
+            ->join('hari','jadwal.id_hari','=','hari.id')
+            ->join('ruangan','jadwal.id_ruangan','=','ruangan.id')
+            ->join('mata_pelajaran','jadwal.id_matpel','=','mata_pelajaran.id')
+            ->join('kelas','jadwal.id_kelas','=','kelas.id')
+            ->select(
+                'hari.hari',
+                'jadwal.jam_mulai',
+                'jadwal.jam_selesai',
+                'ruangan.nama as ruangan' ,
+                'mata_pelajaran.nama as mapel',
+                'kelas.id as id_kelas',
+                'kelas.tingkatan',
+                'kelas.jurusan',
                 )
-            );
+            ->where('jadwal.id_user', '=', $request->id)
+            ->where('jadwal.id_matpel', '=', $profesi)
+            ->get();
+    
+                if (empty($request->id)) {
+                            return response()->json("Schedule Not Found",404);
+                    }else {
+                        return response()->json(array(
+                            'jadwal_mengajar' =>$jadwal
+                    )
+                );
+            }
         }
+       
     }
 
     public function tugas_kelas(Request $request,$id_kelas,$id_matpel)
@@ -110,6 +113,7 @@ public function GuruSchedule(Request $request){
             '=', 
             'tugas_kelas.id')
         ->select(
+            'tugas_kelas.id',
             'tugas_kelas.judul', 
             'tugas_kelas.deskripsi', 
             'tugas_kelas.tenggat',
@@ -124,6 +128,12 @@ public function GuruSchedule(Request $request){
         return response()->json([
             'index_class_guru' =>$classroom
         ]);
+    }
+
+    public function showCompletedUser(Request $request){
+        $data = DB::table('users')->join('file_tugas_siswa', 'users.id', '=', 'file_tugas_siswa.id_siswa')->where('file_tugas_siswa.id', $request->id_tugas)->get();
+
+        return response()-json($data);
     }
 
 }
