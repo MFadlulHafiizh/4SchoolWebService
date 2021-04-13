@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-Route::post('register', 'api\RegisterController@register');
+Route::post('register', 'api\RegisterController@cekRegist');
+//Route::post('register', 'api\RegisterController@register')->name('register');
 Route::post('login', 'AuthController@login');
 
 Route::group(["middleware"=> "jwt.auth"], function(){
@@ -35,6 +36,7 @@ Route::group(['middleware'=> 'api.role:guru'], function() {
 });
 Route::group(['middleware'=> 'api.role:siswa'], function() {
     Route::get('SiswaSchedule', 'api\SiswaInteractionController@SiswaSchedule');
+    Route::get('GuruSchedule/index_classroom_guru/{id_kelas}', 'api\GuruInteractionController@IndexClassroom'); 
 });
 Route::get('index_classroom/memberclass', 'api\ClassroomController@getMemberClass');
 Route::get('classInfo', 'api\ClassroomController@getInfoClass');

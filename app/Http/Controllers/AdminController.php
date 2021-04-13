@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
+use App\Session;
 
 class AdminController extends Controller
 {
@@ -86,7 +87,8 @@ class AdminController extends Controller
 
     public function register()
     {
-        return view('admin.register');
+        $registStatus = Session::select('value')->where('type', 'registration')->pluck('value');
+        return view('admin.register', compact('registStatus'));
     }
 
     public function tambahUser()

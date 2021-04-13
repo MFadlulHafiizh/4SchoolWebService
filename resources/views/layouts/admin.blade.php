@@ -104,6 +104,7 @@
   <script src="{{asset('assets/js/scripts.js')}}"></script>
 
   <script src="{{asset('assets/js/custom.js')}}"></script>
+  
   <script>
     const togglePassword = document.querySelector('#togglePassword'); 
 const password = document.querySelector('#password');
@@ -116,6 +117,8 @@ togglePassword.addEventListener('click', function (e) {
     this.classList.toggle('fa-eye-slash');
 });
   </script>
+
+  @stack('js')
 
 
 </body>

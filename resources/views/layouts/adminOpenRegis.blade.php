@@ -7,13 +7,13 @@
             <div class="row">
               <div class="col-1">
                 <label class="switch mt-1">
-                  <input class="toogle-switch" type="checkbox" {{-- {{ $item->openRegis == "On" ? 'checked' : '' }}--}}> 
+                  <input name="switch" class="toogle-switch" type="checkbox" {{ $registStatus[0] == "Open" ? 'checked' : '' }}> 
                   <span class="slider round"></span>
                 </label>
               </div>
               <div class="col-4">
                 <div class="form-group col-8 w-100">
-                  <select class="form-control selectric">
+                  <select class="form-control selectric" id="role-select">
                     <option>Open For</option>
                     <option value="Guru">Guru</option>
                     <option value="Siswa">Siswa</option>
@@ -111,21 +111,23 @@
           </div>
         </div>
 
+        @push('js')
         <script type="text/javascript">
-        $(function() {
-          $('.toogle-switch').change(function() {
-            var status = $(this).prop('checked') == true ? "Open" : "Close";
-
-            $.ajax({
-              type: "GET",
-              dataType: "json",
-              url: 'changePower',
-              data: {'power': status, 'id': id_product},
-              success: function(data){
-              console.log(data.success)
-              }
+          $(function() {
+            $('.toogle-switch').change(function() {
+              var status = $(this).prop('checked') == true ? "Open" : "Close";
+              var role = $('#role-select').text();
+              $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: 'register/setOpenCloseRegist',
+                data: {'statement': status, _token: '{{csrf_token()}}'},
+                success: function(data){
+                console.log(data.success)
+                }
+              });
             });
           });
-        });
-        </script>
+          </script>
+        @endpush
 @endsection
