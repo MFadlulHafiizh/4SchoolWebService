@@ -44,3 +44,14 @@ Route::patch('upload/{id}', 'api\UploadController@uploadImageDecoded');
 Route::get('get-image', 'api\UploadController@getPhoto');
 Route::get('classRoomData', 'api\SiswaInteractionController@ClassRoomIndex');
 
+
+
+
+
+//========================================
+//Forgot Reset Password
+//========================================
+Route::post('forgot', 'api\ForgotPasswordController@forgot');
+Route::get('find/{token}', 'api\ForgotPasswordController@find');
+Route::post('resetpassword', 'api\ForgotPasswordController@reset');
+//========================================
