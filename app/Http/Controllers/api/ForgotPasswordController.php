@@ -20,7 +20,6 @@ class ForgotPasswordController extends Controller
 {
     public function forgot(Request $request)
     {
-       
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
         ]);
@@ -38,7 +37,7 @@ class ForgotPasswordController extends Controller
             ['email' => $user->email],
             [
                 'email' => $user->email,
-                'token' => Str::random(50)
+                'token' => Str::random(20)
             ]
         );        
         if ($user && $passwordReset)
@@ -56,7 +55,7 @@ class ForgotPasswordController extends Controller
             return response()->json([
                 'message' => 'This password reset token is invalid.'
             ], 404);        
-            if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)->isPast()) {
+            if (Carbon::parse($passwordReset->updated_at)->addMinutes(3)->isPast()) {
             $passwordReset->delete();
             return response()->json([
                 'message' => 'This password reset token is invalid.'

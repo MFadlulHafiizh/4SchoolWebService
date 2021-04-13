@@ -40,11 +40,12 @@ class ForgotPasswordNotif extends Notification
      */
     public function toMail($notifiable)
     {
-        $url=url('/api/find/'.$this->token);
-        return (new MailMessage)
+        $url=$this->token;
+        return(new MailMessage)
         ->from('4school@mail.com')
         ->line('Request for your forgot password!')
-        ->action('Clik Here', url($url));
+        ->line('Your token here.')
+        ->line($url);
     }
 
     /**
