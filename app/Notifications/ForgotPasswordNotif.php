@@ -44,7 +44,7 @@ class ForgotPasswordNotif extends Notification
         return(new MailMessage)
         ->from('4school@mail.com')
         ->line('Request for your forgot password!')
-        ->line('Your token here.')
+        ->line('this token will expires in 3 minutes')
         ->line($url);
     }
 
