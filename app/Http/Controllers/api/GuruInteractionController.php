@@ -118,6 +118,7 @@ public function GuruSchedule(Request $request){
             DB::raw("SUM(file_tugas_siswa.id) AS completed_count"),
             'file_tugasteori_guru.file')
         ->where('tugas_kelas.id_kelas', '=', $id_kelas)
+        ->groupBy('tugas_kelas.id_kelas')
         ->get();
 
         return response()->json([
