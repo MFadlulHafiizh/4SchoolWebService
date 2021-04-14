@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{PageController, RuanganController, SaranaPrasaranaController};
+use App\Http\Controllers\{CrudController, PageController, RuanganController, SaranaPrasaranaController};
 use App\Models\Sarpras;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +20,8 @@ Route::get('/login', 'AdminController@login');
 Route::get('/register', 'AdminController@register');
 Route::post('/logout', 'AdminController@logout')->name('logout');
 
-Route::get('/crud', 'CrudController@index')->name('crud');
-Route::get('/crud/tambah', 'CrudController@tambah')->name('tambah');
+Route::get('/crud', [CrudController::class, 'index'])->name('crud');
+Route::post('/crud', [CrudController::class, 'store'])->name('crud_matpel');
 
 
 /*

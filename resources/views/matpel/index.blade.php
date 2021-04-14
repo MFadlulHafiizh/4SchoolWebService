@@ -74,14 +74,118 @@
   </div>
       <!-- Main Content -->
       <div class="main-content">
+        @if (session('success'))
+        <div class="alert alert-success">
+          {{session('success')}}
+        </div>
+      @endif
         <section class="section">
           <div class="section-header">
             <h1>Tambah Matpel</h1>
           </div>
-
-          <div class="section-body">
+          <div class="form-group row">
+            <label for="example-number-input" class="col-2 col-form-label"><h5>Input Jadwal mengajar</h5></label>
+            <div class="col-2">
+              <input class="form-control" type="number" value="1" id="example-number-input" min="1" max="10">
+            </div>
           </div>
         </section>
+        <form method="POST" action="{{ route('crud_matpel') }}">
+          @csrf
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nama Guru</th>
+              <th scope="col">Mata Pelajaran</th>
+              <th scope="col">Hari</th>
+              <th scope="col">Jam Mulai</th>
+              <th>Jam selesai</th>
+              <th>Ruangan  </th>
+              <th>Kelas</th>
+              <th>Tingkat</th>
+            </tr>
+          </thead>
+         
+          <tbody>
+            <tr>
+              <th scope="row"><div class="form-group">
+                <label for="exampleFormControlSelect1"></label>
+                <select class="form-control" id="exampleFormControlSelect1" name="id_user">
+                  @foreach ($dataguru as $guru)
+                  <option value="{{$guru->id}}" >{{$guru->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </th>
+              <td><div class="form-group">
+                <label for="exampleFormControlSelect1"></label>
+                <select class="form-control" id="exampleFormControlSelect1" name="id_matpel">
+                  @foreach ($datamatpel as $matpel)
+                  <option value="{{$matpel->id}}">{{$matpel->nama}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </td>
+              <td><div class="form-group">
+                <label for="exampleFormControlSelect1"></label>
+                <select class="form-control" id="exampleFormControlSelect1" name="id_hari">
+                  @foreach ($hari as $days)
+                  <option value="{{$days->id}}">{{$days->hari}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </td>
+              <td>
+                <div class="form-group row">
+                <label for="example-time-input" class="col-2 col-form-label">Time</label>
+                <div class="col-10">
+                  <input class="form-control" type="time" value="13:45:00" id="example-time-input" name="jam_mulai">
+                </div>
+              </div>
+            </td> 
+              <td>
+                <div class="form-group row">
+                  <label for="example-time-input" class="col-2 col-form-label">Time</label>
+                  <div class="col-10">
+                    <input class="form-control" type="time" value="13:45:00" id="example-time-input" name="jam_selesai">
+                  </div>
+                </div>
+              </td>
+              <td><div class="form-group">
+                <label for="exampleFormControlSelect1"></label>
+                <select class="form-control" id="exampleFormControlSelect1" name="id_ruangan">
+                 @foreach ($dataruangan as $ruangan)
+                     <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
+                 @endforeach
+                </select>
+              </div>
+            </td>
+              <td>
+                <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="id_kelas">
+                  @foreach ($datakelas as $kelas)
+                      <option value="{{$kelas->id}}">{{$kelas->jurusan}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </td>
+              <td><div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </td>
+            </tr>
+          </tbody>
+          <button class="btn btn-primary" type="submit" style="float: right;">SUBMIT</button>
+        </table>  
+      </form>
       </div>
       <footer class="main-footer">
         <div class="footer-left">
