@@ -73,112 +73,9 @@
         </li>
     </div>
   </div>
-      <!-- Main Content -->
-      <div class="main-content">
-        <section class="section">
-          <div class="section-header d-block">
-            <div class="row">
-              <div class="col-1">
-                <label class="switch mt-1">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-                </label>
-              </div>
-              <div class="col-4">
-                <div class="form-group col-8 w-100">
-                  <select class="form-control selectric">
-                    <option>Open For</option>
-                    <option>Guru</option>
-                    <option>Siswa</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-6">
-                <h1 class="header mb-5">Tambah Data User</h1>
-              </div>
-            </div>
-            {{-- <div class="login-brand">
-              <img src="{{asset('assets/img/4-smk.png')}}" alt="logo" width="70" class="shadow-light rounded-circle">
-            </div> --}}
-            <div class="container">
-              <div class="row">
-                <div class="form-group col-6">
-                  <label for="first_name">Nama Depan</label>
-                  <input id="first_name" type="text" class="form-control" name="first_name" autofocus>
-                </div>
-                <div class="form-group col-6">
-                  <label for="last_name">Nama Belakang</label>
-                  <input id="last_name" type="text" class="form-control" name="last_name">
-                </div>
-              </div>
 
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input id="email" type="email" class="form-control" name="email">
-                <div class="invalid-feedback">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="password">Password</label>
-                <div class="input-group">
-                  <input type="password" name="password" id="password" class="form-control" >
-                  <span class="input-group-text"><i class="far fa-eye m-0" id="togglePassword"></i></span>
-                </div>
-            </div>
-          </div>
-              {{-- <div class="row">
-                <div class="form-group col-6">
-                  <label for="password" class="d-block">Password</label>
-                  <div class="input-grup">
-                    <input type="password" class="form-control" data-toggle="password">
-                    <div class="form-group-append">
-                      <div class="input-grup-text"><i class="fa fa-eye"></i></div>
-                  </div>
-                  </div> --}}
-                 
-                {{-- <div class="form-group col-6">
-                  <label for="password2" class="d-block">Password Confirmation</label>
-                  <input id="password2" type="password" class="form-control" name="password-confirm">
-                </div> --}}
-              
-
-              <div class="form-divider">
-                Kelas dan Jurusan
-              </div>
-              <div class="row">
-                <div class="form-group col-6">
-                  <label>Kelas</label>
-                  <select class="form-control selectric">
-                    <option>Pilih Kelas</option>
-                    <option>X</option>
-                    <option>XI</option>
-                    <option>XII</option>
-                    <option>XIII</option>
-                  </select>
-                </div>
-                <div class="form-group col-6">
-                  <label>Jurusan</label>
-                  <select class="form-control selectric">
-                    <option>Pilih Jurusan</option>
-                    <option>RPL</option>
-                    <option>TKJ</option>
-                    <option>MM</option>
-                    <option>AV</option>
-                    <option>TOI</option>
-                    <option>TITL</option>
-                  </select>
-                </div>
-              </div>
-          
-              <div class="form-group w-100" >
-                <button type="submit" class="btn btn-primary btn-lg btn-block mt-5">
-                  Register
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+      @yield('content')
+      
         <div class="simple-footer">
           Copyright &copy; 4School | CloverTech 2021
         </div>
@@ -207,6 +104,7 @@
   <script src="{{asset('assets/js/scripts.js')}}"></script>
 
   <script src="{{asset('assets/js/custom.js')}}"></script>
+  
   <script>
     const togglePassword = document.querySelector('#togglePassword'); 
 const password = document.querySelector('#password');
@@ -219,6 +117,8 @@ togglePassword.addEventListener('click', function (e) {
     this.classList.toggle('fa-eye-slash');
 });
   </script>
+
+  @stack('js')
 
 
 </body>

@@ -7,6 +7,7 @@
     -composer require laravel/helpers
     -php artisan jwt:secret <<ini bila perlu>>
     -composer require laravel/helpers
+    -composer require laravel/ui "^2.0" -vvv
 ## Lanjut Run artisan servenya ....
 
 

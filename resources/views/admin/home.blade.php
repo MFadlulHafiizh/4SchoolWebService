@@ -1,1 +1,1 @@
-@extends('layouts.admin', ['title' => 'Denah SMKN 4 Bandung Lantai'])
+@extends('layouts.adminHome', ['title' => 'Denah SMKN 4 Bandung Lantai'])

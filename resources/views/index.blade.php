@@ -164,6 +164,7 @@
 		<!-- Ruang B + mesjid -->
 		<div class="kelas ruang-b">
 			<div class="mesjid d-flex">
+			
 				@foreach ($dataB2 as $ruanganb2)
 				<button class="btn btn-room d-block mb-1 mr-1" style="width: 100px; height:92px" data-toggle="modal" data-target="#modalData" data-id="{{$ruanganb2->id}}">			
 					<i class="fas fa-chalkboard-teacher fa-lg"></i><br>{{$ruanganb2->nama}}
@@ -599,7 +600,7 @@
 
 @endsection
 
-@push('after-script')
+@push('js')
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
 <script type="text/javascript">
