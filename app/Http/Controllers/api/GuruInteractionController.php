@@ -15,33 +15,37 @@ class GuruInteractionController extends Controller
 
 //Get GuruMapel//
 public function GuruSchedule(Request $request){
-
-        $jadwal = DB::table('jadwal')
-        ->join('hari','jadwal.id_hari','=','hari.id')
-        ->join('ruangan','jadwal.id_ruangan','=','ruangan.id')
-        ->join('mata_pelajaran','jadwal.id_matpel','=','mata_pelajaran.id')
-        ->join('kelas','jadwal.id_kelas','=','kelas.id')
-        ->select(
-            'hari.hari',
-            'jadwal.jam_mulai',
-            'jadwal.jam_selesai',
-            'ruangan.nama as ruangan' ,
-            'mata_pelajaran.nama as mapel',
-            'kelas.id as id_kelas',
-            'kelas.tingkatan',
-            'kelas.jurusan',
-            )
-        ->where('jadwal.id_user', '=', "$request->id")
-        ->get();
-
-            if (empty("$request->id")) {
-                        return response()->json("Schedule Not Found",404);
-                }else {
-                    return response()->json(array(
-                        'jadwal_mengajar' =>$jadwal
+        $profesi = DB::table('users')->select('profesi')->where('id', $request->id)->pluck('profesi')[0];
+        if($profesi){
+            $jadwal = DB::table('jadwal')
+            ->join('hari','jadwal.id_hari','=','hari.id')
+            ->join('ruangan','jadwal.id_ruangan','=','ruangan.id')
+            ->join('mata_pelajaran','jadwal.id_matpel','=','mata_pelajaran.id')
+            ->join('kelas','jadwal.id_kelas','=','kelas.id')
+            ->select(
+                'hari.hari',
+                'jadwal.jam_mulai',
+                'jadwal.jam_selesai',
+                'ruangan.nama as ruangan' ,
+                'mata_pelajaran.nama as mapel',
+                'kelas.id as id_kelas',
+                'kelas.tingkatan',
+                'kelas.jurusan',
                 )
-            );
+            ->where('jadwal.id_user', '=', $request->id)
+            ->where('jadwal.id_matpel', '=', $profesi)
+            ->get();
+    
+                if (empty($request->id)) {
+                            return response()->json("Schedule Not Found",404);
+                    }else {
+                        return response()->json(array(
+                            'jadwal_mengajar' =>$jadwal
+                    )
+                );
+            }
         }
+       
     }
 
     public function tugas_kelas(Request $request,$id_kelas,$id_matpel)
@@ -97,26 +101,39 @@ public function GuruSchedule(Request $request){
 
     public function IndexClassroom(Request $request, $id_kelas)
     {
-        $classroom = DB:: table('file_tugasteori_guru')
+        $classroom = DB:: table('tugas_kelas')
         ->leftJoin(
-            'tugas_kelas', 
+            'file_tugasteori_guru', 
             'file_tugasteori_guru.id_tugas_kelas', 
             '=', 
             'tugas_kelas.id')
+        ->leftJoin(
+            'file_tugas_siswa', 
+            'file_tugas_siswa.id_tugas_kelas', 
+            '=', 
+            'tugas_kelas.id')
         ->select(
+            'tugas_kelas.id',
             'tugas_kelas.judul', 
             'tugas_kelas.deskripsi', 
-            'tugas_kelas.tenggat'
-            ,'tugas_kelas.tipe', 
-            'tugas_kelas.created_at', 
+            'tugas_kelas.tenggat',
+            'tugas_kelas.tipe', 
+            'tugas_kelas.created_at',
+            DB::raw("SUM(file_tugas_siswa.id) AS completed_count"),
             'file_tugasteori_guru.file')
-        
-        ->where('tugas_kelas.id_kelas', '=', "$id_kelas")
+        ->where('tugas_kelas.id_kelas', '=', $id_kelas)
+        ->groupBy('tugas_kelas.id_kelas')
         ->get();
 
         return response()->json([
-            'indexclassroom' =>$classroom
+            'index_class_guru' =>$classroom
         ]);
+    }
+
+    public function showCompletedUser(Request $request){
+        $data = DB::table('users')->join('file_tugas_siswa', 'users.id', '=', 'file_tugas_siswa.id_siswa')->where('file_tugas_siswa.id', $request->id_tugas)->get();
+
+        return response()-json($data);
     }
 
 }

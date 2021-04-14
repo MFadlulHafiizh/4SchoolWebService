@@ -225,7 +225,7 @@
 			<!-- Page Content -->
 			<div class="page-content">
 
-				<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-3">
 					<div class="d-flex justify-content-start">
 						{{-- <button class="btn btn-light" id="btn-toggle">
 							<i class="fas fa-bars fa-lg text-dark mt-2"></i>	
