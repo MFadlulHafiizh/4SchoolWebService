@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{CrudController, PageController, RuanganController, SaranaPrasaranaController};
+use App\Http\Controllers\{CrudController, AdminController,PageController, RuanganController, SaranaPrasaranaController};
 use App\Models\Sarpras;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +17,7 @@ Route::get('/room/{id}/show', [PageController::class, 'show']);
 */
 Route::get('/home', 'AdminController@index');
 Route::get('/login', 'AdminController@login');
-Route::get('/register', 'AdminController@register');
+Route::get('/register', [AdminController::class, 'register']);
 Route::post('/logout', 'AdminController@logout')->name('logout');
 
 Route::get('/crud', [CrudController::class, 'index'])->name('crud');

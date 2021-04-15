@@ -23,6 +23,7 @@ public function GuruSchedule(Request $request){
             ->join('mata_pelajaran','jadwal.id_matpel','=','mata_pelajaran.id')
             ->join('kelas','jadwal.id_kelas','=','kelas.id')
             ->select(
+                'jadwal.id as id_jadwal',
                 'hari.hari',
                 'jadwal.jam_mulai',
                 'jadwal.jam_selesai',
@@ -99,9 +100,11 @@ public function GuruSchedule(Request $request){
         
     }
 
-    public function IndexClassroom(Request $request, $id_kelas)
+    public function IndexClassroom(Request $request, $id_jadwal)
     {
         $classroom = DB:: table('tugas_kelas')
+        ->join('jadwal', 'tugas_kelas.id_jadwal', '=', 'jadwal.id')
+        ->join('mata_pelajaran', 'jadwal.id_matpel', '=', 'mata_pelajaran.id')
         ->leftJoin(
             'file_tugasteori_guru', 
             'file_tugasteori_guru.id_tugas_kelas', 
@@ -116,13 +119,14 @@ public function GuruSchedule(Request $request){
             'tugas_kelas.id',
             'tugas_kelas.judul', 
             'tugas_kelas.deskripsi', 
+            'mata_pelajaran.nama',
             'tugas_kelas.tenggat',
             'tugas_kelas.tipe', 
             'tugas_kelas.created_at',
             DB::raw("SUM(file_tugas_siswa.id) AS completed_count"),
             'file_tugasteori_guru.file')
-        ->where('tugas_kelas.id_kelas', '=', $id_kelas)
-        ->groupBy('tugas_kelas.id_kelas')
+        ->where('tugas_kelas.id_jadwal', '=', $id_jadwal)
+        ->groupBy('tugas_kelas.id')
         ->get();
 
         return response()->json([
