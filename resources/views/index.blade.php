@@ -119,9 +119,10 @@
 @endpush
 
 @section('content')
+<div class="content-maps">
          
     <!-- Map Lantai 1 -->
-		<div class="map-1" >
+		<div class="map-1">
 		
 		<!-- Layout  -->
 		<div class="layout-maps mb-5 ml-3">
@@ -597,6 +598,8 @@
         </div>
         </div>
     </div>
+
+</div>
 
 @endsection
 

@@ -15,6 +15,10 @@ $("#lantai").on("change", function() {
 
 });
 
+function zoom() {
+    document.body.style.zoom = "70%";
+}
+
 $("#btn-navigasi").on("click", function() {
     let ruangAwal = $("#navigasi-awal").val();
     let ruangTujuan = $("#navigasi-tujuan").val();

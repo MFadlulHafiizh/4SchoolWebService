@@ -74,7 +74,7 @@ class AdminController extends Controller
 
         $dataH5 = Ruangan::where('blok', 'H')->where('lantai', '1')->skip(4)->take(3)->get();
 
-        return view('layouts.adminHome', compact('dataH1', 'dataA1', 'dataA2', 'dataA3', 'dataA4', 'dataA5', 'dataA6', 'dataB1', 'dataB2', 'dataB3', 'dataC1', 'dataC2', 'dataC3', 'dataC4', 'dataD1', 'dataD2', 'dataD3', 'dataE1', 'dataE2', 'dataF1', 'dataF2', 'dataF3', 'dataF4', 'dataF5', 'dataG1', 'dataG2', 'dataH2', 'dataH3', 'dataH4', 'dataH5', 'data'));
+        return view('maps.adminHome', compact('dataH1', 'dataA1', 'dataA2', 'dataA3', 'dataA4', 'dataA5', 'dataA6', 'dataB1', 'dataB2', 'dataB3', 'dataC1', 'dataC2', 'dataC3', 'dataC4', 'dataD1', 'dataD2', 'dataD3', 'dataE1', 'dataE2', 'dataF1', 'dataF2', 'dataF3', 'dataF4', 'dataF5', 'dataG1', 'dataG2', 'dataH2', 'dataH3', 'dataH4', 'dataH5', 'data'));
 
         //dd($dataD);
 

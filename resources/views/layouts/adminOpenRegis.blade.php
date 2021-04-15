@@ -1,9 +1,9 @@
 @extends('layouts.admin')
+
 @section('content')
     <!-- Main Content -->
-    <div class="main-content">
-        <section class="section">
-          <div class="section-header d-block">
+        <section class="section pl-3 pr-3 w-100">
+          <div class="section-body d-block pt-4">
             <div class="row">
               <div class="col-1">
                 <label class="switch mt-1">
@@ -27,7 +27,6 @@
             {{-- <div class="login-brand">
               <img src="{{asset('assets/img/4-smk.png')}}" alt="logo" width="70" class="shadow-light rounded-circle">
             </div> --}}
-            <div class="container">
               <div class="row">
                 <div class="form-group col-6">
                   <label for="first_name">Nama Depan</label>
@@ -53,7 +52,6 @@
                   <span class="input-group-text"><i class="far fa-eye m-0" id="togglePassword"></i></span>
                 </div>
             </div>
-          </div>
               {{-- <div class="row">
                 <div class="form-group col-6">
                   <label for="password" class="d-block">Password</label>
@@ -70,9 +68,6 @@
                 </div> --}}
               
 
-              <div class="form-divider">
-                Kelas dan Jurusan
-              </div>
               <div class="row">
                 <div class="form-group col-6">
                   <label>Kelas</label>
@@ -108,8 +103,7 @@
             </form>
           </div>
         </div>
-          </div>
-        </div>
+      </div>
 
         @push('js')
         <script type="text/javascript">

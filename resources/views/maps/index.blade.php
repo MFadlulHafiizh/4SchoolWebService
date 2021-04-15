@@ -12,9 +12,9 @@
 
   {{-- JS --}}
   <script src="{{ asset('js/app.js') }}"></script>
-				
+  
   {{-- CSS --}}
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/push.css') }}">
   @stack('css')
 
   <!-- Template CSS -->
@@ -75,11 +75,9 @@
     <!-- Main Content -->
     <div class="main-content">
       <section class="section">
-        <div class="section-header">
+          <div class="section-header">
           @yield('content')
-        </div>
-        <div class="section-body">
-        </div>
+          </div>
       </section>
     </div>
 
@@ -99,7 +97,6 @@
   <script src="{{asset('assets/js/stisla.js')}}"></script>
   <script src="{{asset('assets/js/scripts.js')}}"></script>
   <script src="{{asset('assets/js/custom.js')}}"></script>
-  <script src="{{asset('js/app.js')}}"></script>
   
 </body>
 </html>

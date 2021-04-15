@@ -16,7 +16,6 @@ class GuruInteractionController extends Controller
 //Get GuruMapel//
 public function GuruSchedule(Request $request){
         $profesi = DB::table('users')->select('profesi')->where('id', $request->id)->pluck('profesi')[0];
-        if($profesi){
             $jadwal = DB::table('jadwal')
             ->join('hari','jadwal.id_hari','=','hari.id')
             ->join('ruangan','jadwal.id_ruangan','=','ruangan.id')
@@ -34,7 +33,6 @@ public function GuruSchedule(Request $request){
                 'kelas.jurusan',
                 )
             ->where('jadwal.id_user', '=', $request->id)
-            ->where('jadwal.id_matpel', '=', $profesi)
             ->get();
     
                 if (empty($request->id)) {
@@ -45,11 +43,10 @@ public function GuruSchedule(Request $request){
                     )
                 );
             }
-        }
        
     }
 
-    public function tugas_kelas(Request $request,$id_kelas,$id_matpel)
+    public function tugas_kelas(Request $request,$id_jadwal)
     {
         $validator = Validator::make($request->all(), [
             // 'id_kelas'     => 'required|max:50',
@@ -66,11 +63,11 @@ public function GuruSchedule(Request $request){
         }
 
         $tugas_create = Tugas_kelas::create([
-            'id_kelas'     => $id_kelas,
-            'id_matpel'    => $id_matpel,
+            'id_jadwal'     => $id_jadwal,
             'judul'        => $request->judul,
             'deskripsi'    => $request->deskripsi,
             'tipe'         => $request->tipe,
+            'tenggat'       => $request->tenggat
 
         ]);
         $tugas_create->save();

@@ -141,12 +141,6 @@
 
 	</head>
 
-	<script type="text/javascript">
-  function zoom() {
-  	document.body.style.zoom = "70%" 
-  }
-	</script>
-
 <body onload="zoom()">
 
     <div class="d-flex" id="wrapper">
