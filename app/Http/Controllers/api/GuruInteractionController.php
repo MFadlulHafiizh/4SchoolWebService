@@ -77,9 +77,10 @@ public function GuruSchedule(Request $request){
             $file = $request->file->getClientOriginalName(); 
             $fileName = $id.$file;  
             Storage::disk('public')->put($fileName,$file);
+            $withurl = url("storage/".$fileName);
             $file_tugas_teori_guru = DB::table('file_tugasteori_guru')
             ->insert([
-                ['id_tugas_kelas' => "$id",'file' => "$fileName"],
+                ['id_tugas_kelas' => "$id",'file' => "$withurl"],
             ]);
             if($file_tugas_teori_guru){
                 return response()->json([
@@ -91,9 +92,7 @@ public function GuruSchedule(Request $request){
         return  response()->json(["result" => $tugas_create, "message" => "task success created"],201);
     }
 
-    public function tugasCreate($id_kelas, $id_matpel, $judul, $deskripsi, $tipe){
-        
-    }
+
 
     public function IndexClassroom(Request $request, $id_jadwal)
     {
