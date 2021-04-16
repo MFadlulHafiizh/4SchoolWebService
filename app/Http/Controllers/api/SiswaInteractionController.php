@@ -19,6 +19,7 @@ class SiswaInteractionController extends Controller
         ->join('mata_pelajaran','jadwal.id_matpel','=','mata_pelajaran.id')
         ->join('kelas','jadwal.id_kelas','=','kelas.id')
         ->select(
+            'jadwal.id as id_jadwal',
             'hari.hari',
             'jadwal.jam_mulai',
             'jadwal.jam_selesai',
@@ -39,13 +40,12 @@ class SiswaInteractionController extends Controller
         }
     }
 
-    public function ClassRoomIndex(Request $request){
-        $classroomData = Tugas_kelas::join('kelas', 'tugas_kelas.id_kelas', '=', 'kelas.id')
-        ->join('mata_pelajaran', 'tugas_kelas.id_matpel', '=', 'mata_pelajaran.id')
+    public function ClassRoomIndex(Request $request, $id_jadwal){
+        $classroomData = Tugas_kelas::join('jadwal', 'tugas_kelas.id_jadwal', '=', 'jadwal.id')
+        ->join('kelas', 'jadwal.id_kelas', '=', 'kelas.id')
+        ->join('mata_pelajaran', 'jadwal.id_matpel', '=', 'mata_pelajaran.id')
         ->leftJoin('file_tugas_siswa', 'tugas_kelas.id', '=', 'file_tugas_siswa.id_tugas_kelas')
-        ->where('tugas_kelas.id_matpel', $request->id_matpel)
-        ->where('kelas.id', $request->id_kelas)
-        ->groupBy('tugas_kelas.id_matpel')
+        ->where('tugas_kelas.id_jadwal', $id_jadwal)
         ->select(
         'tugas_kelas.judul', 'tugas_kelas.deskripsi', 'tugas_kelas.tipe', 'tugas_kelas.tenggat', 'tugas_kelas.created_at',
         'mata_pelajaran.nama as nama_matpel',

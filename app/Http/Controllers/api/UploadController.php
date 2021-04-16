@@ -40,7 +40,7 @@ class uploadController extends Controller
     public function uploadImage($photo, $id){
         $uploadFolder = 'userimage';
         $image = $photo;
-        // $image_uploaded_path = $image->store($uploadFolder, 'public');
+        //$image_uploaded_path = $image->store($uploadFolder, 'public');
         $image = str_replace('data:image/jpeg;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
         $imageName = str_random(10).'.'.'jpeg';

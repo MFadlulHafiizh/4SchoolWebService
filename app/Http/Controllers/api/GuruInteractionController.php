@@ -16,13 +16,13 @@ class GuruInteractionController extends Controller
 //Get GuruMapel//
 public function GuruSchedule(Request $request){
         $profesi = DB::table('users')->select('profesi')->where('id', $request->id)->pluck('profesi')[0];
-        if($profesi){
             $jadwal = DB::table('jadwal')
             ->join('hari','jadwal.id_hari','=','hari.id')
             ->join('ruangan','jadwal.id_ruangan','=','ruangan.id')
             ->join('mata_pelajaran','jadwal.id_matpel','=','mata_pelajaran.id')
             ->join('kelas','jadwal.id_kelas','=','kelas.id')
             ->select(
+                'jadwal.id as id_jadwal',
                 'hari.hari',
                 'jadwal.jam_mulai',
                 'jadwal.jam_selesai',
@@ -33,7 +33,6 @@ public function GuruSchedule(Request $request){
                 'kelas.jurusan',
                 )
             ->where('jadwal.id_user', '=', $request->id)
-            ->where('jadwal.id_matpel', '=', $profesi)
             ->get();
     
                 if (empty($request->id)) {
@@ -44,11 +43,10 @@ public function GuruSchedule(Request $request){
                     )
                 );
             }
-        }
        
     }
 
-    public function tugas_kelas(Request $request,$id_kelas,$id_matpel)
+    public function tugas_kelas(Request $request, $id_jadwal)
     {
         $validator = Validator::make($request->all(), [
             // 'id_kelas'     => 'required|max:50',
@@ -65,11 +63,11 @@ public function GuruSchedule(Request $request){
         }
 
         $tugas_create = Tugas_kelas::create([
-            'id_kelas'     => $id_kelas,
-            'id_matpel'    => $id_matpel,
-            'judul'        => $request->judul,
-            'deskripsi'    => $request->deskripsi,
-            'tipe'         => $request->tipe,
+            'id_jadwal'     => $id_jadwal,
+            'judul'         => $request->judul,
+            'deskripsi'     => $request->deskripsi,
+            'tipe'          => $request->tipe,
+            'tenggat'       => $request->tenggat
 
         ]);
         $tugas_create->save();
@@ -89,19 +87,19 @@ public function GuruSchedule(Request $request){
                     $file_tugas_teori_guru
                     ]);
             }
-        }else{
-            return $this->tugasCreate($id_kelas, $id_matpel, $request->judul, $request->deskripsi, $request->tipe);
         }
-        return  response()->json("task success created",201);
+        return  response()->json(["result" => $tugas_create, "message" => "task success created"],201);
     }
 
     public function tugasCreate($id_kelas, $id_matpel, $judul, $deskripsi, $tipe){
         
     }
 
-    public function IndexClassroom(Request $request, $id_kelas)
+    public function IndexClassroom(Request $request, $id_jadwal)
     {
         $classroom = DB:: table('tugas_kelas')
+        ->join('jadwal', 'tugas_kelas.id_jadwal', '=', 'jadwal.id')
+        ->join('mata_pelajaran', 'jadwal.id_matpel', '=', 'mata_pelajaran.id')
         ->leftJoin(
             'file_tugasteori_guru', 
             'file_tugasteori_guru.id_tugas_kelas', 
@@ -116,13 +114,14 @@ public function GuruSchedule(Request $request){
             'tugas_kelas.id',
             'tugas_kelas.judul', 
             'tugas_kelas.deskripsi', 
+            'mata_pelajaran.nama',
             'tugas_kelas.tenggat',
             'tugas_kelas.tipe', 
             'tugas_kelas.created_at',
             DB::raw("SUM(file_tugas_siswa.id) AS completed_count"),
             'file_tugasteori_guru.file')
-        ->where('tugas_kelas.id_kelas', '=', $id_kelas)
-        ->groupBy('tugas_kelas.id_kelas')
+        ->where('tugas_kelas.id_jadwal', '=', $id_jadwal)
+        ->groupBy('tugas_kelas.id')
         ->get();
 
         return response()->json([
