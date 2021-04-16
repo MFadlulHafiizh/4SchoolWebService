@@ -23,6 +23,7 @@ class SiswaInteractionController extends Controller
             'jadwal.jam_mulai',
             'jadwal.jam_selesai',
             'ruangan.nama as ruangan' ,
+            'mata_pelajaran.id as id_matpel',
             'mata_pelajaran.nama as mapel',
             'kelas.id as id_kelas'
         )
@@ -42,7 +43,9 @@ class SiswaInteractionController extends Controller
         $classroomData = Tugas_kelas::join('kelas', 'tugas_kelas.id_kelas', '=', 'kelas.id')
         ->join('mata_pelajaran', 'tugas_kelas.id_matpel', '=', 'mata_pelajaran.id')
         ->leftJoin('file_tugas_siswa', 'tugas_kelas.id', '=', 'file_tugas_siswa.id_tugas_kelas')
+        ->where('tugas_kelas.id_matpel', $request->id_matpel)
         ->where('kelas.id', $request->id_kelas)
+        ->groupBy('tugas_kelas.id_matpel')
         ->select(
         'tugas_kelas.judul', 'tugas_kelas.deskripsi', 'tugas_kelas.tipe', 'tugas_kelas.tenggat', 'tugas_kelas.created_at',
         'mata_pelajaran.nama as nama_matpel',
