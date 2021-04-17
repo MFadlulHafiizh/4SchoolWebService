@@ -8,8 +8,7 @@ class Tugas_kelas extends Model
 {
     protected $table = 'tugas_kelas';
     protected $fillable =[
-                            'id_kelas',
-                            'id_matpel',
+                            'id_jadwal',
                             'judul',
                             'deskripsi',
                             'tipe',

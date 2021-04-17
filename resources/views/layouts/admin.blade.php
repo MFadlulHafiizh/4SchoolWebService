@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
 </head>
 
-<body>
+<body onload="zoom()">
     <div id="app">
       <div class="main-wrapper">
         <div class="navbar-bg"></div>
@@ -63,14 +63,14 @@
           <li class="active"><a class="nav-link" href="/home"><i class="fas fa-map-marker-alt"></i> <span>MAPS</span></a>
             <li class="nav-item dropdown">
                 
-        <li class="menu-header">CRUD</li>
-        <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah Data Matpel</span></a>
-          <li class="nav-item dropdown">       
-        <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i> <span>Tambah Data User</span></a>
-          <li class="nav-item dropdown">
-      </li>
+          <li class="menu-header">CRUD</li>
+          <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah Data Matpel</span></a>
+            <li class="nav-item dropdown">       
+          <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i> <span>Tambah Data User</span></a>
+            <li class="nav-item dropdown">
+        </li>
+      </div>
     </div>
-  </div>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -99,7 +99,6 @@
   <script src="{{asset('assets/js/stisla.js')}}"></script>
   <script src="{{asset('assets/js/scripts.js')}}"></script>
   <script src="{{asset('assets/js/custom.js')}}"></script>
-  <script src="{{asset('js/app.js')}}"></script>
   
 </body>
 </html>

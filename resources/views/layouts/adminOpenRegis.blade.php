@@ -104,13 +104,12 @@
           </div>
         </div>
       </div>
-
+      @endsection
         @push('js')
         <script type="text/javascript">
           $(function() {
             $('.toogle-switch').change(function() {
               var status = $(this).prop('checked') == true ? "Open" : "Close";
-              var role = $('#role-select').text();
               $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -124,4 +123,3 @@
           });
           </script>
         @endpush
-@endsection
