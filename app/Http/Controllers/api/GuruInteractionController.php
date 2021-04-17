@@ -74,10 +74,18 @@ public function GuruSchedule(Request $request){
 
         $id = DB::getPdo('Tugas_kelas')->lastInsertId();
         if(@!empty($request->file)){
-            $file = $request->file->getClientOriginalName(); 
-            $fileName = $id.$file;  
-            Storage::disk('public')->put($fileName,$file);
-            $withurl = url("storage/".$fileName);
+
+            $filenameWithExt = $request->file('file')->getClientOriginalName();
+            // Get nama 
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);            
+            // Get  extensi
+            $extension = $request->file('file')->getClientOriginalExtension();
+            //gabung nama dan ori extensi 
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;                       
+            // Upload file nya
+            $path = $request->file('file')->storeAs('public/file/FileUploadedGuru',$fileNameToStore);
+
+            $withurl = url("storage/file/FileUploadedGuru/".$fileNameToStore);
             $file_tugas_teori_guru = DB::table('file_tugasteori_guru')
             ->insert([
                 ['id_tugas_kelas' => "$id",'file' => "$withurl"],

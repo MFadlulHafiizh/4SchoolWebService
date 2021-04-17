@@ -49,6 +49,8 @@ Route::get('get-image', 'api\UploadController@getPhoto');
 
 Route::get('getHelp', 'api\BaseController@getHelp');
 
+Route::post('GuruSchedule/create_tugas/{id_jadwal}', 'api\GuruInteractionController@tugas_kelas');
+
 //========================================
 //Forgot Reset Password
 //========================================
