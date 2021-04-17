@@ -81,7 +81,7 @@ public function GuruSchedule(Request $request){
             // Get  extensi
             $extension = $request->file('file')->getClientOriginalExtension();
             //gabung nama dan ori extensi 
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;                       
+            $fileNameToStore = $id.$filename.'_'.time().'.'.$extension;                       
             // Upload file nya
             $path = $request->file('file')->storeAs('public/file/FileUploadedGuru',$fileNameToStore);
 
