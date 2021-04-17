@@ -24,6 +24,7 @@ class SiswaInteractionController extends Controller
             'jadwal.jam_mulai',
             'jadwal.jam_selesai',
             'ruangan.nama as ruangan' ,
+            'mata_pelajaran.id as id_matpel',
             'mata_pelajaran.nama as mapel',
             'kelas.id as id_kelas'
         )

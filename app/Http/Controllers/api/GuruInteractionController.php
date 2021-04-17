@@ -46,7 +46,7 @@ public function GuruSchedule(Request $request){
        
     }
 
-    public function tugas_kelas(Request $request,$id_jadwal)
+    public function tugas_kelas(Request $request, $id_jadwal)
     {
         $validator = Validator::make($request->all(), [
             // 'id_kelas'     => 'required|max:50',
@@ -64,9 +64,9 @@ public function GuruSchedule(Request $request){
 
         $tugas_create = Tugas_kelas::create([
             'id_jadwal'     => $id_jadwal,
-            'judul'        => $request->judul,
-            'deskripsi'    => $request->deskripsi,
-            'tipe'         => $request->tipe,
+            'judul'         => $request->judul,
+            'deskripsi'     => $request->deskripsi,
+            'tipe'          => $request->tipe,
             'tenggat'       => $request->tenggat
 
         ]);
@@ -77,9 +77,10 @@ public function GuruSchedule(Request $request){
             $file = $request->file->getClientOriginalName(); 
             $fileName = $id.$file;  
             Storage::disk('public')->put($fileName,$file);
+            $withurl = url("storage/".$fileName);
             $file_tugas_teori_guru = DB::table('file_tugasteori_guru')
             ->insert([
-                ['id_tugas_kelas' => "$id",'file' => "$fileName"],
+                ['id_tugas_kelas' => "$id",'file' => "$withurl"],
             ]);
             if($file_tugas_teori_guru){
                 return response()->json([
@@ -87,15 +88,11 @@ public function GuruSchedule(Request $request){
                     $file_tugas_teori_guru
                     ]);
             }
-        }else{
-            return $this->tugasCreate($id_kelas, $id_matpel, $request->judul, $request->deskripsi, $request->tipe);
         }
-        return  response()->json("task success created",201);
+        return  response()->json(["result" => $tugas_create, "message" => "task success created"],201);
     }
 
-    public function tugasCreate($id_kelas, $id_matpel, $judul, $deskripsi, $tipe){
-        
-    }
+
 
     public function IndexClassroom(Request $request, $id_jadwal)
     {
