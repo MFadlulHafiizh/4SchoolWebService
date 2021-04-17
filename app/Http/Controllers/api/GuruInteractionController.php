@@ -74,7 +74,7 @@ public function GuruSchedule(Request $request){
 
         $id = DB::getPdo('Tugas_kelas')->lastInsertId();
         if(@!empty($request->file)){
-            $file = $request->file->getClientOriginalName(); 
+            $file = $request->file->getClientOriginalName();
             $fileName = $id.$file;  
             Storage::disk('public')->put($fileName,$file);
             $withurl = url("storage/".$fileName);
