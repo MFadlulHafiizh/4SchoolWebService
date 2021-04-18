@@ -67,9 +67,9 @@ class RegisterController extends Controller
     
     public function statement(Request $request){
         if($request->statement == "Open"){
-            $statement = Session::updateOrCreate(['type' => 'registration'], ['type' => 'registration','value' => 'Open']);
+            $statement = Session::updateOrCreate(['type' => 'registration'], ['type' => 'registration','value' => 'Open', 'status' => $request->role]);
         }else{
-            $statement = Session::updateOrCreate(['type' => 'registration'], ['type' => 'registration','value' => 'Close']);
+            $statement = Session::updateOrCreate(['type' => 'registration'], ['type' => 'registration','value' => 'Close', 'status' => $request->role]);
             
         }
 
@@ -77,5 +77,4 @@ class RegisterController extends Controller
         
         
     }
-
 }

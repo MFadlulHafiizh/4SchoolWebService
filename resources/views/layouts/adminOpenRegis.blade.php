@@ -15,8 +15,8 @@
                 <div class="form-group col-8 w-100">
                   <select class="form-control selectric" id="role-select">
                     <option>Open For</option>
-                    <option value="Guru">Guru</option>
-                    <option value="Siswa">Siswa</option>
+                    <option class="role" value="guru">Guru</option>
+                    <option class="role" value="siswa">Siswa</option>
                   </select>
                 </div>
               </div>
@@ -105,21 +105,45 @@
         </div>
       </div>
       @endsection
-        @push('js')
-        <script type="text/javascript">
-          $(function() {
-            $('.toogle-switch').change(function() {
-              var status = $(this).prop('checked') == true ? "Open" : "Close";
-              $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: 'register/setOpenCloseRegist',
-                data: {'statement': status, _token: '{{csrf_token()}}'},
-                success: function(data){
-                console.log(data.success)
-                }
-              });
+
+      @push('js')
+      <script type="text/javascript">
+      
+      // if( $('#role-select').val() == 'Open For') {
+      //   $('.toogle-switch').attr('disabled', '');
+      // }
+      
+      // $('#role-select').on('change', function(){
+      //   if ( $('#role-select').val() == 'Guru' || 'Siswa' ) {
+      //     $('.toogle-switch').removeAttr('disabled');
+      //   }
+      // });
+
+      // $('#role-select').on('change', function(){
+      //   var role = $('#role-select').val();
+      //   console.log(role);
+      // });
+
+        $(function() {
+          $('.toogle-switch').change(function() {
+            var status = $(this).prop('checked') == true ? "Open" : "Close";
+            var role;
+            if( status == "Open" || status == "Close") {
+              role = $('#role-select').val();
+              console.log(role);
+            }
+
+            $.ajax({
+              type: "POST",
+              dataType: "json",
+              url: 'register/setOpenCloseRegist',
+              data: {'statement': status, 'role': role, _token: '{{csrf_token()}}'},
+              success: function(data){
+              console.log(data.success)
+              }
             });
           });
-          </script>
-        @endpush
+        });
+        
+      </script>
+      @endpush
