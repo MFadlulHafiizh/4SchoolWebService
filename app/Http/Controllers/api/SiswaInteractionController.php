@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
 use App\Models\Tugas_kelas;
+use Illuminate\Support\Facades\Validator;
+use App\User;
 
 
 class SiswaInteractionController extends Controller
@@ -56,5 +58,84 @@ class SiswaInteractionController extends Controller
         return response()->json([
             "index_class_siswa" => $classroomData
         ]);
+    }
+
+public function updateprofile(Request $request, $id_user)
+    {
+        //validate data
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'nis'   => 'required',
+            'kelas' => 'required',
+            'tanggal_lahir' => 'required',
+        ],
+            [
+                'name.required' => 'Masukkan name  !',
+                'nis.required' => 'Masukkan nis  !',
+                'kelas.required' => 'Masukkan kelas  !',
+                'tanggal_lahir.required' => 'Masukkan tanggal_lahir  !',
+            ]
+        );
+
+        if($validator->fails()) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Silahkan Isi Bidang Yang Kosong',
+                'data'    => $validator->errors()
+            ],401);
+
+        } else {
+
+            $post = User::whereId($id_user)->update([
+                'name'     => $request->input('name'),
+                'nis'   => $request->input('nis'),
+                'id_kelas'   => $request->input('kelas'),
+                'tanggal_lahir'   => $request->input('tanggal_lahir'),
+                
+            ]);
+
+            if ($post) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Profile Berhasil Diupdate!',
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Profile Gagal Diupdate!',
+                ], 401);
+            }
+
+        }
+
+    }
+
+    public function showkelas(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'tingkatan'     => 'required|string',
+        ]);
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'error' => "tingkatan required",
+            ], 401);
+        }
+        $kelas = DB::table('kelas')
+        ->select('kelas.id as id_kelas','kelas.tingkatan','kelas.jurusan')
+        ->where('tingkatan', '=', "$request->tingkatan")
+        ->get();
+
+        // if ($request->tingkatan  != 'XII','XI','XIII') {
+        //     return response()->json("Class Not Found",404);
+        // }else{
+            return response()->json([
+                'success' => true,
+                'kelas' => $kelas,
+            ], 200);
+        // }
+
     }
 }
