@@ -44,10 +44,17 @@ class uploadController extends Controller
         $image = str_replace('data:image/jpeg;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
         $imageName = str_random(10).'.'.'jpeg';
+<<<<<<< Updated upstream
         Storage::disk('public')->put('/images/UserImage/'.$imageName, base64_decode($image));
         $uploadedImageResponse = array(
             "image_name" => basename($imageName),
             "image_url" => url("storage/images/UserImage/".$imageName),
+=======
+        Storage::disk('public')->put('//storage/userImage'.$imageName, base64_decode($image));
+        $uploadedImageResponse = array(
+            "image_name" => basename($imageName),
+            "image_url" => url("public/storage/userImage".$imageName),
+>>>>>>> Stashed changes
         );
         //url
         $photo_url = $uploadedImageResponse['image_url'];
