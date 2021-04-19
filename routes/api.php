@@ -54,7 +54,7 @@ Route::get('getHelp', 'api\BaseController@getHelp');
 Route::post('GuruSchedule/create_tugas/{id_jadwal}', 'api\GuruInteractionController@tugas_kelas');
 
 
-Route::post('Update_Profile/{id_user}', 'api\SiswaInteractionController@updateprofile'); 
+Route::post('Update_Profile/{id_user}', 'api\BaseController@updateprofile'); 
 Route::get('ShowKelas', 'api\SiswaInteractionController@showkelas'); 
 
 //========================================

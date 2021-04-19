@@ -78,6 +78,12 @@
           {{session('success')}}
         </div>
         @endif
+
+        @if (session('fail'))
+        <div class="alert alert-danger">
+          {{session('fail')}}
+        </div>
+        @endif
         <section class="section">
           <div class="section-header">
             <h1>Tambah Matpel</h1>

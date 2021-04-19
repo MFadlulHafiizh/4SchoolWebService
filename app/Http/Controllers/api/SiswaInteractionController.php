@@ -64,7 +64,7 @@ public function updateprofile(Request $request, $id_user)
     {
         //validate data
         $validator = Validator::make($request->all(), [
-            'name'     => 'required',
+            'id_user'     => 'required',
             'nis'   => 'required',
             'kelas' => 'required',
             'tanggal_lahir' => 'required',

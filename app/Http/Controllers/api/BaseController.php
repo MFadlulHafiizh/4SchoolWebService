@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Illuminate\Support\Facades\Validator;
+
 
 class BaseController extends Controller
 {
@@ -40,30 +42,63 @@ class BaseController extends Controller
         return response()->json($help, 200);
     }
 
-    public function updateProfile(Request $request, $id) {
-        $user = User::firstWhere('id', $id);
-        if($user) {
-            $update = DB::table('users')->where('users.id', $id)->update([
-                'name' => $request->name,
-                'nip' => $request->nip,
-                'nis' => $request->nis,
-                'photo' => $request->photo,
-                'role' => $request->role,
-                'email' => $request->email
-            ]);
+    public function updateprofile(Request $request, $id_user)
+    {
+        //validate data
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'nis'   => 'required',
+            'nip'   => 'required',
+            'kelas' => 'required',
+            'profesi' => 'required',
+            'tanggal_lahir' => 'required',
+        ],
+            [
+                'name.required' => 'Masukkan name  !',
+                'nis.required' => 'Masukkan nis  !',
+                'nip.required' => 'Masukkan nip  !',
+                'kelas.required' => 'Masukkan kelas  !',
+                'profesi.required' => 'Masukkan Profesi  !',
+                'tanggal_lahir.required' => 'Masukkan tanggal_lahir  !',
+            ]
+        );
+
+        if($validator->fails()) {
+
             return response()->json([
-                'success' => true,
-                'message' => 'Success update data',
-                'data'    => $update
-            ], 200);
+                'success' => false,
+                'message' => 'Silahkan Isi Bidang Yang Kosong',
+                'data'    => $validator->errors()
+            ],401);
 
         } else {
-            return response([
-                'success' => false,
-                'message' => 'Failed update data',
-            ], 404);
+
+            $post = User::whereId($id_user)->update([
+                'name'     => $request->input('name'),
+                'nis'   => $request->input('nis'),
+                'nip'   => $request->input('nip'),
+                'id_kelas'   => $request->input('kelas'),
+                'profesi'   => $request->input('profesi'),
+                'tanggal_lahir'   => $request->input('tanggal_lahir'),
+                
+            ]);
+
+            if ($post) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Profile Berhasil Diupdate!',
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Profile Gagal Diupdate!',
+                ], 401);
+            }
+
         }
+
     }
+
 
     public function getUserInfo(Request $request){
         $getRole = User::select('role')->where('id', $request->id)->pluck('role')[0];

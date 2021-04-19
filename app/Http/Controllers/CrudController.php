@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 
 class CrudController extends Controller
@@ -49,12 +50,29 @@ class CrudController extends Controller
     {
         //
         //  dd($request);
-        $input = $request->all();
-        unset($input['_token']);
-        $status = DB::table('jadwal')->insert($input);
+        $validator = Validator::make($request->all(), [
+            'id_user'     => 'required',
+            'id_matpel'   => 'required',
+            'id_hari'   => 'required',
+            'jam_mulai' => 'required',
+            'jam_selesai' => 'required',
+            'id_ruangan' => 'required',
+            'id_kelas' => 'required',
+            ]
+        );
 
-        
-        return redirect()->back()->with('success', 'Jadwal berhasil ditambah');
+        if($validator->fails()) {
+
+            return redirect()->back()->with('fail', 'Jadwal gagal ditambah, Silakan isi semua field terlebih dahulu');
+
+        } else {
+
+            $input = $request->all();
+            unset($input['_token']);
+            $status = DB::table('jadwal')->insert($input);
+            return redirect()->back()->with('success', 'Jadwal berhasil ditambah');
+
+        }
     }
 
     /**
