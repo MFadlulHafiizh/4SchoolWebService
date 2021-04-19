@@ -14,8 +14,8 @@
 		{{-- JS --}}
 		<script src="{{ asset('js/app.js') }}"></script>
 		<script>
-			function zoommap() {
-				document.body.style.zoom = "90%";
+			function zoom() {
+				document.body.style.zoom = "70%";
 			}
 		</script>
 				
@@ -146,7 +146,7 @@
 
 	</head>
 
-<body onload="zoommap()">
+<body onload="zoom()">
 
     <div class="d-flex" id="wrapper">
 

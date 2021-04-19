@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   <!-- CSS Libraries -->
-  
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
@@ -31,18 +30,18 @@
               </ul>
             </form>
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-              <img alt="image" src="{{asset('assets/img/avatar/user.png')}}" class="rounded-circle mr-1">
-              <div class="d-sm-none d-lg-inline-block">Hi, Chandra</div></a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a href="features-settings.html" class="dropdown-item has-icon">
-                  <i class="fas fa-cog"></i> Settings
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item has-icon text-danger">
-                  <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-              </div>
-            </li>
+                <img alt="image" src="{{asset('assets/img/avatar/user.png')}}" class="rounded-circle mr-1">
+                <div class="d-sm-none d-lg-inline-block">Hi, Chandra</div></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a href="features-settings.html" class="dropdown-item has-icon">
+                    <i class="fas fa-cog"></i> Settings
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item has-icon text-danger">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                  </a>
+                </div>
+              </li>
             </ul>
           </nav>
           <div class="main-sidebar">
@@ -79,108 +78,115 @@
             <h1>Tambah Matpel</h1>
           </div>
           <div class="form-group row">
-            <label for="example-number-input" class="col-2 col-form-label"><h5>Input Jadwal mengajar</h5></label>
-            <div class="col-2">
-              <input class="form-control" type="number" value="1" id="example-number-input" min="1" max="10">
+            <div class="col-lg-3 col-sm d-flex">
+              <label for="example-number-input" class="w-100 mt-2"><h5>Select Row</h5></label>
+              <input class="form-control input-row" type="number" value="1" id="example-number-input" min="1" max="10">
             </div>
           </div>
         </section>
-        <form method="POST" action="{{ route('crud_matpel') }}">
-          @csrf
-        <table class="table">
+
+        <div class="notif">
+
+        </div>
+
+        <form method="POST" class="w-100 mb-3" style="overflow-x: auto;" action="{{ route('crud_matpel') }}">
+        @csrf
+        <table class="table table-bordered">
           <thead>
             <tr>
-              <th scope="col">Nama Guru</th>
-              <th scope="col">Mata Pelajaran</th>
-              <th scope="col">Hari</th>
-              <th scope="col">Jam Mulai</th>
-              <th>Jam selesai</th>
-              <th>Ruangan  </th>
-              <th>Kelas</th>
-              <th>Tingkat</th>
+              <th scope="col" rowspan="2">Nama Guru</th>
+              <th scope="col" rowspan="2">Mata Pelajaran</th>
+              <th scope="col" rowspan="2">Hari</th>
+              <th scope="col" rowspan="2">Jam Mulai</th>
+              <th rowspan="2">Jam selesai</th>
+              <th rowspan="2">Ruangan  </th>
+              <th class="h-50 text-center"colspan="2">Kelas</th>
+            </tr>
+            <tr>
+              <th class="h-50 text-center">Tingkat</th>
+              <th class="h-50 text-center">Jurusan</th>
             </tr>
           </thead>
          
-          <tbody>
+          <tbody id="table-body">
             <tr>
-              <th scope="row"><div class="form-group">
-                <label for="exampleFormControlSelect1"></label>
-                <select class="form-control" id="exampleFormControlSelect1" name="id_user">
-                  @foreach ($dataguru as $guru)
-                  <option value="{{$guru->id}}" >{{$guru->name}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </th>
-              <td><div class="form-group">
-                <label for="exampleFormControlSelect1"></label>
-                <select class="form-control" id="exampleFormControlSelect1" name="id_matpel">
-                  @foreach ($datamatpel as $matpel)
-                  <option value="{{$matpel->id}}">{{$matpel->nama}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </td>
-              <td><div class="form-group">
-                <label for="exampleFormControlSelect1"></label>
-                <select class="form-control" id="exampleFormControlSelect1" name="id_hari">
-                  @foreach ($hari as $days)
-                  <option value="{{$days->id}}">{{$days->hari}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </td>
-              <td>
-                <div class="form-group row">
-                <label for="example-time-input" class="col-2 col-form-label">Time</label>
-                <div class="col-10">
-                  <input class="form-control" type="time" value="13:45:00" id="example-time-input" name="jam_mulai">
+              <th scope="row" class="pr-3 pl-2">
+                <div class="form-group mt-2">
+                  <select class="form-control" name="id_user">
+                    @foreach ($dataguru as $guru)
+                    <option value="{{$guru->id}}" >{{$guru->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </th>
+              <td class="pr-3 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control" name="id_matpel">
+                    @foreach ($datamatpel as $matpel)
+                    <option value="{{$matpel->id}}">{{$matpel->nama}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </td>
+              <td class="pr-0 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control" name="id_hari">
+                    @foreach ($hari as $days)
+                    <option value="{{$days->id}}">{{$days->hari}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </td>
+              <td class="pr-0 pl-0">
+                <div class="form-group mt-3">
+                <div class="col">
+                  <input class="form-control" type="time" value="13:45:00" name="jam_mulai">
                 </div>
               </div>
-            </td> 
-              <td>
-                <div class="form-group row">
-                  <label for="example-time-input" class="col-2 col-form-label">Time</label>
-                  <div class="col-10">
-                    <input class="form-control" type="time" value="13:45:00" id="example-time-input" name="jam_selesai">
+              </td> 
+              <td class="pr-0 pl-0">
+                <div class="form-group mt-3">
+                  <div class="col">
+                    <input class="form-control" type="time" value="13:45:00" name="jam_selesai">
                   </div>
                 </div>
               </td>
-              <td><div class="form-group">
-                <label for="exampleFormControlSelect1"></label>
-                <select class="form-control" id="exampleFormControlSelect1" name="id_ruangan">
-                 @foreach ($dataruangan as $ruangan)
-                     <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
-                 @endforeach
-                </select>
-              </div>
-            </td>
-              <td>
-                <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
-                <select class="form-control" id="exampleFormControlSelect1" name="id_kelas">
-                  @foreach ($datakelas as $kelas)
-                      <option value="{{$kelas->id}}">{{$kelas->jurusan}}</option>
+              <td class="pr-3 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control" name="id_ruangan">
+                  @foreach ($dataruangan as $ruangan)
+                      <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
                   @endforeach
-                </select>
-              </div>
-            </td>
-              <td><div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-            </td>
+                  </select>
+                </div>
+              </td>
+              <td class="pr-2 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control">
+                    @foreach ($datakelas as $kelas)
+                      <option value="{{$kelas->id}}">{{$kelas->tingkatan}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </td>
+              <td class="pr-3 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control" name="id_kelas">
+                    @foreach ($datakelas as $kelas)
+                        <option value="{{$kelas->id}}">{{$kelas->jurusan}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </td>
             </tr>
           </tbody>
-          <button class="btn btn-primary" type="submit" style="float: right;">SUBMIT</button>
         </table>  
       </form>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary p-2 w-100">SUBMIT</button>
+        </div>
+      </div>
       </div>
       <footer class="main-footer">
         <div class="footer-left">
@@ -200,6 +206,102 @@
   <script src="{{asset('assets/js/scripts.js')}}"></script>
   <script src="{{asset('assets/js/custom.js')}}"></script>
 
+  <script>
+    
+    $('.input-row').change(function() {
+      $('.notif').empty();
+      $('#table-body').empty();
+      
+      for( let i = 1; i <= $(this).val(); i++) {
+        
+        if( i > 10 ) {
+          $('.notif').append(`
+          <div class="alert alert-danger" role="alert">
+            Gabisa Lebih dari 10 Bosq!
+            </div>
+            `);
+            return;
+        } 
+        form();
+      }
+    });
+
+    function form() {
+      $('#table-body').append(`
+        <tr>
+          <th scope="row" class="pr-3 pl-2">
+            <div class="form-group mt-3">
+              <select class="form-control" name="id_user">
+                @foreach ($dataguru as $guru)
+                <option value="{{$guru->id}}" >{{$guru->name}}</option>
+                @endforeach
+              </select>
+            </div>
+          </th>
+          <td class="pr-3 pl-0">
+            <div class="form-group mt-3">
+              <select class="form-control" name="id_matpel">
+                @foreach ($datamatpel as $matpel)
+                <option value="{{$matpel->id}}">{{$matpel->nama}}</option>
+                @endforeach
+              </select>
+            </div>
+          </td>
+          <td class="pr-0 pl-0">
+            <div class="form-group mt-3">
+              <select class="form-control" name="id_hari">
+                @foreach ($hari as $days)
+                <option value="{{$days->id}}">{{$days->hari}}</option>
+                @endforeach
+              </select>
+            </div>
+          </td>
+          <td class="pr-0 pl-0">
+            <div class="form-group mt-3">
+            <div class="col">
+              <input class="form-control" type="time" value="13:45:00" name="jam_mulai">
+            </div>
+          </div>
+          </td> 
+          <td class="pr-0 pl-0">
+            <div class="form-group mt-3">
+              <div class="col">
+                <input class="form-control" type="time" value="13:45:00" name="jam_selesai">
+              </div>
+            </div>
+          </td>
+          <td class="pr-3 pl-0">
+            <div class="form-group mt-3">
+              <select class="form-control" name="id_ruangan">
+              @foreach ($dataruangan as $ruangan)
+                  <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
+              @endforeach
+              </select>
+            </div>
+          </td>
+          <td class="pr-2 pl-0">
+            <div class="form-group mt-3">
+              <select class="form-control">
+                @foreach ($datakelas as $kelas)
+                  <option value="{{$kelas->id}}">{{$kelas->tingkatan}}</option>
+                @endforeach
+              </select>
+            </div>
+          </td>
+          <td class="pr-3 pl-0">
+            <div class="form-group mt-3">
+              <select class="form-control" name="id_kelas">
+                @foreach ($datakelas as $kelas)
+                    <option value="{{$kelas->id}}">{{$kelas->jurusan}}</option>
+                @endforeach
+              </select>
+            </div>
+          </td>
+        </tr>
+      `);
+    }
+
+  </script>
 
 </body>
 </html>

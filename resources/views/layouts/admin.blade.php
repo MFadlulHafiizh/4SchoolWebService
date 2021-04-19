@@ -23,9 +23,9 @@
   <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
 </head>
 
-<body onload="zoommap()">
+<body onload="zoom()">
   <div id="app">
-    <div class="main-wrapper">
+    <div class="main-wrapper"> 
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">

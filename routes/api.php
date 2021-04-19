@@ -53,7 +53,7 @@ Route::post('GuruSchedule/create_tugas/{id_jadwal}', 'api\GuruInteractionControl
 
 
 Route::post('Update_Profile/{id_user}', 'api\SiswaInteractionController@updateprofile'); 
-Route::post('ShowKelas', 'api\SiswaInteractionController@showkelas'); 
+Route::get('ShowKelas', 'api\SiswaInteractionController@showkelas'); 
 
 //========================================
 //Forgot Reset Password
