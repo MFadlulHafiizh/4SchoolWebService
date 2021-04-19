@@ -53,6 +53,7 @@ class CrudController extends Controller
         unset($input['_token']);
         $status = DB::table('jadwal')->insert($input);
 
+        
         return redirect()->back()->with('success', 'Jadwal berhasil ditambah');
     }
 

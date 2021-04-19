@@ -15,10 +15,11 @@ $("#lantai").on("change", function() {
 
 });
 
-$("#btn-navigasi").on("click", function() {
+$("#btn-navigasi").click(function() {
     let ruangAwal = $("#navigasi-awal").val();
     let ruangTujuan = $("#navigasi-tujuan").val();
-
-    $(".img-maps").attr("src", "img/navigasi/" + ruangAwal + " - " + ruangTujuan + ".png");
+    
+    $(".img-maps").attr("src", "{{ asset('img/navigasi/" + ruangAwal + " - " + ruangTujuan + ".png') }}");
 });
+
 

@@ -10,19 +10,16 @@
 
 		{{-- Favicon --}}
 		<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-
-		{{-- JS --}}
-		<script src="{{ asset('js/app.js') }}"></script>
-		<script>
-			function zoom() {
-				document.body.style.zoom = "70%";
-			}
-		</script>
 				
 		{{-- CSS --}}
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		@stack('css')
 
+		<script>
+			function zoom() {
+				document.body.style.zoom = "70%";
+			}
+		</script>
 		 {{-- <link href="{{ asset('datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">  --}}
 
 		{{-- Fontawesome --}}
@@ -297,11 +294,11 @@
 		</div>
 	</div>
 	
+	@stack('js')
+	{{-- JS --}}
 	<script src="{{ asset('js/main.js') }}"></script>
+	<script src="{{ asset('js/app.js') }}"></script>
 	<script src="{{ asset('datatables/jquery.dataTables.min.js') }}"></script>
   	<script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-	@stack('js')			
-    
 </body>
 </html>
