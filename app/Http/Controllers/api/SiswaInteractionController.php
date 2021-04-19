@@ -9,12 +9,14 @@ use App\Models\Kelas;
 use App\Models\Tugas_kelas;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+Use \Carbon\Carbon;
 
 
 class SiswaInteractionController extends Controller
 {
     // get siswa schedule
     public function SiswaSchedule(Request $request){
+        $date = Carbon::now()->format('h:i');
         $jadwal = DB::table('jadwal')
         ->join('hari','jadwal.id_hari','=','hari.id')
         ->join('ruangan','jadwal.id_ruangan','=','ruangan.id')
@@ -30,7 +32,8 @@ class SiswaInteractionController extends Controller
             'mata_pelajaran.nama as mapel',
             'kelas.id as id_kelas'
         )
-        ->where('jadwal.id_kelas', '=', "$request->id_kelas")
+        ->where('jadwal.id_kelas', '=', $request->id_kelas)
+        ->where('jadwal.jam_mulai', '=', $date)
         ->get();
         if (empty("$request->id_kelas")) {
             return response()->json("Schedule Not Found",404);

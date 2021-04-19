@@ -92,7 +92,53 @@
                 <div class="footer-left">
                     Copyright &copy; 4School | CloverTech 2021
                 </div>
+<<<<<<< Updated upstream
             </footer>
+=======
+              </li>
+            </ul>
+          </nav>
+          <div class="main-sidebar">
+            <aside id="sidebar-wrapper">
+              <div class="sidebar-brand">
+                <a href="/home">4School</a>
+              </div>
+              <div class="sidebar-brand sidebar-brand-sm">
+                <img src="{{asset('assets/img/4-logo.jpg')}}" alt="logo" width="50" class="shadow-light rounded-circle">
+              </div>
+           {{-- // nav kiri // --}}
+           <ul class="sidebar-menu">
+            <li class="menu-header">Dashboard</li>
+            <li class="active"><a class="nav-link" href="/home"><i class="fas fa-map-marker-alt"></i> <span>MAPS</span></a>
+              <li class="nav-item dropdown">
+                  
+          <li class="menu-header">CRUD</li>
+          <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah Data Matpel</span></a>
+            <li class="nav-item dropdown">       
+          <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i> <span>Tambah Data User</span></a>
+              <li class="nav-item dropdown">
+          <li class="active"><a class="nav-link" href="/datasiswa"><i class="fas fa-th-large"></i> <span>Data Siswa</span></a>
+              <li class="nav-item dropdown">
+          <li class="active"><a class="nav-link" href="/datajadwal"><i class="fas fa-th-large"></i> <span>Data Jadwal</span></a>
+              <li class="nav-item dropdown">
+          </li>
+    </div>
+  </div>
+      {{-- <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>Tambah Matpel</h1>
+          </div>
+
+          <div class="section-body">
+          </div>
+        </section>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+            Copyright &copy; 4School | CloverTech 2021 
+>>>>>>> Stashed changes
         </div>
     </div>
     </div>

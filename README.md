@@ -8,6 +8,8 @@
     -php artisan jwt:secret <<ini bila perlu>>
     -composer require laravel/helpers
     -composer require laravel/ui "^2.0" -vvv
+    -composer require apility/laravel-fcm
+    -D:\4schoolAPI\4SchoolWebService>php artisan vendor:publish --provider="LaravelFCM\FCMServiceProvider
 ## Lanjut Run artisan servenya ....
 
 

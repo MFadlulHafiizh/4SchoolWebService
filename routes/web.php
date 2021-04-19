@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{CrudController, AdminController,PageController, RuanganController, SaranaPrasaranaController};
+use App\Http\Controllers\{CrudController, AdminController,PageController, RuanganController, SaranaPrasaranaController, RegisterController};
 use App\Models\Sarpras;
 use Illuminate\Support\Facades\Route;
 
@@ -17,12 +17,15 @@ Route::get('/room/{id}/show', [PageController::class, 'show']);
 */
 Route::get('/home', 'AdminController@index');
 Route::get('/login', 'AdminController@login');
-Route::get('/register', [AdminController::class, 'register']);
+Route::get('/register', 'AdminController@register');
+Route::get('/datausers','UsersController@users');
+Route::get('/datajadwal','AdminController@datajadwal');
 Route::post('/logout', 'AdminController@logout')->name('logout');
 
 Route::get('/crud', [CrudController::class, 'index'])->name('crud');
 Route::post('/crud', [CrudController::class, 'store'])->name('crud_matpel');
 Route::post('register/setOpenCloseRegist', 'api\RegisterController@statement');
+Route::post('/register', 'api\RegisterController@register')->name('regisuser');
 
 
 

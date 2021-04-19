@@ -119,4 +119,9 @@ class CrudController extends Controller
     {
         //
     }
+
+    public function upload_img()
+    {
+        
+    }
 }

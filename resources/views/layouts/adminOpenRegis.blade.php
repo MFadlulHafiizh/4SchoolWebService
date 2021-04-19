@@ -4,7 +4,7 @@
 <!-- Main Content -->
 <section class="section pl-3 pr-3 w-100">
     <div class="section-body d-block pt-4">
-        <form method="GET" action="">
+        <form method="POST" action="{{route('regisuser')}}">
             {{-- Toggle, Role, Header --}}
             <div class="row">
                 <div class="col-12 d-lg-none d-block text-center">

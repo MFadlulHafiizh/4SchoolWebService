@@ -9,12 +9,15 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Tugas_kelas;
+Use \Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 class GuruInteractionController extends Controller
 {
 
 //Get GuruMapel//
 public function GuruSchedule(Request $request){
+        $date = Carbon::now()->format('h:i');
+        // $newdate = $date->toTimeString()->format('h:i');
         $profesi = DB::table('users')->select('profesi')->where('id', $request->id)->pluck('profesi')[0];
             $jadwal = DB::table('jadwal')
             ->join('hari','jadwal.id_hari','=','hari.id')
@@ -33,16 +36,21 @@ public function GuruSchedule(Request $request){
                 'kelas.jurusan',
                 )
             ->where('jadwal.id_user', '=', $request->id)
+            ->where('jadwal.jam_mulai', '=', $date)
             ->get();
     
                 if (empty($request->id)) {
                             return response()->json("Schedule Not Found",404);
                     }else {
-                        return response()->json(array(
+                        return $newreturn = response()->json(array(
                             'jadwal_mengajar' =>$jadwal
                     )
                 );
             }
+            // if ($ = null ) {
+            //     return response()->json('there are no schedules today..');
+            // }
+
        
     }
 
