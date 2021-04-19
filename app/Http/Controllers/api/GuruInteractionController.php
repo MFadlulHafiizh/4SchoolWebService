@@ -73,15 +73,41 @@ public function GuruSchedule(Request $request){
         $tugas_create->save();
 
         $id = DB::getPdo('Tugas_kelas')->lastInsertId();
+        // if(@!empty($request->file)){
+        //     $file = $request->file->getClientOriginalName();
+        //     $fileName = $id.$file;  
+        //     Storage::disk('public')->put($fileName,$file);
+        //     $withurl = url("storage/".$fileName);
+        //     $file_tugas_teori_guru = DB::table('file_tugasteori_guru')
+        //     ->insert([
+        //         ['id_tugas_kelas' => "$id",'file' => "$withurl"],
+        //     ]);
+        //     if($file_tugas_teori_guru){
+        //         return response()->json([
+        //             $tugas_create,
+        //             $file_tugas_teori_guru
+        //             ]);
+        //     }
+        // }
         if(@!empty($request->file)){
-            $file = $request->file->getClientOriginalName();
-            $fileName = $id.$file;  
-            Storage::disk('public')->put($fileName,$file);
-            $withurl = url("storage/".$fileName);
-            $file_tugas_teori_guru = DB::table('file_tugasteori_guru')
-            ->insert([
-                ['id_tugas_kelas' => "$id",'file' => "$withurl"],
-            ]);
+            foreach($request->file('file') as $key=>$file){
+                $filenameWithExt = $file->getClientOriginalName();
+                // Get nama 
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);            
+                // Get  extensi
+                $extension = $file->getClientOriginalExtension();
+                //gabung nama dan ori extensi 
+                $fileNameToStore = $id.$filename.'_'.time().'.'.$extension;                       
+                // Upload file nya
+                $destination_path = public_path('/storage/file/FileUploadedGuru');
+                $path = $file->move($destination_path,$fileNameToStore);
+                $withurl = url("storage/file/FileUploadedGuru/".$fileNameToStore);
+                $file_tugas_teori_guru = DB::table('file_tugasteori_guru')
+                ->insert([
+                    ['id_tugas_kelas' => "$id",'name_file'=>$filename,'extensi'=>$extension,'file' => "$withurl"],
+                ]);
+            }
+           
             if($file_tugas_teori_guru){
                 return response()->json([
                     $tugas_create,
@@ -100,10 +126,10 @@ public function GuruSchedule(Request $request){
         ->join('jadwal', 'tugas_kelas.id_jadwal', '=', 'jadwal.id')
         ->join('mata_pelajaran', 'jadwal.id_matpel', '=', 'mata_pelajaran.id')
         ->leftJoin(
-            'file_tugasteori_guru', 
-            'file_tugasteori_guru.id_tugas_kelas', 
-            '=', 
-            'tugas_kelas.id')
+                    'file_tugasteori_guru', 
+                    'file_tugasteori_guru.id_tugas_kelas', 
+                    '=', 
+                    'tugas_kelas.id')
         ->leftJoin(
             'file_tugas_siswa', 
             'file_tugas_siswa.id_tugas_kelas', 
@@ -133,5 +159,49 @@ public function GuruSchedule(Request $request){
 
         return response()-json($data);
     }
+
+// backup
+
+    // public function IndexClassroom(Request $request, $id_jadwal)
+    // {
+    //     $classroom = DB:: table('tugas_kelas')
+    //     ->join('jadwal', 'tugas_kelas.id_jadwal', '=', 'jadwal.id')
+    //     ->join('mata_pelajaran', 'jadwal.id_matpel', '=', 'mata_pelajaran.id')
+    //     ->leftJoin(
+    //         'file_tugasteori_guru', 
+    //         'file_tugasteori_guru.id_tugas_kelas', 
+    //         '=', 
+    //         'tugas_kelas.id')
+    //     ->leftJoin(
+    //         'file_tugas_siswa', 
+    //         'file_tugas_siswa.id_tugas_kelas', 
+    //         '=', 
+    //         'tugas_kelas.id')
+    //     ->select(
+    //         'tugas_kelas.id',
+    //         'tugas_kelas.judul', 
+    //         'tugas_kelas.deskripsi', 
+    //         'mata_pelajaran.nama',
+    //         'tugas_kelas.tenggat',
+    //         'tugas_kelas.tipe', 
+    //         'tugas_kelas.created_at',
+    //         DB::raw("SUM(file_tugas_siswa.id) AS completed_count"),
+    //         'file_tugasteori_guru.name_file',
+    //         'file_tugasteori_guru.extensi',
+    //         'file_tugasteori_guru.file')
+    //     ->where('tugas_kelas.id_jadwal', '=', $id_jadwal)
+    //     ->groupBy('tugas_kelas.id')
+    //     ->get();
+
+    //     return response()->json([
+    //         'index_class_guru' =>$classroom
+    //     ]);
+    // }
+
+    // public function showCompletedUser(Request $request){
+    //     $data = DB::table('users')->join('file_tugas_siswa', 'users.id', '=', 'file_tugas_siswa.id_siswa')->where('file_tugas_siswa.id', $request->id_tugas)->get();
+
+    //     return response()-json($data);
+    // }
 
 }

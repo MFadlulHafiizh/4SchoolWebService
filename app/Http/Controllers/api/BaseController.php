@@ -82,4 +82,29 @@ class BaseController extends Controller
 
         return response()->json(['information'=>$userInfo]);
     }
+
+    public function getFaq(Request $request){
+        $faq = DB::table('faq')->get();
+
+        if($faq){
+            return response()->json($faq);
+        }else{
+            return response()->json(["message" => 'error'], 402);
+        }
+    }
+
+    
+    public function itemFile(Request $request, $id_tugas){
+        $condition = $request->condition;
+        if($condition == 'file_guru'){
+            $file = DB::table('file_tugasteori_guru')->where('id_tugas_kelas', $id_tugas)->get();
+            return response()->json(["filesDetail" => $file]);
+        }
+        else if($condition == 'file_siswa'){
+            $file = DB::table('file_tugas_siswa')->where('id_tugas_kelas', $id_tugas)->get();
+            return response()->json(["filesDetail" => $file]);
+        }
+        
+
+    }
 }

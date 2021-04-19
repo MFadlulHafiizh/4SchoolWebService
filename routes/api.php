@@ -28,9 +28,11 @@ Route::post('logout', 'AuthController@logout');
 });
 
 Route::get('userinformation', 'api\BaseController@getUserInfo');
+Route::get('index_classroom/file/{id_tugas}', 'api\BaseController@itemFile');
 
 Route::post('refresh', 'AuthController@refresh');
 Route::patch('user/update/profile/{id}', 'api\BaseController@updateProfile');
+Route::get('faq-content', 'api\BaseController@getFaq');
 
 Route::group(['middleware'=> 'api.role:guru'], function() {
     Route::get('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
@@ -48,6 +50,8 @@ Route::patch('upload/{id}', 'api\UploadController@uploadImageDecoded');
 Route::get('get-image', 'api\UploadController@getPhoto');
 
 Route::get('getHelp', 'api\BaseController@getHelp');
+
+Route::post('GuruSchedule/create_tugas/{id_jadwal}', 'api\GuruInteractionController@tugas_kelas');
 
 //========================================
 //Forgot Reset Password
