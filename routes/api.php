@@ -28,9 +28,11 @@ Route::post('logout', 'AuthController@logout');
 });
 
 Route::get('userinformation', 'api\BaseController@getUserInfo');
+Route::get('index_classroom/file/{id_tugas}', 'api\BaseController@itemFile');
 
 Route::post('refresh', 'AuthController@refresh');
 Route::patch('user/update/profile/{id}', 'api\BaseController@updateProfile');
+Route::get('faq-content', 'api\BaseController@getFaq');
 
 Route::group(['middleware'=> 'api.role:guru'], function() {
     Route::get('GuruSchedule', 'api\GuruInteractionController@GuruSchedule');
