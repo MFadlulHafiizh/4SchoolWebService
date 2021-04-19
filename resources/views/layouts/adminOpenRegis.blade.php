@@ -2,7 +2,6 @@
 
 @section('content')
 <!-- Main Content -->
-=======
 <section class="section pl-3 pr-3 w-100">
     <div class="section-body d-block pt-4">
         <form method="GET" action="">

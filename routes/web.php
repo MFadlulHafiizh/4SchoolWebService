@@ -25,6 +25,7 @@ Route::post('/crud', [CrudController::class, 'store'])->name('crud_matpel');
 Route::post('register/setOpenCloseRegist', 'api\RegisterController@statement');
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Ruangan Routes

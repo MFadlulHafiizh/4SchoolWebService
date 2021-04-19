@@ -21,3 +21,4 @@ $("#btn-navigasi").on("click", function() {
 
     $(".img-maps").attr("src", "img/navigasi/" + ruangAwal + " - " + ruangTujuan + ".png");
 });
+

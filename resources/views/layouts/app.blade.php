@@ -13,6 +13,11 @@
 
 		{{-- JS --}}
 		<script src="{{ asset('js/app.js') }}"></script>
+		<script>
+			function zoommap() {
+				document.body.style.zoom = "90%";
+			}
+		</script>
 				
 		{{-- CSS --}}
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -141,7 +146,7 @@
 
 	</head>
 
-<body onload="zoom()">
+<body onload="zoommap()">
 
     <div class="d-flex" id="wrapper">
 
@@ -294,7 +299,7 @@
 	
 	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('datatables/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
+  	<script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
 
 	@stack('js')			
     
