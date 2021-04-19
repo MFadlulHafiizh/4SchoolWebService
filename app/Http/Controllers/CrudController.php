@@ -48,7 +48,7 @@ class CrudController extends Controller
     public function store(Request $request)
     {
         //
-      //  dd($request);
+        //  dd($request);
         $input = $request->all();
         unset($input['_token']);
         $status = DB::table('jadwal')->insert($input);

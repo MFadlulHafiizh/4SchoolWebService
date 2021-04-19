@@ -19,60 +19,65 @@
 </head>
 
 <body onload="zoom()">
-    <div id="app">
-        <div class="main-wrapper">
-          <div class="navbar-bg"></div>
-          <nav class="navbar navbar-expand-lg main-navbar">
+  <div id="app">
+    <div class="main-wrapper">
+        <div class="navbar-bg"></div>
+        <nav class="navbar navbar-expand-lg main-navbar">
             <form class="form-inline mr-auto">
-              <ul class="navbar-nav mr-3">
-                <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-                <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-              </ul>
+                <ul class="navbar-nav mr-3">
+                    <li><a href="#" id="sidebar" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+                    <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+                </ul>
             </form>
-            <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="{{asset('assets/img/avatar/user.png')}}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Chandra</div></a>
+            <li class="dropdown"><a href="#" data-toggle="dropdown"
+                    class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                    <img alt="image" src="{{asset('assets/img/avatar/user.png')}}" class="rounded-circle mr-1">
+                    <div class="d-sm-none d-lg-inline-block">Hi, Chandra</div>
+                </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a href="features-settings.html" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                  </a>
+                    <a href="features-settings.html" class="dropdown-item has-icon">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item has-icon text-danger">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
                 </div>
-              </li>
+            </li>
             </ul>
-          </nav>
-          <div class="main-sidebar">
-            <aside id="sidebar-wrapper">
-              <div class="sidebar-brand">
+        </nav>
+        <div class="main-sidebar">
+          <aside id="sidebar-wrapper">
+            <div class="sidebar-brand">
                 <a href="/home">4School</a>
-              </div>
-              <div class="sidebar-brand sidebar-brand-sm">
-                <img src="{{asset('assets/img/4-logo.jpg')}}" alt="logo" width="50" class="shadow-light rounded-circle">
-              </div>
-           {{-- // nav kiri // --}}
-           <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
-            <li class="active"><a class="nav-link" href="/home"><i class="fas fa-map-marker-alt"></i> <span>MAPS</span></a>
+            </div>
+            <div class="sidebar-brand sidebar-brand-sm">
+                <a href="/home"><img src="{{asset('assets/img/4-smk.png')}}" alt="logo" width="40" class="mt-3"></a>
+            </div>
+            {{-- // nav kiri // --}}
+            <ul class="sidebar-menu">
+              <li class="menu-header">Dashboard</li>
+              <li class="active">
+                <a class="nav-link" href="/home">
+                <i class="fas fa-map-marker-alt"></i><span>MAPS</span></a>
+              </li>
+              <li class="nav-item dropdown"></li>
+              <li class="menu-header">CRUD</li>
+              <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah Data Matpel</span></a></li>
               <li class="nav-item dropdown">
-                  
-          <li class="menu-header">CRUD</li>
-          <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah Data Matpel</span></a>
-            <li class="nav-item dropdown">       
-          <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i> <span>Tambah Data User</span></a>
+              <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i><span>Tambah Data User</span></a>
               <li class="nav-item dropdown">
-        </li>
+              </li>
+        </div>
     </div>
-  </div>
+
       <!-- Main Content -->
       <div class="main-content">
         @if (session('success'))
         <div class="alert alert-success">
           {{session('success')}}
         </div>
-      @endif
+        @endif
         <section class="section">
           <div class="section-header">
             <h1>Tambah Matpel</h1>
@@ -99,7 +104,7 @@
               <th scope="col" rowspan="2">Hari</th>
               <th scope="col" rowspan="2">Jam Mulai</th>
               <th rowspan="2">Jam selesai</th>
-              <th rowspan="2">Ruangan  </th>
+              <th rowspan="2">Ruangan</th>
               <th class="h-50 text-center"colspan="2">Kelas</th>
             </tr>
             <tr>
@@ -113,6 +118,7 @@
               <th scope="row" class="pr-3 pl-2">
                 <div class="form-group mt-2">
                   <select class="form-control" name="id_user">
+                    <option value="">-- Nama Guru --</option>
                     @foreach ($dataguru as $guru)
                     <option value="{{$guru->id}}" >{{$guru->name}}</option>
                     @endforeach
@@ -122,6 +128,7 @@
               <td class="pr-3 pl-0">
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_matpel">
+                    <option value="">-- Pilih Matpel --</option>
                     @foreach ($datamatpel as $matpel)
                     <option value="{{$matpel->id}}">{{$matpel->nama}}</option>
                     @endforeach
@@ -131,6 +138,7 @@
               <td class="pr-0 pl-0">
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_hari">
+                    <option value="">-- Pilih Hari --</option>
                     @foreach ($hari as $days)
                     <option value="{{$days->id}}">{{$days->hari}}</option>
                     @endforeach
@@ -140,20 +148,21 @@
               <td class="pr-0 pl-0">
                 <div class="form-group mt-3">
                 <div class="col">
-                  <input class="form-control" type="time" value="13:45:00" name="jam_mulai">
+                  <input class="form-control" type="time" value="00:00:00" name="jam_mulai">
                 </div>
               </div>
               </td> 
               <td class="pr-0 pl-0">
                 <div class="form-group mt-3">
                   <div class="col">
-                    <input class="form-control" type="time" value="13:45:00" name="jam_selesai">
+                    <input class="form-control" type="time" value="00:00:00" name="jam_selesai">
                   </div>
                 </div>
               </td>
               <td class="pr-3 pl-0">
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_ruangan">
+                  <option value="">-- Pilih Ruangan --</option>
                   @foreach ($dataruangan as $ruangan)
                       <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
                   @endforeach
@@ -163,6 +172,7 @@
               <td class="pr-2 pl-0">
                 <div class="form-group mt-3">
                   <select class="form-control">
+                    <option value="">-- Pilih Kelas --</option>
                     @foreach ($datakelas as $kelas)
                       <option value="{{$kelas->id}}">{{$kelas->tingkatan}}</option>
                     @endforeach
@@ -172,6 +182,7 @@
               <td class="pr-3 pl-0">
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_kelas">
+                    <option value="">-- Pilih Jurusan --</option>
                     @foreach ($datakelas as $kelas)
                         <option value="{{$kelas->id}}">{{$kelas->jurusan}}</option>
                     @endforeach
@@ -181,10 +192,10 @@
             </tr>
           </tbody>
         </table>  
+        <button class="btn btn-primary p-2 w-100">SUBMIT</button>
       </form>
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary p-2 w-100">SUBMIT</button>
         </div>
       </div>
       </div>
@@ -228,76 +239,98 @@
 
     function form() {
       $('#table-body').append(`
-        <tr>
-          <th scope="row" class="pr-3 pl-2">
-            <div class="form-group mt-3">
-              <select class="form-control" name="id_user">
-                @foreach ($dataguru as $guru)
-                <option value="{{$guru->id}}" >{{$guru->name}}</option>
-                @endforeach
-              </select>
-            </div>
-          </th>
-          <td class="pr-3 pl-0">
-            <div class="form-group mt-3">
-              <select class="form-control" name="id_matpel">
-                @foreach ($datamatpel as $matpel)
-                <option value="{{$matpel->id}}">{{$matpel->nama}}</option>
-                @endforeach
-              </select>
-            </div>
-          </td>
-          <td class="pr-0 pl-0">
-            <div class="form-group mt-3">
-              <select class="form-control" name="id_hari">
-                @foreach ($hari as $days)
-                <option value="{{$days->id}}">{{$days->hari}}</option>
-                @endforeach
-              </select>
-            </div>
-          </td>
-          <td class="pr-0 pl-0">
-            <div class="form-group mt-3">
-            <div class="col">
-              <input class="form-control" type="time" value="13:45:00" name="jam_mulai">
-            </div>
-          </div>
-          </td> 
-          <td class="pr-0 pl-0">
-            <div class="form-group mt-3">
-              <div class="col">
-                <input class="form-control" type="time" value="13:45:00" name="jam_selesai">
+            <tr>
+              <th scope="col" rowspan="2">Nama Guru</th>
+              <th scope="col" rowspan="2">Mata Pelajaran</th>
+              <th scope="col" rowspan="2">Hari</th>
+              <th scope="col" rowspan="2">Jam Mulai</th>
+              <th rowspan="2">Jam selesai</th>
+              <th rowspan="2">Ruangan</th>
+              <th class="h-50 text-center"colspan="2">Kelas</th>
+            </tr>
+            <tr>
+              <th class="h-50 text-center">Tingkat</th>
+              <th class="h-50 text-center">Jurusan</th>
+            </tr>
+          </thead>
+         
+          <tbody id="table-body">
+            <tr>
+              <th scope="row" class="pr-3 pl-2">
+                <div class="form-group mt-2">
+                  <select class="form-control" name="id_user">
+                    <option value="">-- Nama Guru --</option>
+                    @foreach ($dataguru as $guru)
+                    <option value="{{$guru->id}}" >{{$guru->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </th>
+              <td class="pr-3 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control" name="id_matpel">
+                    <option value="">-- Pilih Matpel --</option>
+                    @foreach ($datamatpel as $matpel)
+                    <option value="{{$matpel->id}}">{{$matpel->nama}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </td>
+              <td class="pr-0 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control" name="id_hari">
+                    <option value="">-- Pilih Hari --</option>
+                    @foreach ($hari as $days)
+                    <option value="{{$days->id}}">{{$days->hari}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </td>
+              <td class="pr-0 pl-0">
+                <div class="form-group mt-3">
+                <div class="col">
+                  <input class="form-control" type="time" value="00:00:00" name="jam_mulai">
+                </div>
               </div>
-            </div>
-          </td>
-          <td class="pr-3 pl-0">
-            <div class="form-group mt-3">
-              <select class="form-control" name="id_ruangan">
-              @foreach ($dataruangan as $ruangan)
-                  <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
-              @endforeach
-              </select>
-            </div>
-          </td>
-          <td class="pr-2 pl-0">
-            <div class="form-group mt-3">
-              <select class="form-control">
-                @foreach ($datakelas as $kelas)
-                  <option value="{{$kelas->id}}">{{$kelas->tingkatan}}</option>
-                @endforeach
-              </select>
-            </div>
-          </td>
-          <td class="pr-3 pl-0">
-            <div class="form-group mt-3">
-              <select class="form-control" name="id_kelas">
-                @foreach ($datakelas as $kelas)
-                    <option value="{{$kelas->id}}">{{$kelas->jurusan}}</option>
-                @endforeach
-              </select>
-            </div>
-          </td>
-        </tr>
+              </td> 
+              <td class="pr-0 pl-0">
+                <div class="form-group mt-3">
+                  <div class="col">
+                    <input class="form-control" type="time" value="00:00:00" name="jam_selesai">
+                  </div>
+                </div>
+              </td>
+              <td class="pr-3 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control" name="id_ruangan">
+                  <option value="">-- Pilih Ruangan --</option>
+                  @foreach ($dataruangan as $ruangan)
+                      <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
+                  @endforeach
+                  </select>
+                </div>
+              </td>
+              <td class="pr-2 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control">
+                    <option value="">-- Pilih Kelas --</option>
+                    @foreach ($datakelas as $kelas)
+                      <option value="{{$kelas->id}}">{{$kelas->tingkatan}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </td>
+              <td class="pr-3 pl-0">
+                <div class="form-group mt-3">
+                  <select class="form-control" name="id_kelas">
+                    <option value="">-- Pilih Jurusan --</option>
+                    @foreach ($datakelas as $kelas)
+                        <option value="{{$kelas->id}}">{{$kelas->jurusan}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </td>
+            </tr>
       `);
     }
 
