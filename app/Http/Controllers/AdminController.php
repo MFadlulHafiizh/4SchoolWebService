@@ -91,6 +91,11 @@ class AdminController extends Controller
         return view('admin.register', compact('registStatus'));
     }
 
+    public function datajadwal()
+    {
+        return view('admin.datajadwal');
+    }
+
     public function tambahUser()
     {
         return view('tambahUser.addUser');
