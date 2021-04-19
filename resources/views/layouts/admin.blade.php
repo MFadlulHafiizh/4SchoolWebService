@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
 </head>
 
-<body>
+<body onload="zoom()">
     <div id="app">
       <div class="main-wrapper">
         <div class="navbar-bg"></div>
@@ -63,14 +63,14 @@
           <li class="active"><a class="nav-link" href="/home"><i class="fas fa-map-marker-alt"></i> <span>MAPS</span></a>
             <li class="nav-item dropdown">
                 
-        <li class="menu-header">CRUD</li>
-        <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah Data Matpel</span></a>
-          <li class="nav-item dropdown">       
-        <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i> <span>Tambah Data User</span></a>
-          <li class="nav-item dropdown">
-      </li>
+          <li class="menu-header">CRUD</li>
+          <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah Data Matpel</span></a>
+            <li class="nav-item dropdown">       
+          <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i> <span>Tambah Data User</span></a>
+            <li class="nav-item dropdown">
+        </li>
+      </div>
     </div>
-  </div>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -91,6 +91,7 @@
   </div>
 </div>
 
+@stack('js')
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -99,7 +100,6 @@
   <script src="{{asset('assets/js/stisla.js')}}"></script>
   <script src="{{asset('assets/js/scripts.js')}}"></script>
   <script src="{{asset('assets/js/custom.js')}}"></script>
-  <script src="{{asset('js/app.js')}}"></script>
   
 </body>
 </html>

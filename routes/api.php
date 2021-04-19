@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-//Route::post('register', 'api\RegisterController@cekRegist');
-Route::post('register', 'api\RegisterController@register')->name('register');
+Route::post('register', 'api\RegisterController@cekRegist');
+//Route::post('register', 'api\RegisterController@register')->name('register');
 Route::post('login', 'AuthController@login');
 
 Route::group(["middleware"=> "jwt.auth"], function(){
@@ -50,6 +50,10 @@ Route::get('get-image', 'api\UploadController@getPhoto');
 Route::get('getHelp', 'api\BaseController@getHelp');
 
 Route::post('GuruSchedule/create_tugas/{id_jadwal}', 'api\GuruInteractionController@tugas_kelas');
+
+
+Route::post('Update_Profile/{id_user}', 'api\SiswaInteractionController@updateprofile'); 
+Route::post('ShowKelas', 'api\SiswaInteractionController@showkelas'); 
 
 //========================================
 //Forgot Reset Password
