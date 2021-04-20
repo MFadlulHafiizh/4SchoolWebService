@@ -92,9 +92,7 @@
                 <div class="footer-left">
                     Copyright &copy; 4School | CloverTech 2021
                 </div>
-<<<<<<< Updated upstream
             </footer>
-=======
               </li>
             </ul>
           </nav>
@@ -124,7 +122,7 @@
           </li>
     </div>
   </div>
-      {{-- <!-- Main Content -->
+      <!-- Main Content -->
       <div class="main-content">
         <section class="section">
           <div class="section-header">
@@ -138,7 +136,6 @@
       <footer class="main-footer">
         <div class="footer-left">
             Copyright &copy; 4School | CloverTech 2021 
->>>>>>> Stashed changes
         </div>
     </div>
     </div>
