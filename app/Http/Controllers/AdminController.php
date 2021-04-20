@@ -88,12 +88,7 @@ class AdminController extends Controller
     public function register()
     {
         $registStatus = Session::select('value')->where('type', 'registration')->pluck('value');
-        return view('admin.register', compact('registStatus'));
-    }
-
-    public function datajadwal()
-    {
-        return view('admin.datajadwal');
+        return view('layouts.adminOpenRegis', compact('registStatus'));
     }
 
     public function tambahUser()

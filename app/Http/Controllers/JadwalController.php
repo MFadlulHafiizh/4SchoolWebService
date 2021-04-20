@@ -27,4 +27,9 @@ class JadwalController extends Controller
         ->get();
         return view('admin.datajadwal', compact('jadwal'));
     }
+    public function destroy($id){
+        $jadwal = \DB::table('jadwal')->where('id',$id)->delete();
+
+        return redirect()->back()->with('success', 'Jadwal deleted!');
+    }
 }

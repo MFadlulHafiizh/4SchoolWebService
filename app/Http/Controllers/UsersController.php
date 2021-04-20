@@ -9,4 +9,9 @@ class UsersController extends Controller
         $users = \DB::table('users')->get();
         return view('admin.datausers', compact('users'));
     }
+    public function destroy($id){
+        $users = \DB::table('users')->where('id',$id)->delete();
+
+        return redirect()->back()->with('success', 'Users deleted!');
+    }
 }

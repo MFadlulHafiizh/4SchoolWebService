@@ -17,15 +17,18 @@ Route::get('/room/{id}/show', [PageController::class, 'show']);
 */
 Route::get('/home', 'AdminController@index');
 Route::get('/login', 'AdminController@login');
-Route::get('/register', 'AdminController@register');
-Route::get('/datausers','UsersController@users');
-Route::get('/datajadwal','AdminController@datajadwal');
-Route::post('/logout', 'AdminController@logout')->name('logout');
 
+Route::get('/register', [AdminController::class, 'register']);
+Route::get('/datausers','UsersController@users');
+Route::get('/datajadwal','JadwalController@jadwal');
+
+Route::post('/logout', 'AdminController@logout')->name('logout');
 Route::get('/crud', [CrudController::class, 'index'])->name('crud');
 Route::post('/crud', [CrudController::class, 'store'])->name('crud_matpel');
 Route::post('register/setOpenCloseRegist', 'api\RegisterController@statement');
 Route::post('/register', 'api\RegisterController@register')->name('regisuser');
+Route::delete('/delete/{id}','JadwalController@destroy')->name('delete.destroy');
+Route::delete('/destroy/{id}','UsersController@destroy')->name('destroy.destroy');
 
 
 

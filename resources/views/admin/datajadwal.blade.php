@@ -35,8 +35,16 @@
                         <td>{{ $data->nama }}</td>
                         <td>{{ $data->tingkatan }}</td>
                         <td>{{ $data->jurusan }}</td>
-                        <td><a href="">Edit</a></td>
-                        <td><a href="" class="btnDelete">Delete</a></td>
+                        <td>
+                            <a href="">Edit</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('delete.destroy', $data->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                              </form>
+                        </td>
                     </tr>
                     @endforeach
             </table>

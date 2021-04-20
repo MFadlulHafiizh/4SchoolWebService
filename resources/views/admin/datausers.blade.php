@@ -32,7 +32,13 @@
                         <td>{{ $data->role }}</td>
                         <td>{{ $data->email }}</td>
                         <td><a href="">Edit</a></td>
-                        <td><a href="" class="btnDelete">Delete</a></td>
+                        <td>
+                            <form action="{{ route('destroy.destroy', $data->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                              </form>
+                        </td>
                     </tr>
                     @endforeach
             </table>
