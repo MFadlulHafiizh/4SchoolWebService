@@ -36,6 +36,7 @@ public function GuruSchedule(Request $request){
                 'kelas.jurusan',
                 )
             ->where('jadwal.id_user', '=', $request->id)
+            ->orderBy('jadwal.jam_mulai', 'asc')
             ->get();
     
                 if (empty($request->id)) {
@@ -150,10 +151,11 @@ public function GuruSchedule(Request $request){
             'tugas_kelas.tenggat',
             'tugas_kelas.tipe', 
             'tugas_kelas.created_at',
-            DB::raw("COUNT(file_tugas_siswa.id) AS completed_count"),
+            DB::raw("COUNT(file_tugas_siswa.id_siswa) AS completed_count"),
             'file_tugasteori_guru.file')
         ->where('tugas_kelas.id_jadwal', '=', $id_jadwal)
         ->groupBy('tugas_kelas.id')
+        ->orderBy('tugas_kelas.created_at', 'desc')
         ->get();
 
         return response()->json([
@@ -163,10 +165,24 @@ public function GuruSchedule(Request $request){
 
     public function showCompletedUser(Request $request){
         $data = DB::table('users')->join('file_tugas_siswa', 'users.id', '=', 'file_tugas_siswa.id_siswa')
-        ->select('users.name', 'users.nis', 'users.photo')->where('file_tugas_siswa.id_tugas_kelas', $request->id_tugas_kelas)
+        ->select('users.id','users.name', 'users.nis', 'users.photo')->where('file_tugas_siswa.id_tugas_kelas', $request->id_tugas_kelas)
         ->groupBy('file_tugas_siswa.id_siswa')->get();
 
         return response()->json(["completed_user" => $data]);
+    }
+
+    public function setNilai(Request $request){
+        foreach($request->id_tugas as $id_assignment){
+            $first = DB::table('file_tugas_siswa')->where('id', $id_assignment)->first();
+
+            if($first){
+                $update = DB::table('file_tugas_siswa')->where('id', $id_assignment)->update([
+                    "nilai" => $request->nilai
+                ]);
+            }
+        }
+        return response()->json($update);
+
     }
 
 // backup

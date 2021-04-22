@@ -33,6 +33,7 @@ class SiswaInteractionController extends Controller
             'kelas.id as id_kelas'
         )
         ->where('jadwal.id_kelas', '=', $request->id_kelas)
+        ->orderBy('jadwal.jam_mulai', 'asc')
         ->get();
         if (empty("$request->id_kelas")) {
             return response()->json("Schedule Not Found",404);
@@ -61,6 +62,7 @@ class SiswaInteractionController extends Controller
         'file_tugas_siswa.file', 'file_tugasteori_guru.file'
         )
         ->groupBy('tugas_kelas.id')
+        ->orderBy('tugas_kelas.created_at', 'desc')
         ->get();
 
         return response()->json([
