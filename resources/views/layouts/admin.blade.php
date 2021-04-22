@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>4School | CloverTech</title>
+    <title>@yield('title') - 4School | CloverTech</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -64,23 +64,26 @@
                         <a href="/home"><img src="{{asset('assets/img/4-smk.png')}}" alt="logo" width="40"
                                 class="mt-3"></a>
                     </div>
-                    {{-- // nav kiri // --}}
+                    {{-- Left Nav --}}
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
-                        <li class="active">
-                            <a class="nav-link" href="/home">
-                                <i class="fas fa-map-marker-alt"></i><span>MAPS</span></a>
+                        <li class="@yield('maps')">
+                            <a class="nav-link" href="{{ route('home') }}">
+                                <i class="fas fa-map-marker-alt"></i><span>MAP</span>
+                            </a>
                         </li>
-                        <li class="nav-item dropdown"></li>
-                        <li class="menu-header">CRUD</li>
-                        <li class="active">
-                            <a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah
-                                    Data Matpel</span></a></li>
-                        <li class="nav-item dropdown">
-                        <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i>
-                                <span>Tambah Data User</span></a>
-                        <li class="nav-item dropdown">
+                        <li class="menu-header">CRUD Data</li>
+                        <li class="@yield('users')">
+                            <a class="nav-link" href="{{ route('users') }}">
+                                <i class="fas fa-user"></i><span>USER</span>
+                            </a>
                         </li>
+                        <li class="@yield('jadwal')">
+                            <a class="nav-link" href="{{ route('jadwal') }}">
+                                <i class="fas fa-th-large"></i><span>JADWAL</span>
+                            </a>
+                        </li>
+                    </ul>
             </div>
         </div>
 
@@ -96,42 +99,7 @@
                     Copyright &copy; 4School | CloverTech 2021
                 </div>
             </footer>
-            </li>
-            </ul>
-            </nav>
-            <div class="main-sidebar">
-                <aside id="sidebar-wrapper">
-                    <div class="sidebar-brand">
-                        <a href="/home">4School</a>
-                    </div>
-                    <div class="sidebar-brand sidebar-brand-sm">
-                        <img src="{{asset('assets/img/4-logo.jpg')}}" alt="logo" width="50"
-                            class="shadow-light rounded-circle">
-                    </div>
-                    {{-- // nav kiri // --}}
-                    <ul class="sidebar-menu">
-                        <li class="menu-header">Dashboard</li>
-                        <li class="active"><a class="nav-link" href="/home"><i class="fas fa-map-marker-alt"></i>
-                                <span>MAPS</span></a>
-                        <li class="nav-item dropdown">
-
-                        <li class="menu-header">CRUD</li>
-                        <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah
-                                    Data Matpel</span></a>
-                        <li class="nav-item dropdown">
-                        <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i>
-                                <span>Tambah Data User</span></a>
-                        <li class="nav-item dropdown">
-                        <li class="active"><a class="nav-link" href="/datausers"><i class="fas fa-th-large"></i>
-                                <span>Data Users</span></a>
-                        <li class="nav-item dropdown">
-                        <li class="active"><a class="nav-link" href="/datajadwal"><i class="fas fa-th-large"></i>
-                                <span>Data Jadwal</span></a>
-                        <li class="nav-item dropdown">
-                        </li>
-            </div>
         </div>
-    </div>
     </div>
 
     @stack('js')

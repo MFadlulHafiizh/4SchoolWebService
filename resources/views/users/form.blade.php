@@ -1,15 +1,27 @@
 @extends('layouts.admin')
 
+@if (!empty($users))
+@section('title', 'Edit User')
+@else
+@section('title', 'Tambah User')
+@endif
+
+@section('users','active')
+
 @section('content')
 <!-- Main Content -->
 <section class="section pl-3 pr-3 w-100">
     <div class="section-body d-block pt-4">
-        <form method="POST" action="{{url('register')}}">
+        <form method="POST" action="{{!empty($users) ? route('users.update', @$users->id) : route('users.create') }}">
             @csrf
+
+            @if (!empty($users))
+            @method('PATCH')
+            @endif
             {{-- Toggle, Role, Header --}}
             <div class="row">
                 <div class="col-12 d-lg-none d-block text-center">
-                    <h1 class="mb-5">Tambah Data User</h1>
+                    <h1 class="mb-5">{{!empty($users) ? 'Edit Data User' : 'Tambah Data User'}}</h1>
                 </div>
                 <div class="col-lg-1 col-3">
                     <label class="switch mt-1">
@@ -19,15 +31,18 @@
                 </div>
                 <div class="col-lg-4 col p-0">
                     <div class="form-group col-lg-8">
-                        <select class="form-control selectric" id="role-select">
+                        <select class="form-control selectric" id="role-select" name="role"
+                            {{!empty($users) ? 'hidden' : ''}}>
                             <option>Select Role</option>
-                            <option class="role" value="guru">Guru</option>
-                            <option class="role" value="siswa">Siswa</option>
+                            <option class="role" value="guru"
+                                {{ old('role', @$users->role) == "guru" ? 'selected' : ''}}>Guru</option>
+                            <option class="role" value="siswa"
+                                {{ old('role', @$users->role) == "siswa" ? 'selected' : ''}}>Siswa</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-6 d-lg-block d-none">
-                    <h1 class="header mb-5">Tambah Data User</h1>
+                    <h1 class="header mb-5">{{!empty($users) ? 'Edit Data User' : 'Tambah Data User'}}</h1>
                 </div>
             </div>
 
@@ -37,12 +52,14 @@
                     <div class="row row-cols-lg-2 row-cols-1">
                         <div class="form-group col">
                             <label for="name">Nama</label>
-                            <input id="name" type="text" class="form-control" name="name" autofocus>
+                            <input id="name" type="text" class="form-control userInput" name="name"
+                                value="{{ old('name', @$users->name) }}">
                         </div>
 
                         <div class="form-group col">
                             <label for="nisp" id="nispLabel">NIS</label>
-                            <input id="nisp" type="text" class="form-control" name="nis">
+                            <input id="nisp" type="text" class="form-control userInput" name="nis"
+                                value="{{ old('nis', @$users->nis) }}{{ old('nip', @$users->nip) }}">
                         </div>
                     </div>
 
@@ -50,7 +67,8 @@
                     <div class="row row-cols-lg-2 row-cols-1">
                         <div class="form-group col">
                             <label for="email">Email</label>
-                            <input id="email" type="email" class="form-control" name="email">
+                            <input id="email" type="email" class="form-control userInput" name="email"
+                                value="{{ old('email', @$users->email) }}">
                             <div class="invalid-feedback">
                             </div>
                         </div>
@@ -58,8 +76,10 @@
                         <div class="form-group col">
                             <label for="password">Password</label>
                             <div class="input-group">
-                                <input type="password" name="password" id="password" class="form-control">
-                                <div class="input-group-append">
+                                <input type="password" name="password" id="password" class="form-control userInput"
+                                    value="{{ old('password', @$users->password) }}"
+                                    {{!empty($users) ? 'disabled' : ''}}>
+                                <div class="input-group-append" {{!empty($users) ? 'hidden' : ''}}>
                                     <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
                                         <i class="fas fa-eye" id="passwordEye"></i>
                                     </span>
@@ -70,68 +90,40 @@
 
                     <div class="row row-cols-lg-2 row-cols-1" id="advance">
                         <div class="form-group col kelas">
-                            <label for="tingkatan">Kelas</label>
-                            <select class="form-control selectric kelas" id="tingkatan" name="tingkatan">
+                            <label for="kelas">Kelas</label>
+                            <select class="form-control selectric kelas" id="kelas" name="id_kelas">
                                 <option value="">Pilih Kelas</option>
-                                <option value="X">X</option>
-                                <option value="XI">XI</option>
-                                <option value="XII">XII</option>
-                                <option value="XIII">XIII</option>
-                            </select>
-                        </div>
-                        <div class="form-group col kelas">
-                            <label for="jurusan">Jurusan</label>
-                            <select class="form-control selectric kelas" id="jurusan" name="jurusan">
-                                <option value="">Pilih Jurusan</option>
-                                <option value="Audio Video">Audio Video</option>
-                                <option value="Teknik Otomasi Industri">Teknik Otomasi Industri</option>
-                                <option value="Teknik Instalasi Tenaga Listrik">Teknik Instalasi Tenaga Listrik</option>
-                                <option value="Teknik Komputer Jaringan">Teknik Komputer Jaringan</option>
-                                <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                                <option value="Multimedia">Multimedia</option>
-                            </select>
-                        </div>
-                        <div class="form-group col kelas">
-                            <label for="urutan">Urutan</label>
-                            <select class="form-control selectric kelas" id="urutan" name="urutan">
-                                <option value="">Pilih Urutan</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                @foreach ($kelas as $data)
+                                <option value="{{$data->id}}"
+                                    {{ old('id_kelas', @$users->id_kelas) == $data->id ? 'selected' : ''}}>
+                                    {{$data->tingkatan}} {{$data->jurusan}} {{$data->urutan}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col profesi">
                             <label for="profesi">Profesi</label>
                             <select class="form-control selectric profesi" id="profesi" name="profesi">
                                 <option value="">Pilih Profesi</option>
-                                <optgroup label="-- Umum">
-                                    <option value="Matematika">Matematika</option>
-                                    <option value="Fisika">Fisika</option>
-                                </optgroup>
-                                <optgroup label="-- Rekayasa Perangkat Lunak">
-                                    <option value="Basis Data">Basis Data</option>
-                                    <option value="Pemrograman Berorientasi Objek">Pemrograman Berorientasi Objek
-                                    </option>
-                                </optgroup>
-                                <optgroup label="-- Multimedia">
-                                    <option value="Dasar Desain Grafis">Dasar Desain Grafis</option>
-                                    <option value="Animasi">Animasi</option>
-                                </optgroup>
+                                @foreach ($matpel as $data)
+                                <option value="{{$data->id}}"
+                                    {{ old('profesi', @$users->profesi) == $data->id ? 'selected' : ''}}>{{$data->nama}}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col">
-                            <label for="foto">Foto Profil (Opsional)</label>
+                            <label for="photo">Foto Profil (Opsional)</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="foto" accept="image/*" name="foto">
-                                <label class="custom-file-label" for="foto">Pilih Foto</label>
+                                <input type="file" class="custom-file-input userInput" id="photo" accept="image/*"
+                                    name="photo">
+                                <label class="custom-file-label" for="photo">Pilih Foto</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group w-100">
                         <button type="submit" class="btn btn-primary btn-lg btn-block mt-5">
-                            Register
+                            {{!empty($users) ? 'Edit Data' : 'Tambah Data'}}
                         </button>
                     </div>
                 </div>
@@ -160,9 +152,9 @@
             }
 
             // Enable Form
-            $('input').removeAttr('disabled');
+            $('.userInput').removeAttr('disabled');
             $('button').removeAttr('disabled');
-            $('input').removeAttr('placeholder');
+            $('.userInput').removeAttr('placeholder');
             $('#advance').removeClass('d-none');
 
             // Select : Siswa
@@ -197,11 +189,11 @@
             $('.toogle-switch').attr('disabled', '');
 
             // Disable All Form
-            $('input').val('');
+            $('.userInput').val('');
             $('select').prop('selectedIndex', 0);
-            $('input').attr('disabled', '');
+            $('.userInput').attr('disabled', '');
             $('button').attr('disabled', '');
-            $('input').attr('placeholder', 'Please Select Role');
+            $('.userInput').attr('placeholder', 'Please Select Role');
             $('#advance').addClass('d-none');
         }
     }).change();
@@ -217,39 +209,6 @@
             $('#passwordEye').addClass('fas');
             $('#password').attr('type', 'password');
         }
-    });
-
-    // Account Active Toggle : Data
-    $(function() {
-      $('.toogle-switch').change(function() {
-        getData();
-      });
-
-      $('#role-select').change(function(){
-        getData();
-      });
-
-      function getData(){
-        var status = $('.toogle-switch').prop('checked') == true ? "Open" : "Close";
-        var role;
-        if( status == "Open" || status == "Close") {
-          role = $('#role-select').val();
-        }
-        
-        reqData(status,role);
-      }
-
-      function reqData(status, role) {
-        $.ajax({
-          type: "POST",
-          dataType: "json",
-          url: 'register/setOpenCloseRegist',
-          data: {'statement': status, 'role': role, _token: '{{csrf_token()}}'},
-          success: function(data){
-            console.log(data.success)
-          }
-        });
-      }
     });
 
 </script>
