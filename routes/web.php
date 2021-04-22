@@ -19,15 +19,12 @@ Route::get('/room/{id}/show', [PageController::class, 'show']);
 // Basic Navigation
 Route::get('/login', 'AdminController@login');
 Route::get('/register', 'AdminController@register');
-Route::get('/datausers','UsersController@users');
-Route::get('/datajadwal','JadwalController@jadwal');
 Route::post('/logout', 'AdminController@logout')->name('logout');
 
 // CRUD User : API
 Route::get('/home', 'AdminController@index')->name('home');
 Route::get('/register', [AdminController::class, 'register']);
 Route::post('register/setOpenCloseRegist', 'api\RegisterController@statement');
-
 
 // CRUD Jadwal
 Route::get('/jadwal','JadwalController@index')->name('jadwal');
@@ -37,7 +34,7 @@ Route::get('/jadwal/edit/{id}','JadwalController@edit')->name('jadwal.edit');
 Route::patch('/jadwal/edit/{id}','JadwalController@update')->name('jadwal.update');
 Route::delete('/jadwal/delete/{id}','JadwalController@destroy')->name('jadwal.destroy');
 
-// Crud User
+// CRUD User
 Route::get('/users','UsersController@index')->name('users');
 Route::get('/users/create','UsersController@create')->name('users.create');
 Route::post('/users/create','UsersController@store')->name('users.store');

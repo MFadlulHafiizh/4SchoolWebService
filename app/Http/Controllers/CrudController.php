@@ -20,17 +20,17 @@ class CrudController extends Controller
     public function index()
     {
         //
-        $dataguru = DB::table('users')->where('role', 'guru')->get();
+        $guru = DB::table('users')->where('role', 'guru')->get();
         
-        $datamatpel = DB::table('mata_pelajaran')->get();
+        $matpel = DB::table('mata_pelajaran')->get();
 
         $hari = DB::table('hari')->get();
 
-        $dataruangan = DB::table('ruangan')->get();
+        $ruangan = DB::table('ruangan')->get();
 
-        $datakelas = DB::table('kelas')->get();
+        $kelas = DB::table('kelas')->get();
 
-        return view('matpel.index', compact('dataguru','datamatpel', 'hari', 'dataruangan', 'datakelas'));    
+        return view('matpel.index', compact('guru','matpel', 'hari', 'ruangan', 'kelas'));    
     }
 
     /**
