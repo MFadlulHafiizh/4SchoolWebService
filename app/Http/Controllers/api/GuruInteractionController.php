@@ -150,7 +150,7 @@ public function GuruSchedule(Request $request){
             'tugas_kelas.tenggat',
             'tugas_kelas.tipe', 
             'tugas_kelas.created_at',
-            DB::raw("SUM(file_tugas_siswa.id) AS completed_count"),
+            DB::raw("COUNT(file_tugas_siswa.id) AS completed_count"),
             'file_tugasteori_guru.file')
         ->where('tugas_kelas.id_jadwal', '=', $id_jadwal)
         ->groupBy('tugas_kelas.id')
@@ -162,9 +162,11 @@ public function GuruSchedule(Request $request){
     }
 
     public function showCompletedUser(Request $request){
-        $data = DB::table('users')->join('file_tugas_siswa', 'users.id', '=', 'file_tugas_siswa.id_siswa')->where('file_tugas_siswa.id', $request->id_tugas)->get();
+        $data = DB::table('users')->join('file_tugas_siswa', 'users.id', '=', 'file_tugas_siswa.id_siswa')
+        ->select('users.name', 'users.nis', 'users.photo')->where('file_tugas_siswa.id_tugas_kelas', $request->id_tugas_kelas)
+        ->groupBy('file_tugas_siswa.id_siswa')->get();
 
-        return response()-json($data);
+        return response()->json(["completed_user" => $data]);
     }
 
 // backup

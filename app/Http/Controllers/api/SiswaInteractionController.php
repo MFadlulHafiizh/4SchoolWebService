@@ -121,6 +121,7 @@ public function updateprofile(Request $request, $id_user)
 
     public function showkelas(Request $request)
     {
+        if(!empty($request->tingkatan)){
         $validator = Validator::make($request->all(), [
             'tingkatan'     => 'required|string',
         ]);
@@ -135,15 +136,17 @@ public function updateprofile(Request $request, $id_user)
         ->select('kelas.id as id_kelas','kelas.tingkatan','kelas.jurusan')
         ->where('tingkatan', '=', "$request->tingkatan")
         ->get();
-
-        // if ($request->tingkatan  != 'XII','XI','XIII') {
-        //     return response()->json("Class Not Found",404);
-        // }else{
             return response()->json([
                 'success' => true,
                 'kelas' => $kelas,
             ], 200);
-        // }
+        }else{
+            $kelas = DB::table('mata_pelajaran')
+            ->select('mata_pelajaran.id')
+            ->get();
+
+            return response()->json(["listMajors" => $kelas]);
+        }
 
     }
 

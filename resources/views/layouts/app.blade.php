@@ -150,13 +150,13 @@
 
 			<!-- Page Content -->
 			<div class="page-content bg-transparent">
-				<button type="button" id="btn-toggle" class="btn btn-dark position-absolute rounded-circle" style="top: 40px; left:20px; height:52px; width:52px; z-index: 1000"><i class="fas fa-bars"></i></button>
+				<button type="button" id="btn-toggle" class="btn btn-dark position-absolute rounded-circle" style="top: 25px; left:20px; height:52px; width:52px; z-index: 1000"><i class="fas fa-bars"></i></button>
 				<nav class="navbar navbar-expand-lg rounded shadow-sm border-bottom" style="margin: 20px 20px 20px 80px;background-color:white; position:absolute; z-index:1000;">
 					<div class="d-flex justify-content-start">
 						{{-- <button class="btn btn-light" id="btn-toggle">
 							<i class="fas fa-bars fa-lg text-dark mt-2"></i>	
 						</button> --}}
-						<h2 class="lead mt-2">{{ $title }}</h2>
+						<h2 class="lead mt-2">Denah SMKN <img style="width: 25px;" class="ml-1" src="{{asset('assets/img/4-smk.png')}}"> Bandung</h2>
 						<div class="select-lantai">
 							<select class="form-control float-end" id="lantai" >
 								<option>1</option>

@@ -10,15 +10,14 @@
                 <div class="col-12 d-lg-none d-block text-center">
                     <h1 class="mb-5">Tambah Data User</h1>
                 </div>
-                <div class="col-lg-1 col-3">
-                    <label class="switch mt-1">
-                        <input name="switch" class="toogle-switch" type="checkbox"
-                            {{ $registStatus[0] == "Open" ? 'checked' : '' }} disabled>
-                        <span class="slider round"></span>
-                    </label>
+                <div class="col">
+                    <a href="/datausers" class="btn btn-md btn-primary"><i class="fas fa-arrow-left"></i></a>
+                </div>
+                <div class="col-6 text-right d-lg-block d-none">
+                    <h1 class="header mb-5">Tambah Data User</h1>
                 </div>
                 <div class="col-lg-4 col p-0">
-                    <div class="form-group col-lg-8">
+                    <div class="form-group col-lg-8 float-right">
                         <select class="form-control selectric" id="role-select">
                             <option>Select Role</option>
                             <option class="role" value="guru">Guru</option>
@@ -26,8 +25,12 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-6 d-lg-block d-none">
-                    <h1 class="header mb-5">Tambah Data User</h1>
+                <div class="col-lg-1 col-3">
+                    <label class="switch mt-1">
+                        <input name="switch" class="toogle-switch" type="checkbox"
+                            {{ $registStatus[0] == "Open" ? 'checked' : '' }} disabled>
+                        <span class="slider round"></span>
+                    </label>
                 </div>
             </div>
 

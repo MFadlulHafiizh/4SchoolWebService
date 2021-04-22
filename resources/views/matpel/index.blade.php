@@ -63,9 +63,10 @@
               </li>
               <li class="nav-item dropdown"></li>
               <li class="menu-header">CRUD</li>
-              <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Tambah Data Matpel</span></a></li>
+              <li class="active"><a class="nav-link" href="/crud"><i class="far fa-file-alt"></i> <span>Data Matpel</span></a></li>
               <li class="nav-item dropdown">
-              <li class="active"><a class="nav-link" href="/register"><i class="fas fa-th-large"></i><span>Tambah Data User</span></a>
+              <li class="active"><a class="nav-link" href="/datausers"><i class="fas fa-th-large"></i>
+                      <span>Data User</span></a>
               <li class="nav-item dropdown">
               </li>
         </div>
@@ -86,6 +87,8 @@
         @endif
         <section class="section">
           <div class="section-header">
+            <a href="/datajadwal" class="btn btn-md btn-primary mr-3"><i class="fas fa-arrow-left"></i></a>
+            
             <h1>Tambah Matpel</h1>
           </div>
           <div class="form-group row">

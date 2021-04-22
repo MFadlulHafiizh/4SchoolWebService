@@ -39,6 +39,7 @@ Route::group(['middleware'=> 'api.role:guru'], function() {
     Route::post('GuruSchedule/create_tugas/{id_jadwal}', 'api\GuruInteractionController@tugas_kelas');
     Route::get('GuruSchedule/index_classroom_guru/{id_jadwal}', 'api\GuruInteractionController@IndexClassroom');
     Route::get('GuruSchedule/index_classroom_guru/checkTask', 'api\GuruInteractionController@showCompletedUser');
+    Route::get('GuruSchedule/checkTask', 'api\GuruInteractionController@showCompletedUser');
 });
 Route::group(['middleware'=> 'api.role:siswa'], function() {
     Route::get('SiswaSchedule', 'api\SiswaInteractionController@SiswaSchedule');
