@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Denah SMKN 4 Bandung Lantai'])
+@extends('layouts.app', ['title' => 'Denah SMKN 4 Bandung'])
 
 @push('css')
 <style>

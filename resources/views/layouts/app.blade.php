@@ -19,6 +19,7 @@
 			function zoom() {
 				document.body.style.zoom = "70%";
 			}
+
 		</script>
 		 {{-- <link href="{{ asset('datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">  --}}
 
@@ -147,93 +148,21 @@
 
     <div class="d-flex" id="wrapper">
 
-      <!-- Sidebar -->
-			{{-- <div class="sidebar bg-dark border-right">
-				<div class="sidebar-header d-flex">
-					<img src="{{ asset('img/smk.png') }}" class="img-logo mr-3" alt="img-logo">
-					<span class="mt-1 text-light">Mapping School</span>
-				</div>
-				<div class="list-group">
-					<a href="/" class="list-group-item list-group-item-action bg-dark text-light {{ (request()->is('/')) ? '' : '' }}">
-						<i class="fas fa-map-marker-alt fa-md text-white mt-1 mr-3 ml-3"></i>
-						<span>Maps</span>
-					</a>
-					@if ((request()->is('/')))
-						<div class="list-group-item list-group-item-action bg-dark active">
-							<span class="ml-2">Filter</span>
-							<div class="card p-3 mr-2 ml-2 mt-2 mb-2">
-								<form action="" method="GET">
-									<div class="form-group">
-									<label for="lantai" class="text-dark">Lantai</label>
-									<select class="form-control form-control-sm" id="lantai">
-										<option disabled selected>--Pilih Lantai--</option>
-										@foreach ($data['lantai'] as $item)
-											<option value="{{ $item }}">{{ $item }}</option>
-										@endforeach
-									</select>
-									</div>
-									<div class="form-group">
-										<label for="status" class="text-dark">Blok</label>
-										<select class="form-control form-control-sm" id="status">
-											<option disabled selected>--Pilih Blok--</option>
-											@foreach ($data['blok'] as $item)
-												<option value="{{ $item }}">{{ $item }}</option>
-											@endforeach
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="tipe" class="text-dark">Tipe</label>
-										<select class="form-control form-control-sm" id="tipe">
-											<option disabled selected>--Pilih Tipe--</option>
-											@foreach ($data['tipe'] as $item)
-											<option value="{{ $item }}">{{ $item }}</option>
-											@endforeach
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="status" class="text-dark">Status</label>
-										<select class="form-control form-control-sm" id="status">
-											<option disabled selected>--Pilih Status--</option>
-											@foreach ($data['status'] as $item)
-											<option value="{{ $item }}">{{ $item }}</option>
-											@endforeach
-										</select>
-									</div>
-									<button type="submit" class="btn btn-primary">Active</button>
-									<button type="submit" class="btn btn-secondary">Hapus</button>
-								</form>							
-							</div>
-						</div>
-					@endif						
-
-					<a href="{{ route('ruangan.index') }}" class="list-group-item list-group-item-action bg-dark text-light {{ (request()->is('ruangan','ruangan/create')) ? 'active' : '' }}">
-						<i class="fas fa-chalkboard-teacher fa-md text-white mt-1 mr-3 ml-2"></i>
-						<span>Ruangan</span>
-					</a>
-					<a href="{{ route('sarpras.index') }}" class="list-group-item list-group-item-action bg-dark text-light {{ (request()->is('sarpras','sarpras/create')) ? 'active' : '' }}">
-						<i class="fas fa-tools fa-md text-white mt-1 mr-4 ml-2"></i>
-						<span>Sarpras</span>
-					</a>
-				</div>
-			</div> --}}
-			<!-- Sidebar End -->
-
 			<!-- Page Content -->
-			<div class="page-content">
-
-				<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-3">
+			<div class="page-content bg-transparent">
+				<button type="button" id="btn-toggle" class="btn btn-dark position-absolute rounded-circle" style="top: 40px; left:20px; height:52px; width:52px; z-index: 1000"><i class="fas fa-bars"></i></button>
+				<nav class="navbar navbar-expand-lg rounded shadow-sm border-bottom" style="margin: 20px 20px 20px 80px;background-color:white; position:absolute; z-index:1000;">
 					<div class="d-flex justify-content-start">
 						{{-- <button class="btn btn-light" id="btn-toggle">
 							<i class="fas fa-bars fa-lg text-dark mt-2"></i>	
 						</button> --}}
-						<h1 class="lead mt-2">{{ $title }}</h1>
+						<h2 class="lead mt-2">{{ $title }}</h2>
 						<div class="select-lantai">
-							<select class="form-control" id="lantai" >
+							<select class="form-control float-end" id="lantai" >
 								<option>1</option>
 								<option>2</option>
 							</select>
 						</div>
-						<button class="btn btn-sm ml-2 btn-primary btn-rute" data-toggle="modal" data-backdrop="false" data-target="#modalNavigasi">Rute</button>
 					</div>
 				</nav>
 
@@ -252,52 +181,12 @@
 
 	</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="modalNavigasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Navigasi</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					
-					<div class="select-navigasi">
-						<select class="form-control mb-2" id="navigasi-awal" >
-							<option>Select Awal</option>
-							<option>Gerbang</option>
-							<option>Lobby</option>
-						</select>
-						<select class="form-control" id="navigasi-tujuan" >
-							<option>Select Tujuan</option>
-							<option>Gedung A</option>
-							<option>Gedung B</option>
-							<option>Gedung C</option>
-							<option>Gedung D</option>
-							<option>Gedung E</option>
-							<option>Gedung F</option>
-							<option>Gedung G</option>
-							<option>Gedung H</option>
-							<option>Masjid</option>
-							<option>Kantin</option>
-						</select>
-					</div>
-					
-				</div>
-				<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" id="btn-navigasi">Navigate</button>
-				</div>
-			</div>
-		</div>
-	</div>
 	
 	@stack('js')
 	{{-- JS --}}
-	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
+
+	<script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('datatables/jquery.dataTables.min.js') }}"></script>
   	<script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
 </body>

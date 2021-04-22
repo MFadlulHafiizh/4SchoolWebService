@@ -36,7 +36,6 @@ public function GuruSchedule(Request $request){
                 'kelas.jurusan',
                 )
             ->where('jadwal.id_user', '=', $request->id)
-            ->where('jadwal.jam_mulai', '=', $date)
             ->get();
     
                 if (empty($request->id)) {

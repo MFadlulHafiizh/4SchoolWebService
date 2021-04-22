@@ -33,7 +33,6 @@ class SiswaInteractionController extends Controller
             'kelas.id as id_kelas'
         )
         ->where('jadwal.id_kelas', '=', $request->id_kelas)
-        ->where('jadwal.jam_mulai', '=', $date)
         ->get();
         if (empty("$request->id_kelas")) {
             return response()->json("Schedule Not Found",404);
@@ -49,13 +48,19 @@ class SiswaInteractionController extends Controller
         $classroomData = Tugas_kelas::join('jadwal', 'tugas_kelas.id_jadwal', '=', 'jadwal.id')
         ->join('kelas', 'jadwal.id_kelas', '=', 'kelas.id')
         ->join('mata_pelajaran', 'jadwal.id_matpel', '=', 'mata_pelajaran.id')
+        ->leftJoin(
+            'file_tugasteori_guru', 
+            'file_tugasteori_guru.id_tugas_kelas', 
+            '=', 
+            'tugas_kelas.id')
         ->leftJoin('file_tugas_siswa', 'tugas_kelas.id', '=', 'file_tugas_siswa.id_tugas_kelas')
         ->where('tugas_kelas.id_jadwal', $id_jadwal)
         ->select(
-        'tugas_kelas.judul', 'tugas_kelas.deskripsi', 'tugas_kelas.tipe', 'tugas_kelas.tenggat', 'tugas_kelas.created_at',
+        'tugas_kelas.id','tugas_kelas.judul', 'tugas_kelas.deskripsi', 'tugas_kelas.tipe', 'tugas_kelas.tenggat', 'tugas_kelas.created_at',
         'mata_pelajaran.nama as nama_matpel',
-        'file_tugas_siswa.file'
+        'file_tugas_siswa.file', 'file_tugasteori_guru.file'
         )
+        ->groupBy('tugas_kelas.id')
         ->get();
 
         return response()->json([
@@ -140,5 +145,32 @@ public function updateprofile(Request $request, $id_user)
             ], 200);
         // }
 
+    }
+
+    public function assignTask(Request $request, $id_tugas_kelas){
+
+        foreach($request->file('file') as $file){
+            $filenameWithExt = $file->getClientOriginalName();
+            // Get nama 
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);            
+            // Get  extensi
+            $extension = $file->getClientOriginalExtension();
+            //gabung nama dan ori extensi 
+            $fileNameToStore = $id_tugas_kelas.$filename.'_'.time().'.'.$extension;                       
+            // Upload file nya
+            $destination_path = public_path('/storage/file/FileTugasSiswa');
+            $path = $file->move($destination_path,$fileNameToStore);
+            $withurl = url("storage/file/FileTugasSiswa/".$fileNameToStore);
+            $assignTask = DB::table('file_tugas_siswa')
+            ->insert([
+                ['id_siswa'=>"$request->id_siswa",'id_tugas_kelas' => "$id_tugas_kelas",'name_file'=>$filename,'extensi'=>$extension,'file' => "$withurl", 'status' => "$request->status"],
+            ]);
+        }
+       
+        if($assignTask){
+            return response()->json([
+                $assignTask
+                ]);
+        }
     }
 }

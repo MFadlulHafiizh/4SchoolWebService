@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
 
 class CrudController extends Controller
 {
@@ -72,6 +75,27 @@ class CrudController extends Controller
             $status = DB::table('jadwal')->insert($input);
             return redirect()->back()->with('success', 'Jadwal berhasil ditambah');
 
+            $optionBuilder = new OptionsBuilder();
+            $optionBuilder->setTimeToLive(60*20);
+
+            $notificationBuilder = new PayloadNotificationBuilder('Jadwal Baru');
+            $notificationBuilder->setBody('Lihat Jadwal Baru')
+                                ->setSound('default');
+            
+            $dataBuilder = new PayloadDataBuilder();
+            $dataBuilder->addData(['a_data' => 'my_data']);
+            
+            $option = $optionBuilder->build();
+            $notification = $notificationBuilder->build();
+            $data = $dataBuilder->build();
+
+            $tokens = DB::table('users')->select('users.fcm_token')->toArray();
+
+            $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
+            
+            $downstreamResponse->numberSuccess();
+            $downstreamResponse->numberFailure();
+            $downstreamResponse->numberModification();
         }
     }
 
