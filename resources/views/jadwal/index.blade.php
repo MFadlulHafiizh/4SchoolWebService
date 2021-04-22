@@ -29,7 +29,7 @@
                 </tr>
                 @foreach ($jadwal as $data)
                 <tr>
-                    <td>{{ $data->id }}</td>
+                    <td>{{ isset($i) ? ++$i : $i = 1 }}</td>
                     <td>{{ $data->name }}</td>
                     <td>{{ $data->hari }}</td>
                     <td>{{ $data->jam_mulai }}</td>
@@ -37,7 +37,7 @@
                     <td>{{ $data->ruangan }}</td>
                     <td>{{ $data->matpel }}</td>
                     <td>{{ $data->tingkatan }} {{ $data->jurusan }} {{ $data->urutan }}</td>
-                    <td><a href="" class="btn btn-info">Edit</a></td>
+                    <td><a href="{{ route('jadwal.edit', $data->id)}}" class="btn btn-info">Edit</a></td>
                     <td>
                         <form action="{{ route('jadwal.destroy', $data->id)}}" method="post">
                             @csrf

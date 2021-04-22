@@ -31,17 +31,13 @@ class JadwalController extends Controller
 
     public function create()
     {
-        $dataguru = \DB::table('users')->where('role', 'guru')->get();
-        
-        $datamatpel = \DB::table('mata_pelajaran')->get();
+        $data['guru'] = \DB::table('users')->where('role', 'guru')->get();
+        $data['matpel'] = \DB::table('mata_pelajaran')->get();
+        $data['hari'] = \DB::table('hari')->get();
+        $data['ruangan'] = \DB::table('ruangan')->get();
+        $data['kelas'] = \DB::table('kelas')->get();
 
-        $hari = \DB::table('hari')->get();
-
-        $dataruangan = \DB::table('ruangan')->get();
-
-        $datakelas = \DB::table('kelas')->get();
-
-        return view('jadwal.form', compact('dataguru','datamatpel', 'hari', 'dataruangan', 'datakelas'));
+        return view('jadwal.form', $data);
     }
 
     public function store(Request $request)
@@ -50,22 +46,41 @@ class JadwalController extends Controller
         unset($input['_token']);
         $status = \DB::table('jadwal')->insert($input);
 
-        return redirect()->back()->with('success', 'Jadwal berhasil ditambah');
+        if($status) {
+            return redirect('/jadwal')->with('success', 'Jadwal berhasil ditambah');
+        } else {
+            return redirect()->back()->with('error','Jadwal gagal ditambah');
+        }
     }
 
     public function edit($id)
     {
-        //
+        $data['guru'] = \DB::table('users')->where('role', 'guru')->get();
+        $data['matpel'] = \DB::table('mata_pelajaran')->get();
+        $data['hari'] = \DB::table('hari')->get();
+        $data['ruangan'] = \DB::table('ruangan')->get();
+        $data['kelas'] = \DB::table('kelas')->get();
+        $data['jadwal'] = \DB::table('jadwal')->find($id);
+
+        return view('jadwal.form', $data);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        unset($input['_token'], $input['_method']);
+        $status = \DB::table('jadwal')->where('id', $id)->update($input);
+
+        if ($status) {
+            return redirect('/jadwal')->with('success', 'Tambah Jadwal Sukses');
+        } else {
+            return redirect()->back()->with('error', 'Tambah Jadwal Gagal');
+        }
     }
 
     public function destroy($id){
         $jadwal = \DB::table('jadwal')->where('id',$id)->delete();
 
-        return redirect()->back()->with('success', 'Jadwal deleted!');
+        return redirect()->back()->with('success', 'Jadwal Dihapus');
     }
 }
