@@ -21,66 +21,29 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         //validation input request & email checking
-        if($request->role == "siswa"){
-            $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
                 'name'      => 'required|string|max:50',
                 'email'     => 'required|email|max:50|unique:users,email',
-                'password'  => 'required|min:6',
-                'nis'       => 'required|string',
-                'tingkatan' => 'required|string',
-                'jurusan'   => 'required|string',
-                'urutan'    => 'required|string',
-                'foto'      => 'required|string'
-            ]);
-        }
-        
-        if($request->role == "guru"){
-            $validator = Validator::make($request->all(), [
-            'name'      => 'required|string|max:50',
-            'email'     => 'required|email|max:50|unique:users,email',
-            'password'  => 'required|min:6',
-            'nip'       => 'required|string',
-            'profesi'   => 'required|string',
-            'foto'      => 'required|string'
-            
+                'password'  => 'required|min:6'
         ]);
-        }
         
         
         if ($validator->fails()) {
             return response(['Registration Failed',$validator->errors()],422);
         }
 
-        $kelas = DB::table("kelas")
-        ->select(
-            'id_kelas'
-        )
-        ->where('tingkatan', '=' ,'$request->tingkatan')
-        ->where('jurusan', '=' ,'$request->jurusan')
-        ->where('urutan', '=' , '$request->urutan')
-        ->get();
-
-        $request->request->add(['kelas'=> $kelas]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role'  => $request->role,
-            'nis'   => $request->nis,
-            'nip'   => $request->nip,
-            'profesi'   => $request->profesi,
-            'foto'   => $request->foto,
-            'kelas'   => $request->kelas
         ]);
 
         $credentials = $request->only('email', 'password');
         $token = auth()->attempt($credentials);
             
         return (new UserResource($request->user()))
-                ->additional(['meta' => [
-                    'key' => $token
-                ]]);
+                ->additional(['meta' => ['key' => $token]]);
     }
 
     public function register(RegisterRequest $request)

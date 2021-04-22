@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>4School | CloverTech</title>
+    <title>@yield('title') - 4School | CloverTech</title>
 
     <!-- General CSS Files -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     {{-- JS --}}
     <script src="{{ asset('js/app.js') }}"></script>
@@ -59,25 +61,29 @@
                         <a href="/home">4School</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="/home"><img src="{{asset('assets/img/4-smk.png')}}" alt="logo" width="40" class="mt-3"></a>
+                        <a href="/home"><img src="{{asset('assets/img/4-smk.png')}}" alt="logo" width="40"
+                                class="mt-3"></a>
                     </div>
-                    {{-- // nav kiri // --}}
+                    {{-- Left Nav --}}
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
-                        <li class="active">
-                            <a class="nav-link" href="/home">
-                                <i class="fas fa-map-marker-alt"></i><span>MAPS</span></a>
+                        <li class="@yield('maps')">
+                            <a class="nav-link" href="{{ route('home') }}">
+                                <i class="fas fa-map-marker-alt"></i><span>MAP</span>
+                            </a>
                         </li>
-                        <li class="nav-item dropdown"></li>
-                        <li class="menu-header">CRUD</li>
-                        <li class="active">
-							<a class="nav-link" href="/datajadwal"><i class="far fa-file-alt"></i> <span>
-                                    Data Matpel</span></a></li>
-                        <li class="nav-item dropdown">
-                        <li class="active"><a class="nav-link" href="/datausers"><i class="fas fa-th-large"></i>
-                                <span>Data User</span></a>
-                        <li class="nav-item dropdown">
+                        <li class="menu-header">CRUD Data</li>
+                        <li class="@yield('users')">
+                            <a class="nav-link" href="{{ route('users') }}">
+                                <i class="fas fa-user"></i><span>USER</span>
+                            </a>
                         </li>
+                        <li class="@yield('jadwal')">
+                            <a class="nav-link" href="{{ route('jadwal') }}">
+                                <i class="fas fa-th-large"></i><span>JADWAL</span>
+                            </a>
+                        </li>
+                    </ul>
             </div>
         </div>
 
@@ -95,10 +101,10 @@
             </footer>
         </div>
     </div>
-    </div>
 
     @stack('js')
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
@@ -107,16 +113,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-	  <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/8.4.1/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="/__/firebase/8.4.1/firebase-analytics.js"></script>
-
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     <script src="{{asset('assets/js/stisla.js')}}"></script>
     <script src="{{asset('assets/js/scripts.js')}}"></script>
     <script src="{{asset('assets/js/custom.js')}}"></script>

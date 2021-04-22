@@ -4,17 +4,26 @@
 <!-- Main Content -->
 <section class="section pl-3 pr-3 w-100">
     <div class="section-body d-block pt-4">
-        <form method="POST" action="{{route('regisuser')}}">
+        <form method="POST" action="{{url('register')}}">
+            @csrf
             {{-- Toggle, Role, Header --}}
             <div class="row">
                 <div class="col-12 d-lg-none d-block text-center">
                     <h1 class="mb-5">Tambah Data User</h1>
                 </div>
+<<<<<<< HEAD
                 <div class="col">
                     <a href="/datausers" class="btn btn-md btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="col-6 text-right d-lg-block d-none">
                     <h1 class="header mb-5">Tambah Data User</h1>
+=======
+                <div class="col-lg-1 col-3">
+                    <label class="switch mt-1">
+                        <input name="switch" class="toogle-switch" type="checkbox" disabled>
+                        <span class="slider round"></span>
+                    </label>
+>>>>>>> cbeb0ca1a4405ea7fc88564348f23f8468fa78d0
                 </div>
                 <div class="col-lg-4 col p-0">
                     <div class="form-group col-lg-8 float-right">
