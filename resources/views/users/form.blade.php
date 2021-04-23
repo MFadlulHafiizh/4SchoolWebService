@@ -77,8 +77,7 @@
                             <label for="password">Password</label>
                             <div class="input-group">
                                 <input type="password" name="password" id="password" class="form-control userInput"
-                                    value="{{ old('password', @$users->password) }}"
-                                    {{!empty($users) ? 'disabled' : ''}}>
+                                    value="{{ old('password', @$users->password) }}">
                                 <div class="input-group-append" {{!empty($users) ? 'hidden' : ''}}>
                                     <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
                                         <i class="fas fa-eye" id="passwordEye"></i>

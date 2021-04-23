@@ -128,7 +128,7 @@
                 <div class="form-group mt-2">
                   <select class="form-control" name="id_user">
                     <option value="">-- Nama Guru --</option>
-                    @foreach ($dataguru as $guru)
+                    @foreach ($guru as $guru)
                     <option value="{{$guru->id}}" >{{$guru->name}}</option>
                     @endforeach
                   </select>
@@ -138,7 +138,7 @@
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_matpel">
                     <option value="">-- Pilih Matpel --</option>
-                    @foreach ($datamatpel as $matpel)
+                    @foreach ($matpel as $matpel)
                     <option value="{{$matpel->id}}">{{$matpel->nama}}</option>
                     @endforeach
                   </select>
@@ -172,7 +172,7 @@
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_ruangan">
                   <option value="">-- Pilih Ruangan --</option>
-                  @foreach ($dataruangan as $ruangan)
+                  @foreach ($ruangan as $ruangan)
                       <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
                   @endforeach
                   </select>
@@ -182,7 +182,7 @@
                 <div class="form-group mt-3">
                   <select class="form-control">
                     <option value="">-- Pilih Kelas --</option>
-                    @foreach ($datakelas as $kelas)
+                    @foreach ($kelas as $kelas)
                       <option value="{{$kelas->id}}">{{$kelas->tingkatan}}</option>
                     @endforeach
                   </select>
@@ -192,7 +192,7 @@
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_kelas">
                     <option value="">-- Pilih Jurusan --</option>
-                    @foreach ($datakelas as $kelas)
+                    @foreach ($kelas as $kelas)
                         <option value="{{$kelas->id}}">{{$kelas->jurusan}}</option>
                     @endforeach
                   </select>
@@ -269,7 +269,7 @@
                 <div class="form-group mt-2">
                   <select class="form-control" name="id_user">
                     <option value="">-- Nama Guru --</option>
-                    @foreach ($dataguru as $guru)
+                    @foreach ($guru as $guru)
                     <option value="{{$guru->id}}" >{{$guru->name}}</option>
                     @endforeach
                   </select>
@@ -279,7 +279,7 @@
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_matpel">
                     <option value="">-- Pilih Matpel --</option>
-                    @foreach ($datamatpel as $matpel)
+                    @foreach ($matpel as $matpel)
                     <option value="{{$matpel->id}}">{{$matpel->nama}}</option>
                     @endforeach
                   </select>
@@ -313,7 +313,7 @@
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_ruangan">
                   <option value="">-- Pilih Ruangan --</option>
-                  @foreach ($dataruangan as $ruangan)
+                  @foreach ($ruangan as $ruangan)
                       <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
                   @endforeach
                   </select>
@@ -323,7 +323,7 @@
                 <div class="form-group mt-3">
                   <select class="form-control">
                     <option value="">-- Pilih Kelas --</option>
-                    @foreach ($datakelas as $kelas)
+                    @foreach ($kelas as $kelas)
                       <option value="{{$kelas->id}}">{{$kelas->tingkatan}}</option>
                     @endforeach
                   </select>
@@ -333,7 +333,7 @@
                 <div class="form-group mt-3">
                   <select class="form-control" name="id_kelas">
                     <option value="">-- Pilih Jurusan --</option>
-                    @foreach ($datakelas as $kelas)
+                    @foreach ($kelas as $kelas)
                         <option value="{{$kelas->id}}">{{$kelas->jurusan}}</option>
                     @endforeach
                   </select>
