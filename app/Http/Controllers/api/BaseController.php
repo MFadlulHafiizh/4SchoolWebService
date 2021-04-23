@@ -122,7 +122,7 @@ class BaseController extends Controller
         $faq = DB::table('faq')->get();
 
         if($faq){
-            return response()->json($faq);
+            return response()->json(["faq_list" => $faq]);
         }else{
             return response()->json(["message" => 'error'], 402);
         }
@@ -136,7 +136,7 @@ class BaseController extends Controller
             return response()->json(["filesDetail" => $file]);
         }
         else if($condition == 'file_siswa'){
-            $file = DB::table('file_tugas_siswa')->where('id_tugas_kelas', $id_tugas)->get();
+            $file = DB::table('file_tugas_siswa')->where('id_tugas_kelas', $id_tugas)->where('id_siswa', $request->id_siswa)->get();
             return response()->json(["filesDetail" => $file]);
         }
         
