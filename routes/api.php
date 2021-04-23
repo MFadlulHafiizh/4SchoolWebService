@@ -41,6 +41,7 @@ Route::group(['middleware'=> 'api.role:guru'], function() {
     Route::get('GuruSchedule/index_classroom_guru/checkTask', 'api\GuruInteractionController@showCompletedUser');
     Route::get('GuruSchedule/checkTask', 'api\GuruInteractionController@showCompletedUser');
     Route::patch('GuruSchedule/nilai', "api\GuruInteractionController@setNilai");
+    Route::get('listprof', 'api\GuruInteractionController@listProf');
 });
 Route::group(['middleware'=> 'api.role:siswa'], function() {
     Route::get('SiswaSchedule', 'api\SiswaInteractionController@SiswaSchedule');

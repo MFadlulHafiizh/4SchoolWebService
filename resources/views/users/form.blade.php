@@ -210,5 +210,38 @@
         }
     });
 
+    // Account Active Toggle : Data
+    $(function() {
+      $('.toogle-switch').change(function() {
+        getData();
+      });
+
+      $('#role-select').change(function(){
+        getData();
+      });
+
+      function getData(){
+        var status = $('.toogle-switch').prop('checked') == true ? "Open" : "Close";
+        var role;
+        if( status == "Open" || status == "Close") {
+          role = $('#role-select').val();
+        }
+        
+        reqData(status,role);
+      }
+
+      function reqData(status, role) {
+        $.ajax({
+          type: "POST",
+          dataType: "json",
+          url: 'register/setOpenCloseRegist',
+          data: {'statement': status, 'role': role, _token: '{{csrf_token()}}'},
+          success: function(data){
+            console.log(data.success)
+          }
+        });
+      }
+    });
+
 </script>
 @endpush

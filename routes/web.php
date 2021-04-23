@@ -24,7 +24,7 @@ Route::post('/logout', 'AdminController@logout')->name('logout');
 // CRUD User : API
 Route::get('/home', 'AdminController@index')->name('home');
 Route::get('/register', [AdminController::class, 'register']);
-Route::post('register/setOpenCloseRegist', 'api\RegisterController@statement');
+Route::post('users/register/setOpenCloseRegist', 'api\RegisterController@statement');
 
 // CRUD Jadwal
 Route::get('/jadwal','JadwalController@index')->name('jadwal');
