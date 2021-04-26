@@ -82,8 +82,11 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+        $info = auth()->user()->profesi;
+        // $id_profesi = $info->pluck('profesi')[0];
+        $user = DB::table('users')->select('users.*', 'mata_pelajaran.nama as profesi')->join('mata_pelajaran', "mata_pelajaran.id", "=", "users.profesi")->where('users.profesi', $info)->first();
         return response()->json([
-            'userInfo' => auth()->user(),
+            'userInfo' => $user,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => $this->guard()->factory()->getTTL() * 60

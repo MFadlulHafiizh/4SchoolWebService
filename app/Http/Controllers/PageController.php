@@ -86,4 +86,8 @@ class PageController extends Controller
         // return view('index', compact('roomdata'));
         return view('room-show', compact('roomdata'));
     }
+
+    public function showUploadMateri(){
+        return view('materi.form');
+    }
 }

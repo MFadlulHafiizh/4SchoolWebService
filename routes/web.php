@@ -9,7 +9,6 @@ Route::post('/getRuangan', [RuanganController::class, 'getRuangAjax']);
 Route::post('/getSarpras', [SaranaPrasaranaController::class, 'getSarprasAjax']);
 Route::get('/room/{id}/show', [PageController::class, 'show']);
 
-
 /*
 |--------------------------------------------------------------------------
 | Admin CRUD (Chandra)
@@ -54,7 +53,7 @@ Route::post('/ruangan', [RuanganController::class, 'store'])->name('ruangan.stor
 Route::get('/ruangan/{id}/edit', [RuanganController::class, 'edit'])->name('ruangan.edit');
 Route::patch('/ruangan/{id}', [RuanganController::class, 'update'])->name('ruangan.update');
 Route::delete('/ruangan/{id}', [RuanganController::class, 'destroy'])->name('ruangan.destroy');
-
+Route::get('materi', [PageController::class, 'showUploadMateri']);
 /*
 |--------------------------------------------------------------------------
 | Sarana Prasarana Routes
