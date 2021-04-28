@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AdminController, PageController, RuanganController, SaranaPrasaranaController};
+use App\Http\Controllers\{AdminController, PageController, RuanganController, SaranaPrasaranaController, PetunjukController};
 use App\Models\Sarpras;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +22,7 @@ Route::post('/logout', 'AdminController@logout')->name('logout');
 
 // CRUD User : API
 Route::get('/home', 'AdminController@index')->name('home');
+Route::get('/petunjuk', [PetunjukController::class, 'index'])->name('petunjuk');
 Route::get('/register', [AdminController::class, 'register']);
 Route::post('users/register/setOpenCloseRegist', 'api\RegisterController@statement');
 
@@ -40,6 +41,15 @@ Route::post('/users/create','UsersController@store')->name('users.store');
 Route::get('/users/edit/{id}','UsersController@edit')->name('users.edit');
 Route::patch('/users/edit/{id}','UsersController@update')->name('users.update');
 Route::delete('users/delete/{id}','UsersController@destroy')->name('users.destroy');
+
+// CRUD Petunjuk
+Route::get('/petunjuk','PetunjukController@index')->name('petunjuk');
+Route::get('/petunjuk/create','PetunjukController@create')->name('petunjuk.create');
+Route::post('/petunjuk/create','PetunjukController@store')->name('petunjuk.store');
+Route::get('/petunjuk/edit/{id}','PetunjukController@edit')->name('petunjuk.edit');
+Route::patch('/petunjuk/edit/{id}','PetunjukController@update')->name('petunjuk.update');
+Route::delete('petunjuk/delete/{id}','PetunjukController@destroy')->name('petunjuk.destroy');
+
 
 /*
 |--------------------------------------------------------------------------

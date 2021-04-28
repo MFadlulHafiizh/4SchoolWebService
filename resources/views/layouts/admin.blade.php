@@ -83,6 +83,11 @@
                                 <i class="fas fa-th-large"></i><span>JADWAL</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('petunjuk') }}">
+                                <i class="fas fa-th-large"></i><span>PETUNJUK</span>
+                            </a>
+                        </li>
                         
                         
                     </ul>
