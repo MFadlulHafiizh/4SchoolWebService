@@ -144,10 +144,10 @@ public function updateprofile(Request $request, $id_user)
             ], 200);
         }else{
             $kelas = DB::table('mata_pelajaran')
-            ->select('mata_pelajaran.id')
+            ->select('mata_pelajaran.id', 'mata_pelajaran.nama')
             ->get();
 
-            return response()->json(["listMajors" => $kelas]);
+            return response()->json(["listProf" => $kelas]);
         }
 
     }
