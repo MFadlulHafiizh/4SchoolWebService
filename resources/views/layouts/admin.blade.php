@@ -41,8 +41,12 @@
                 <li class="dropdown"><a href="#" data-toggle="dropdown"
                         class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                         <img alt="image" src="{{asset('assets/img/avatar/user.png')}}" class="rounded-circle mr-1">
+<<<<<<< HEAD
                         <div class="section-body">
                             {{ Auth::user()->name }}</div>
+=======
+                        <div class="d-sm-none d-lg-inline-block">Hi, Hafiizh</div>
+>>>>>>> d0a96046c672840b3326a48467c26b7cfed289cc
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="features-settings.html" class="dropdown-item has-icon">
@@ -84,6 +88,13 @@
                                 <i class="fas fa-th-large"></i><span>JADWAL</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('petunjuk') }}">
+                                <i class="fas fa-th-large"></i><span>PETUNJUK</span>
+                            </a>
+                        </li>
+                        
+                        
                     </ul>
             </div>
         </div>
