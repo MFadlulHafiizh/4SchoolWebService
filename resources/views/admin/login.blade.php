@@ -22,12 +22,13 @@
             <div class="login-brand">
               <img src="{{asset('assets/img/4-logo.jpg')}}" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
-
             <div class="card card-primary">
               <div class="card-header"><h4>Login</h4></div>
 
               <div class="card-body">
-                <form method="POST" action="#" class="needs-validation" novalidate="">
+                <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+                  {{ csrf_field() }}
+
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
@@ -57,6 +58,18 @@
                       <label class="custom-control-label" for="remember-me">Ingat Saya</label>
                     </div>
                   </div>
+                  
+                    @if (session('message'))
+
+                      <div class="alert alert-danger alert-dismissible show fade">
+                        <div class="alert-body">
+                          <button class="close" data-dismiss="alert">
+                            <span>x</span>
+                          </button>
+                          {{ session('message')}}
+                        </div>
+                      </div>
+                        @endif
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">

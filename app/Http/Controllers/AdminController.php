@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Ruangan;
 use App\Session;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -80,9 +83,33 @@ class AdminController extends Controller
 
     }
 
-    public function login()
+    public function index2()
     {
         return view('admin.login');
+    }
+
+    public function login(Request $request)
+    {
+        // $email = $request->email;
+        // $pwd = $request->password;
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('/home');
+            // return "Hai " . Auth::user()->name;
+        }
+        return redirect('/')->with('message', 'Email atau Password salah');
+        // echo "<script>alert('Email Atau Password Salah')</script>";
+        // echo "<meta http-equiv='refresh' content='0; url=?http://127.0.0.1:8000/login'>";
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
+    public function home()
+    {
+        return view('layout.admin');
     }
 
     public function register()
