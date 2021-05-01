@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Data Petunjuk')
 
 @section('content')
 <div class="col">
