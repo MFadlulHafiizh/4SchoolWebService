@@ -4,11 +4,11 @@
                  <table class="table table-bordered table-sm">
                     <tr>
                         <th width="30%" class="th-gray">Nama Ruangan</th>
-                        <td width="70%" id="" val>{{$roomdata->nama}}</td>
+                        <td width="70%" id="">{{$roomdata->nama}}</td>
                     </tr>
                      <tr>
                          <th width="30%" class="th-gray">Tipe</th>
-                         <td width="70%" id="" val>{{$roomdata->tipe}}</td>
+                         <td width="70%" id="">{{$roomdata->tipe}}</td>
                      </tr>
                      <tr>
                          <th width="30%" class="th-gray">Lantai</th>
@@ -16,7 +16,7 @@
                      </tr>
                      <tr>
                          <th width="30%" class="th-gray">Status</th>
-                         <td width="70%" id="">{{$roomdata->status}}</td>
+                         <td width="70%" id="status">{{$roomdata->status}}</td>
                      </tr>
                      <tr>
                          <th width="30%" class="th-gray">Deskripsi</th>

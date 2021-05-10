@@ -506,7 +506,7 @@
 				<i class="fas fa-basketball-ball fa-2x"></i><br><span>Lapang</span>
 			</button>
 		</div>
-		
+
 
 	</div>
 	<!-- Map Lantai 2 End -->
@@ -530,70 +530,9 @@
                         <a class="nav-link" id="sarpras-tab" data-toggle="tab" href="#sarpras" role="tab" aria-controls="sarpras" aria-selected="false">SarPras</a>
                     </li>
                 </ul>
-                {{-- <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="ruangan" role="tabpanel" aria-labelledby="ruangan-tab">
-                        <div class="table-responsive mt-4">
-                            <table class="table table-bordered table-sm">
-                                <tr>
-                                    <th width="30%" class="th-gray">Tipe</th>
-                                    <td width="70%" id="" val>Kelas</td>
-                                </tr>
-                                <tr>
-                                    <th width="30%" class="th-gray">Lantai</th>
-                                    <td width="70%" id="">1</td>
-                                </tr>
-                                <tr>
-                                    <th width="30%" class="th-gray">Status</th>
-                                    <td width="70%" id=""></td>
-                                </tr>
-                                <tr>
-                                    <th width="30%" class="th-gray">Deskripsi</th>
-                                    <td width="70%" id="">Lorem ipsum dolor sit amet, consectetur adipisicing elit..</td>
-                                </tr>                                
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="sarpras" role="tabpanel" aria-labelledby="sarpras-tab">
-                        <div class="table-responsive mt-4">
-                            <table class="table table-bordered table-sm">
-                                <tr align="center">
-                                    <th width="30%" class="th-gray">Nama Barang</th>
-                                    <th width="20%" class="th-gray">Jumlah</th>
-                                    <th width="25%" class="th-gray">Kondisi</th>
-                                    <th width="25%" class="th-gray">Catatan</th>
-                                </tr>
-                                <tr align="center">
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                </tr>
-                                <tr align="center">
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                </tr>
-                                <tr align="center">
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                </tr>
-                                <tr align="center">
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div> --}}
             </div> 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Navigate</button>
             </div>
         </div>
         </div>
@@ -607,27 +546,36 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+	
+
     $(function() {
+
         $('.btn-room').click(function(e) {
+			var ruanganid = $(this).attr('data-id');
 			console.log($(this).attr('data-id'));
-			var ruanganid = $(this).attr('data-id')
-			// console.log($(this).attr('data-id'));
-			// let id = $(this).attr('data-id')
-            // alert("hiii");
 			$.ajax({
 				url: `/room/${ruanganid}/show`,
 				method: "GET",
 				success: function(data){
 					console.log(data)
 					$('#modalroom').find('.modal-body').html(data);
-					//$('#modalroom').html(Response);
-					$('#modalroom').modal('show');
+					$('#modalroom').modal('show');					
 				},
 				error:function (error) {
 					console.log(error)
 				}
 			})
         });
+		
+		// Function change color
+		$.ajax({
+			url: 'api/dataruangan',
+			method: 'GET',
+			success: function(data) {
+				data.forEach( (m) => {
+					$("div").find(`[data-id='${m.id}']`).css('background-color', 'red');
+				});
+			}
+		});
     });
-
 </script>

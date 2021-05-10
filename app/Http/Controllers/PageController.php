@@ -8,10 +8,11 @@ class PageController extends Controller
 {
     public function index()
     {
-        $data['lantai'] = [1, 2];
-        $data['blok'] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-        $data['tipe'] = ['Labolatorium', 'Kelas'];
-        $data['status'] = ['Kosong', 'Digunakan'];
+        // $data['lantai'] = [1, 2];
+        // $data['blok'] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+        // $data['tipe'] = ['Labolatorium', 'Kelas'];
+        // $data['status'] = ['Kosong', 'Digunakan'];
+        $data = \DB::table('ruangan')->get();
 
         $dataA1 = Ruangan::where('blok', 'A')->where('lantai', '2')->take(2)->get();
 

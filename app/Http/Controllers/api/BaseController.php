@@ -142,4 +142,29 @@ class BaseController extends Controller
         
 
     }
+
+    public function getDataRuangan(Request $request) {
+        $status = DB::table('ruangan')->select('id')->where('status', 'ada')->get();
+        if($status){
+            return response()->json($status);
+        }else{
+            return response()->json(["message" => 'error'], 402);
+        }
+    }
+
+    public function getRuanganDipakai(Request $request) {
+        $status = DB::table('jadwal')->select('id_ruangan')->get();
+
+        // $userInfo = DB::table('users')
+        // ->select('mata_pelajaran.nama as profesi')
+        // ->join('mata_pelajaran', 'users.profesi', '=', 'mata_pelajaran.id')
+        // ->where('users.id', $request->id)->first();
+        // }
+
+        if($status){
+            return response()->json($status);
+        }else{
+            return response()->json(["message" => 'error'], 402);
+        }
+    }
 }

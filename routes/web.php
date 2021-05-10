@@ -9,6 +9,7 @@ Route::get('/api', [PageController::class, 'index']);
 Route::post('/getRuangan', [RuanganController::class, 'getRuangAjax']);
 Route::post('/getSarpras', [SaranaPrasaranaController::class, 'getSarprasAjax']);
 Route::get('/room/{id}/show', [PageController::class, 'show']);
+Route::get('/landingpage', 'HomeController@index')->name('landingpage');
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +63,6 @@ Route::delete('petunjuk/delete/{id}','PetunjukController@destroy')->name('petunj
 | Ruangan Routes
 |--------------------------------------------------------------------------
  */
-
 Route::get('/ruangan', [RuanganController::class, 'index'])->name('ruangan.index');
 Route::get('/ruangan/create', [RuanganController::class, 'create'])->name('ruangan.create');
 Route::post('/ruangan', [RuanganController::class, 'store'])->name('ruangan.store');
@@ -70,12 +70,12 @@ Route::get('/ruangan/{id}/edit', [RuanganController::class, 'edit'])->name('ruan
 Route::patch('/ruangan/{id}', [RuanganController::class, 'update'])->name('ruangan.update');
 Route::delete('/ruangan/{id}', [RuanganController::class, 'destroy'])->name('ruangan.destroy');
 Route::get('materi', [PageController::class, 'showUploadMateri']);
+
 /*
 |--------------------------------------------------------------------------
 | Sarana Prasarana Routes
 |--------------------------------------------------------------------------
  */
-
 Route::get('/sarpras', [SaranaPrasaranaController::class, 'index'])->name('sarpras.index');
 Route::get('/sarpras/create', [SaranaPrasaranaController::class, 'create'])->name('sarpras.create');
 Route::post('/sarpras', [SaranaPrasaranaController::class, 'store'])->name('sarpras.store');
